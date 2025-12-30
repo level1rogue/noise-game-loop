@@ -1,0 +1,134 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5we4ccv6c5yp"]
+
+[ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://scenes/enemy_spawn_machine.tscn" id="2_0wfyh"]
+
+[sub_resource type="Environment" id="Environment_o5qli"]
+background_mode = 3
+glow_bloom = 0.65
+glow_blend_mode = 0
+adjustment_enabled = true
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_o5qli")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(4.95, 3.03)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.475
+offset_top = -1.515
+offset_right = 13.565001
+offset_bottom = 6.195
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(121.850746, 147.71957)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.007978929, 0.0006758069, 0.051645726, 1)
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o5qli")
+
+[node name="InfoLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 27.0
+offset_top = 821.0
+offset_right = 145.0
+offset_bottom = 855.0
+theme_override_font_sizes/font_size = 24
+text = "Lane Nr. 3"
+
+[node name="Menu" type="VBoxContainer" parent="."]
+offset_left = 19.0
+offset_top = 25.0
+offset_right = 305.0
+offset_bottom = 491.0
+theme_override_constants/separation = 15
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Nr. of Sides"
+
+[node name="SidesInput" type="LineEdit" parent="Menu/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "5"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/VBoxContainer5"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Nr. of Subdivisions"
+
+[node name="SubDivsInput" type="LineEdit" parent="Menu/VBoxContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "3"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Radius (% of screen height)"
+
+[node name="RadiusInput" type="LineEdit" parent="Menu/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "40"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Offset potential (%)"
+
+[node name="OffsetInput" type="LineEdit" parent="Menu/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "20"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/VBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "inner radius ratio"
+
+[node name="RatioInput" type="LineEdit" parent="Menu/VBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "5"
+
+[node name="Button" type="Button" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Calculate"
+
+[node name="RngButton" type="Button" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Calculate Random"
+
+[node name="EnemySpawnMachine" parent="." instance=ExtResource("2_0wfyh")]
+
+[connection signal="pressed" from="Menu/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Menu/RngButton" to="." method="_on_rng_button_pressed"]

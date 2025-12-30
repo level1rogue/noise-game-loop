@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg6tsv01wqj1j"]
+
+[ext_resource type="Script" uid="uid://bu1y64ia73plp" path="res://scripts/enemy_spawn_machine.gd" id="1_yteuk"]
+
+[node name="EnemySpawnMachine" type="Node2D"]
+script = ExtResource("1_yteuk")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.421
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
