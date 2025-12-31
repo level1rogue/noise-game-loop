@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5we4ccv6c5yp"]
+[gd_scene load_steps=6 format=3 uid="uid://b5we4ccv6c5yp"]
 
 [ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://scenes/enemy_spawn_machine.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://de5efn574omjt" path="res://scenes/player.tscn" id="2_sugp2"]
+[ext_resource type="AudioStream" uid="uid://euab3xghe7f1" path="res://audio/noise_swell.mp3" id="4_jyhfs"]
 
 [sub_resource type="Environment" id="Environment_o5qli"]
 background_mode = 3
@@ -133,6 +134,10 @@ text = "Calculate Random"
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
 position = Vector2(491, 135)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jyhfs")
+autoplay = true
 
 [connection signal="pressed" from="Menu/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Menu/RngButton" to="." method="_on_rng_button_pressed"]

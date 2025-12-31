@@ -19,6 +19,7 @@ func _physics_process(delta: float) -> void:
 func trigger_shot():
 	print("shoot!", $AnimationPlayer.current_animation)
 	$AnimationPlayer.play("shot")
+	$ShotAudio.play()
 	
 	var enemies = $ShotArea.get_overlapping_bodies()
 	for enemy in enemies:
