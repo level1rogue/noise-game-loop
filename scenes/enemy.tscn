@@ -1,15 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://lkg37dnvthk1"]
+[gd_scene load_steps=9 format=3 uid="uid://lkg37dnvthk1"]
 
+[ext_resource type="Shader" uid="uid://8idoj4qs7v5n" path="res://shaders/enemy_noise.gdshader" id="1_4ra3w"]
 [ext_resource type="Script" uid="uid://bq1p7t6wew0gw" path="res://scripts/enemy.gd" id="1_7p1mj"]
+[ext_resource type="PackedScene" uid="uid://wtwa2cg1v6ny" path="res://scenes/explosion.tscn" id="2_md0e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tegq"]
 size = Vector2(10, 10)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ra3w"]
+noise_type = 2
+frequency = 0.016
+fractal_gain = 1.56
+fractal_weighted_strength = 0.09
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5uy6h"]
+noise = SubResource("FastNoiseLite_4ra3w")
+seamless_blend_skirt = 0.244
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ra3w"]
+shader = ExtResource("1_4ra3w")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_5uy6h")
+shader_parameter/flicker_speed = 7.37
+shader_parameter/noise_frequency = 0.25
+shader_parameter/time_offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4ra3w"]
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_7p1mj")
+deathParticles = ExtResource("2_md0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_8tegq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -27,3 +50,14 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(1, 0.28627452, 0.35686275, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+material = SubResource("ShaderMaterial_4ra3w")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_4ra3w")
+expand_mode = 2

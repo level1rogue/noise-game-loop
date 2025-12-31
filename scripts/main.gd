@@ -206,4 +206,5 @@ func _on_lane_entered(area: Area2D):
 	print("emterd")
 
 func start_game_timer():
+	$EnemySpawnMachine.init = true
 	get_node("EnemySpawnMachine/Timer").start()

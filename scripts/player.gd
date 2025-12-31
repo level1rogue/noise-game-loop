@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
+const SPEED = 500.0
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
 
 
 func _physics_process(delta: float) -> void:
@@ -16,3 +15,15 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	move_and_slide()
+
+func trigger_shot():
+	print("shoot!", $AnimationPlayer.current_animation)
+	$AnimationPlayer.play("shot")
+	
+	var enemies = $ShotArea.get_overlapping_bodies()
+	for enemy in enemies:
+		if enemy.has_method("take_damage"):
+			enemy.take_damage(5)
+
+func _on_timer_timeout() -> void:
+	trigger_shot()
