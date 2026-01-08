@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd6bilswadpa8"]
+[gd_scene load_steps=3 format=3 uid="uid://dd6bilswadpa8"]
 
 [ext_resource type="Script" uid="uid://r7xjwebp08n3" path="res://scripts/menu.gd" id="1_yqeox"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqeox"]
+bg_color = Color(0.35635743, 0.121242695, 0.15869567, 1)
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_yqeox")
@@ -106,7 +109,43 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/RightContainer/VBoxContainer"]
 layout_mode = 2
-text = "Test Label"
+text = "Nr. of Initial Enemies"
+
+[node name="InitEnemyInput" type="LineEdit" parent="MarginContainer/RightContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/RightContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/RightContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Timer Interval (sec)"
+
+[node name="TimerIntervalInput" type="LineEdit" parent="MarginContainer/RightContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/RightContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/RightContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Enemy MAX speed"
+
+[node name="EnemyMaxSpeedInput" type="LineEdit" parent="MarginContainer/RightContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0.5"
+
+[node name="StartButton" type="Button" parent="MarginContainer/RightContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_yqeox")
+text = "Start Sim"
 
 [connection signal="pressed" from="MarginContainer/LeftContainer/CalcButton" to="." method="_on_calc_button_pressed"]
 [connection signal="pressed" from="MarginContainer/LeftContainer/RngButton" to="." method="_on_rng_button_pressed"]
+[connection signal="pressed" from="MarginContainer/RightContainer/StartButton" to="." method="_on_start_button_pressed"]

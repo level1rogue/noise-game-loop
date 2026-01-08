@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var deathParticles : PackedScene
 
 var MIN_SPEED := 0.01
-var MAX_SPEED := 0.5
+var max_speed := 0.5
 
 var SPEED := 0.0
 var DIRECTION := Vector2(0,0)
@@ -23,7 +23,8 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func initiate_me():
-	SPEED = randf_range(MIN_SPEED, MAX_SPEED)
+	SPEED = randf_range(MIN_SPEED, max_speed)
+	#prints("min and max speed: ", MIN_SPEED, max_speed)
 	DIRECTION = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
 	position = get_viewport_rect().size / 2 + DIRECTION * randi_range(20, 90)
 	var noise_color_value = randf() 

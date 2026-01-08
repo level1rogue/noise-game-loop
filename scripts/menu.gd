@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal render_requested(data: Dictionary)
+signal start_requested()
 
 var constraints := {}
 
@@ -50,3 +51,14 @@ func _on_rng_button_pressed() -> void:
 	%OffsetInput.text = str(randi_range(1, constraints.max_offset))
 	%RatioInput.text = str(snapped(randf_range(constraints.min_ratio, constraints.max_ratio), 0.01))
 	_on_calc_button_pressed()
+
+
+func _on_start_button_pressed() -> void:
+	var init_enemies := int(%InitEnemyInput.text)
+	var timer_interval := int(%TimerIntervalInput.text)
+	var enemy_max_speed := float(%EnemyMaxSpeedInput.text)
+	emit_signal("start_requested", {
+		"init_enemies": init_enemies,
+		"timer_interval": timer_interval,
+		"enemy_max_speed": enemy_max_speed
+	})

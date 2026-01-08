@@ -31,7 +31,7 @@ func _ready() -> void:
 		"max_sub_divs": MAX_SUB_DIVS
 	})
 	$Menu.render_requested.connect(_on_render_requested)
-	
+	$Menu.start_requested.connect(_on_start_requested)
 	screen_center = get_viewport_rect().size / 2
 	$Background.size = get_viewport_rect().size
 	r = calc_radius(rpctg)
@@ -190,6 +190,7 @@ func render_polygon(nr_of_sides, radius, sub_divisions := 3):
 
 
 func _on_render_requested(data: Dictionary) -> void:
+	get_node("EnemySpawnMachine/Timer").stop()
 	n = data.n
 	subs = data.subs
 	rpctg = data.rpctg
@@ -201,13 +202,12 @@ func _on_render_requested(data: Dictionary) -> void:
 	r = calc_radius(rpctg)
 	screen_center = get_viewport_rect().size / 2
 	render_polygon(n, r, subs)
-	start_game_timer()
+	#start_game_timer()
 
 
 func _on_lane_entered(area: Area2D):
 	%InfoLabel.text = area.lane_label
 	print("emterd")
 
-func start_game_timer():
-	$EnemySpawnMachine.init = true
-	get_node("EnemySpawnMachine/Timer").start()
+func _on_start_requested(data: Dictionary):
+	$EnemySpawnMachine.start_timer(data)
