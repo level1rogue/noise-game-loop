@@ -20,6 +20,18 @@ var screen_center : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Menu.set_constraints({
+		"min_radius": MIN_RADIUS,
+		"max_radius": MAX_RADIUS,
+		"max_sides": MAX_SIDES,
+		"max_offset": MAX_OFFSET,
+		"min_ratio": MIN_RATIO,
+		"max_ratio": MAX_RATIO,
+		"min_sub_divs": MIN_SUB_DIVS,
+		"max_sub_divs": MAX_SUB_DIVS
+	})
+	$Menu.render_requested.connect(_on_render_requested)
+	
 	screen_center = get_viewport_rect().size / 2
 	$Background.size = get_viewport_rect().size
 	r = calc_radius(rpctg)
@@ -177,12 +189,12 @@ func render_polygon(nr_of_sides, radius, sub_divisions := 3):
 	array_of_lanes = calc_lanes(inner_points, outer_points)
 
 
-func _on_button_pressed() -> void:
-	n = int(%SidesInput.text) if (int(%SidesInput.text) >= 3 ) else 5
-	subs = int(%SubDivsInput.text) if (int(%SubDivsInput.text) >= 0 ) else 3
-	rpctg = int(%RadiusInput.text) if (int(%RadiusInput.text) > 0) else 100
-	offset = int(%OffsetInput.text) if (int(%OffsetInput.text) >= 1 ) else 20
-	radius_ratio = float(%RatioInput.text) if (float(%RatioInput.text) >= 1.5 ) else 3.0
+func _on_render_requested(data: Dictionary) -> void:
+	n = data.n
+	subs = data.subs
+	rpctg = data.rpctg
+	offset = data.offset
+	radius_ratio = data.radius_ratio
 	for child in get_children():
 		if child is Area2D or child is Line2D:
 			child.queue_free()
@@ -190,15 +202,6 @@ func _on_button_pressed() -> void:
 	screen_center = get_viewport_rect().size / 2
 	render_polygon(n, r, subs)
 	start_game_timer()
-
-
-func _on_rng_button_pressed() -> void:
-	%SidesInput.text = str(randi_range(3, MAX_SIDES))
-	%SubDivsInput.text = str(randi_range(MIN_SUB_DIVS, MAX_SUB_DIVS))
-	%RadiusInput.text = str(randi_range(MIN_RADIUS, MAX_RADIUS))
-	%OffsetInput.text = str(randi_range(1, MAX_OFFSET))
-	%RatioInput.text = str(snapped(randf_range(MIN_RATIO, MAX_RATIO), 0.01))
-	_on_button_pressed()
 
 
 func _on_lane_entered(area: Area2D):

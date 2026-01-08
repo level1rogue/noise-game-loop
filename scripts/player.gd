@@ -2,8 +2,6 @@ extends CharacterBody2D
 
 const SPEED = 500.0
 
-
-
 func _physics_process(delta: float) -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
 	

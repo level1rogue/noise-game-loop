@@ -10,5 +10,10 @@ void fragment() {
     // Use fract() to keep UVs in 0-1 range while flickering
     vec2 flickered_uv = fract(UV * noise_frequency + vec2((TIME + time_offset) * flicker_speed, (TIME + time_offset) * flicker_speed * 0.73));
     float noise = texture(noise_tex, flickered_uv).r;
-    COLOR = vec4(vec3(noise), 1.0);
+    
+    // Apply pink-ish hue to the noise
+    vec3 pink_color = vec3(1.0, 0.3, 0.4); // Pink tint
+    vec3 color = pink_color * noise;
+    
+    COLOR = vec4(color, 1.0);
 }
