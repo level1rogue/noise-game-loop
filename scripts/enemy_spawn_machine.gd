@@ -7,12 +7,8 @@ var enemy_max_speed = 0.5
 
 var enemy = preload("res://scenes/enemy.tscn")
 
-
 func init_enemies():
-	# Remove pre-existing enemies
-	for child in get_parent().get_children():
-		if child.has_method("die"):
-			child.die()
+	
 	# Instantiate new initial enemies
 	for i in init_count:
 		var en = enemy.instantiate()
@@ -31,6 +27,17 @@ func start_timer(data: Dictionary):
 	init = true
 	$Timer.wait_time = data.timer_interval
 	if init:
+		remove_all_existing()
 		init_enemies()
 		init = false
 	$Timer.start()
+
+func stop_timer():
+	remove_all_existing()
+	$Timer.stop()
+
+func remove_all_existing():
+	# Remove existing enemies
+	for child in get_parent().get_children():
+		if child.has_method("die"):
+			child.die()

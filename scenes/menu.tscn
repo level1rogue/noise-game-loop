@@ -19,133 +19,141 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="LeftContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 26
+
+[node name="LeftContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 22
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/LeftContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LeftContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/LeftContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Nr. of Sides"
 
-[node name="SidesInput" type="LineEdit" parent="MarginContainer/LeftContainer/VBoxContainer2"]
+[node name="SidesInput" type="LineEdit" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "5"
 
-[node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer/LeftContainer"]
+[node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LeftContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/LeftContainer/VBoxContainer5"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer5"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Nr. of Subdivisions"
 
-[node name="SubDivsInput" type="LineEdit" parent="MarginContainer/LeftContainer/VBoxContainer5"]
+[node name="SubDivsInput" type="LineEdit" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer5"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "3"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/LeftContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LeftContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/LeftContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer"]
 layout_mode = 2
 text = "Radius"
 
-[node name="RadiusInput" type="LineEdit" parent="MarginContainer/LeftContainer/VBoxContainer"]
+[node name="RadiusInput" type="LineEdit" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "40"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/LeftContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LeftContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/LeftContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer3"]
 layout_mode = 2
 text = "Offset potential (px)"
 
-[node name="OffsetInput" type="LineEdit" parent="MarginContainer/LeftContainer/VBoxContainer3"]
+[node name="OffsetInput" type="LineEdit" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "20"
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/LeftContainer"]
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/VBoxContainer/LeftContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/LeftContainer/VBoxContainer4"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer4"]
 layout_mode = 2
 text = "inner radius ratio"
 
-[node name="RatioInput" type="LineEdit" parent="MarginContainer/LeftContainer/VBoxContainer4"]
+[node name="RatioInput" type="LineEdit" parent="MarginContainer/VBoxContainer/LeftContainer/VBoxContainer4"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "5"
 
-[node name="CalcButton" type="Button" parent="MarginContainer/LeftContainer"]
+[node name="CalcButton" type="Button" parent="MarginContainer/VBoxContainer/LeftContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Calculate"
 
-[node name="RngButton" type="Button" parent="MarginContainer/LeftContainer"]
+[node name="RngButton" type="Button" parent="MarginContainer/VBoxContainer/LeftContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Calculate Random"
 
-[node name="RightContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/RightContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/RightContainer/VBoxContainer"]
+[node name="RightContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RightContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RightContainer/VBoxContainer"]
 layout_mode = 2
 text = "Nr. of Initial Enemies"
 
-[node name="InitEnemyInput" type="LineEdit" parent="MarginContainer/RightContainer/VBoxContainer"]
+[node name="InitEnemyInput" type="LineEdit" parent="MarginContainer/VBoxContainer/RightContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/RightContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RightContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/RightContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RightContainer/VBoxContainer2"]
 layout_mode = 2
 text = "Timer Interval (sec)"
 
-[node name="TimerIntervalInput" type="LineEdit" parent="MarginContainer/RightContainer/VBoxContainer2"]
+[node name="TimerIntervalInput" type="LineEdit" parent="MarginContainer/VBoxContainer/RightContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/RightContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RightContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/RightContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/RightContainer/VBoxContainer3"]
 layout_mode = 2
 text = "Enemy MAX speed"
 
-[node name="EnemyMaxSpeedInput" type="LineEdit" parent="MarginContainer/RightContainer/VBoxContainer3"]
+[node name="EnemyMaxSpeedInput" type="LineEdit" parent="MarginContainer/VBoxContainer/RightContainer/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0.5"
 
-[node name="StartButton" type="Button" parent="MarginContainer/RightContainer"]
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/RightContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_yqeox")
 text = "Start Sim"
 
-[connection signal="pressed" from="MarginContainer/LeftContainer/CalcButton" to="." method="_on_calc_button_pressed"]
-[connection signal="pressed" from="MarginContainer/LeftContainer/RngButton" to="." method="_on_rng_button_pressed"]
-[connection signal="pressed" from="MarginContainer/RightContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LeftContainer/CalcButton" to="." method="_on_calc_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LeftContainer/RngButton" to="." method="_on_rng_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RightContainer/StartButton" to="." method="_on_start_button_pressed"]

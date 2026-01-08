@@ -190,7 +190,7 @@ func render_polygon(nr_of_sides, radius, sub_divisions := 3):
 
 
 func _on_render_requested(data: Dictionary) -> void:
-	get_node("EnemySpawnMachine/Timer").stop()
+	$EnemySpawnMachine.stop_timer()
 	n = data.n
 	subs = data.subs
 	rpctg = data.rpctg
@@ -207,7 +207,6 @@ func _on_render_requested(data: Dictionary) -> void:
 
 func _on_lane_entered(area: Area2D):
 	%InfoLabel.text = area.lane_label
-	print("emterd")
 
 func _on_start_requested(data: Dictionary):
 	$EnemySpawnMachine.start_timer(data)
