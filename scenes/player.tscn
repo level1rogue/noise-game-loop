@@ -36,7 +36,6 @@ width = 5.0
 default_color = Color(0.18859088, 0.5801689, 0.8281458, 1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(-21, 0, 0, -21, 21, 0, 0, 21)
 
 [node name="ShotTimer" type="Timer" parent="."]

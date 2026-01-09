@@ -18,12 +18,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func trigger_shot():
-	print("shoot!", $AnimationPlayer.current_animation)
-	$AnimationPlayer.play("shot")
-	$ShotAudio.play()
+	$ShotArea.animate_shot()
+	#$ShotAudio.play()
 	
-	var enemies = $ShotArea.get_overlapping_bodies()
+	var enemies = $ShotArea.get_targets()
 	for enemy in enemies:
+		print("overlap")
 		if enemy.has_method("take_damage"):
 			enemy.take_damage(shot_damage)
 
