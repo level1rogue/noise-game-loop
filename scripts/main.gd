@@ -20,6 +20,7 @@ var screen_center : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("ready")
 	$Menu.set_constraints({
 		"min_radius": MIN_RADIUS,
 		"max_radius": MAX_RADIUS,
@@ -32,6 +33,7 @@ func _ready() -> void:
 	})
 	$Menu.render_requested.connect(_on_render_requested)
 	$Menu.start_requested.connect(_on_start_requested)
+	$Menu.update_base_upgrades.connect($Player.update_base_upgrades)
 	screen_center = get_viewport_rect().size / 2
 	$Background.size = get_viewport_rect().size
 	r = calc_radius(rpctg)
@@ -71,12 +73,10 @@ func calc_points(nr_of_points: int, radius: float, sub_divisions := 3):
 			if prev_point is not Vector2:
 				prev_point = curr_point
 			else:
-				prints("calc sub divs")
 				#var sub_div_points := []
-				for sub in sub_divisions:
-					var weight : float = float(sub) / (sub_divisions)
+				for sub in range(1, sub_divisions):
+					var weight : float = float(sub) / float(sub_divisions)
 					var new_point = prev_point.lerp(curr_point, weight)
-					prints("new point", new_point)
 					line_points.append(new_point)
 				prev_point = curr_point
 		line_points.append(curr_point)
@@ -206,6 +206,7 @@ func _on_render_requested(data: Dictionary) -> void:
 
 
 func _on_lane_entered(area: Area2D):
+	prints("lane: ", area.lane_label)
 	%InfoLabel.text = area.lane_label
 
 func _on_start_requested(data: Dictionary):

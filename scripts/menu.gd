@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal render_requested(data: Dictionary)
 signal start_requested()
+signal update_base_upgrades(data: Dictionary)
 
 var constraints := {}
 
@@ -61,4 +62,13 @@ func _on_start_button_pressed() -> void:
 		"init_enemies": init_enemies,
 		"timer_interval": timer_interval,
 		"enemy_max_speed": enemy_max_speed
+	})
+
+
+func _on_base_upgrade_button_pressed() -> void:
+	var shot_damage := int(%ShotDamageInput.text)
+	var shot_interval := float(%ShotIntervalInput.text)
+	emit_signal("update_base_upgrades", {
+		"shot_damage": shot_damage,
+		"shot_interval": shot_interval
 	})

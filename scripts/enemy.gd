@@ -47,5 +47,6 @@ func die():
 	get_tree().current_scene.add_child(_particle)
 	_particle.global_position = global_position
 	_particle.emitting = true
-
+	_particle.finished.connect(_particle.queue_free)  
+		
 	queue_free()

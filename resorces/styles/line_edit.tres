@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ccc7rx81xcnx4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bmwt4"]
+bg_color = Color(0.14870209, 0.14870211, 0.14870203, 1)
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[resource]
+default_font_size = 22
+LineEdit/font_sizes/font_size = 22
+LineEdit/styles/normal = SubResource("StyleBoxFlat_bmwt4")
