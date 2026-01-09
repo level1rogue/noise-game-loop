@@ -68,7 +68,9 @@ func _on_start_button_pressed() -> void:
 func _on_base_upgrade_button_pressed() -> void:
 	var shot_damage := int(%ShotDamageInput.text)
 	var shot_interval := float(%ShotIntervalInput.text)
+	var shot_radius := float(%ShotRadiusInput.text)
 	emit_signal("update_base_upgrades", {
 		"shot_damage": shot_damage,
-		"shot_interval": shot_interval
+		"shot_interval": shot_interval,
+		"shot_radius": shot_radius
 	})

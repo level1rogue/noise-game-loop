@@ -20,7 +20,9 @@ var screen_center : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("ready")
+	# Debug only
+	get_tree().debug_collisions_hint = true
+	
 	$Menu.set_constraints({
 		"min_radius": MIN_RADIUS,
 		"max_radius": MAX_RADIUS,
