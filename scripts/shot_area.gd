@@ -3,7 +3,7 @@ extends Area2D
 # crosshair (ch) variables
 var ch_radius := 50.0
 var ch_color := Color.LIGHT_GREEN
-var ch_width := 2.0
+var ch_width := 3.0
 var arc_length := ch_radius / 0.9 #degrees
 
 var right_arc_start_deg := 0 - (arc_length / 2) 

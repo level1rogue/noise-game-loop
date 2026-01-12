@@ -2,7 +2,7 @@ shader_type canvas_item;
 render_mode unshaded;
 
 uniform sampler2D noise_tex;
-uniform float flicker_speed = 1.0;
+uniform float flicker_speed = 5.5;
 uniform float noise_frequency = 1.0;
 uniform float time_offset = 0.0;
 

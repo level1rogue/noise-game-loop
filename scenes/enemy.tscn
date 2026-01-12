@@ -1,32 +1,33 @@
 [gd_scene load_steps=9 format=3 uid="uid://lkg37dnvthk1"]
 
-[ext_resource type="Shader" uid="uid://8idoj4qs7v5n" path="res://shaders/enemy_noise.gdshader" id="1_4ra3w"]
 [ext_resource type="Script" uid="uid://bq1p7t6wew0gw" path="res://scripts/enemy.gd" id="1_7p1mj"]
 [ext_resource type="PackedScene" uid="uid://wtwa2cg1v6ny" path="res://scenes/explosion.tscn" id="2_md0e3"]
+[ext_resource type="Shader" uid="uid://bsmei0ifc3bi2" path="res://shaders/enemy_spread.gdshader" id="3_4ra3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tegq"]
-size = Vector2(10, 10)
+size = Vector2(14, 14)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4ra3w"]
-noise_type = 2
-frequency = 0.016
-fractal_gain = 1.56
-fractal_weighted_strength = 0.09
+noise_type = 0
+frequency = 0.047
+fractal_type = 3
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5uy6h"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4ra3w"]
 noise = SubResource("FastNoiseLite_4ra3w")
-seamless_blend_skirt = 0.244
+seamless = true
+in_3d_space = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ra3w"]
-shader = ExtResource("1_4ra3w")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_5uy6h")
-shader_parameter/flicker_speed = 7.37
-shader_parameter/noise_frequency = 0.25
-shader_parameter/time_offset = 0.0
+shader = ExtResource("3_4ra3w")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_4ra3w")
+shader_parameter/flicker_speed = 24.5
+shader_parameter/world_scale = 0.01
+shader_parameter/glow_intensity = 1.5
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4ra3w"]
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(1.01, 1.01)
 collision_layer = 2
 script = ExtResource("1_7p1mj")
 deathParticles = ExtResource("2_md0e3")
@@ -41,15 +42,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
+offset_left = -8.960397
+offset_top = -8.910892
+offset_right = 8.910892
+offset_bottom = 8.910892
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(1, 0.28627452, 0.35686275, 1)
+color = Color(0.20530403, 0, 0.025559463, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect"]
 material = SubResource("ShaderMaterial_4ra3w")

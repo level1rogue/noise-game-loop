@@ -42,6 +42,7 @@ polygon = PackedVector2Array(-21, 0, 0, -21, 21, 0, 0, 21)
 autostart = true
 
 [node name="ShotArea" type="Area2D" parent="."]
+z_index = 100
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("2_dqkch")
