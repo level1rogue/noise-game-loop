@@ -18,6 +18,7 @@ var up_arc_end_deg := 270 + (arc_length / 2)
 var recoil := 0.0
 
 func _ready() -> void:
+	prints("radius: ", ch_radius)
 	queue_redraw()
 
 func _process(delta):
@@ -36,7 +37,6 @@ func _draw() -> void:
 	draw_arc(Vector2(0,0), radius, deg_to_rad(down_arc_start_deg), deg_to_rad(down_arc_end_deg), 50, ch_color, ch_width, true)
 	draw_arc(Vector2(0,0), radius, deg_to_rad(left_arc_start_deg), deg_to_rad(left_arc_end_deg), 50, ch_color, ch_width, true)
 	draw_arc(Vector2(0,0), radius, deg_to_rad(up_arc_start_deg), deg_to_rad(up_arc_end_deg), 50, ch_color, ch_width, true)
-
 func redraw_crosshair(radius):
 	ch_radius = radius
 	queue_redraw()

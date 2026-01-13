@@ -45,8 +45,6 @@ func _ready() -> void:
 func calc_radius(radius_in_percent):
 	# calc the pixel value of radius with screen height and percentage radius
 	var screen_height = get_viewport_rect().size.y
-	prints("screen y: ", screen_height)
-	prints("radius:", (radius_in_percent / 100) * screen_height)
 	return (radius_in_percent / 100) * screen_height
 
 	
@@ -70,7 +68,6 @@ func calc_points(nr_of_points: int, radius: float, sub_divisions := 3):
 		var y = radius * sin(angle) *-1# + randi_range(-offset_in_px, offset_in_px)
 		var curr_point = Vector2(x, y)
 		
-		prints("sub divs: ", sub_divisions)
 		if sub_divisions > 0:
 			if prev_point is not Vector2:
 				prev_point = curr_point
@@ -208,7 +205,6 @@ func _on_render_requested(data: Dictionary) -> void:
 
 
 func _on_lane_entered(area: Area2D):
-	prints("lane: ", area.lane_label)
 	%InfoLabel.text = area.lane_label
 
 func _on_start_requested(data: Dictionary):

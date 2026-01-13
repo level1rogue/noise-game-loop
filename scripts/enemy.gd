@@ -30,14 +30,17 @@ func _physics_process(delta: float) -> void:
 		skew += skew_value
 		
 		# Pulsing glow effect
-		var pulse = sin(get_tree().get_frame() * 0.05) * 0.1
-		$ColorRect.color.a = (health / MAX_HEALTH) + pulse
-
+		#var pulse = sin(get_tree().get_frame() * 0.05) * 0.1
+		var updated_material = $ColorRect/TextureRect.material.duplicate()
+		# enemy opacity dependent on health
+		#updated_material.set_shader_parameter("global_opacity", health/MAX_HEALTH + pulse)
+		# glow intensity dependent on health
+		updated_material.set_shader_parameter("glow_intensity", 0.0 if health <= MAX_HEALTH/2 else 4.5)
+		$ColorRect/TextureRect.material = updated_material
 		move_and_slide()
 
 func initiate_me():
 	SPEED = randf_range(MIN_SPEED, max_speed)
-	#prints("min and max speed: ", MIN_SPEED, max_speed)
 	DIRECTION = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
 	position = get_viewport_rect().size / 2 + DIRECTION * randi_range(20, 90)
 	rotate(randf_range(0.0, PI))

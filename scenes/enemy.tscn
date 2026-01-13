@@ -22,7 +22,8 @@ shader = ExtResource("3_4ra3w")
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_4ra3w")
 shader_parameter/flicker_speed = 24.5
 shader_parameter/world_scale = 0.01
-shader_parameter/glow_intensity = 1.5
+shader_parameter/glow_intensity = 4.5
+shader_parameter/global_opacity = 1.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4ra3w"]
 

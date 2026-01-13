@@ -5,6 +5,7 @@ uniform sampler2D noise_tex;
 uniform float flicker_speed = 24.5;
 uniform float world_scale = 0.01;
 uniform float glow_intensity = 4.5;
+uniform float global_opacity = 1;
 
 void fragment() {
     vec2 world_pos = FRAGCOORD.xy * world_scale;
@@ -25,5 +26,5 @@ void fragment() {
     vec3 pink_color = vec3(1.0, 1.0, 1.0);
     vec3 color = (pink_color * noise) + (vec3(0.2, 0.8, 1.0) * edge);
     
-    COLOR = vec4(color, COLOR.a);
+    COLOR = vec4(color, global_opacity);
 }

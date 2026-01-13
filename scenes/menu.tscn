@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd6bilswadpa8"]
+[gd_scene load_steps=7 format=3 uid="uid://dd6bilswadpa8"]
 
 [ext_resource type="Script" uid="uid://r7xjwebp08n3" path="res://scripts/menu.gd" id="1_yqeox"]
 [ext_resource type="Theme" uid="uid://dpmx0hrcpso1f" path="res://resorces/styles/vbox.tres" id="2_4ytvr"]
@@ -8,6 +8,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhnvy"]
 content_margin_left = 8.0
 bg_color = Color(0.18563938, 0.18563938, 0.18563926, 1)
+
+[sub_resource type="Theme" id="Theme_mhnvy"]
+default_font_size = 22
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_yqeox")
@@ -173,65 +176,104 @@ text = "0.5"
 layout_mode = 2
 text = "Start Sim"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+[node name="BasicUpgrades" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme = ExtResource("2_4ytvr")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/BasicUpgrades"]
 layout_mode = 2
 text = "UPGRADES"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BasicUpgrades"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/BasicUpgrades/VBoxContainer"]
 layout_mode = 2
 text = "Shot Damage"
 label_settings = ExtResource("2_vjb58")
 
-[node name="ShotDamageInput" type="LineEdit" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
+[node name="ShotDamageInput" type="LineEdit" parent="MarginContainer/BasicUpgrades/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_con2f")
 text = "5"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/BasicUpgrades"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/BasicUpgrades/VBoxContainer2"]
 layout_mode = 2
 text = "Shot Interval (sec)"
 label_settings = ExtResource("2_vjb58")
 
-[node name="ShotIntervalInput" type="LineEdit" parent="MarginContainer/VBoxContainer2/VBoxContainer2"]
+[node name="ShotIntervalInput" type="LineEdit" parent="MarginContainer/BasicUpgrades/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_con2f")
 text = "1"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/BasicUpgrades"]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/VBoxContainer3"]
+[node name="Label" type="Label" parent="MarginContainer/BasicUpgrades/VBoxContainer3"]
 layout_mode = 2
 text = "Shot Radius"
 label_settings = ExtResource("2_vjb58")
 
-[node name="ShotRadiusInput" type="LineEdit" parent="MarginContainer/VBoxContainer2/VBoxContainer3"]
+[node name="ShotRadiusInput" type="LineEdit" parent="MarginContainer/BasicUpgrades/VBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_con2f")
 text = "50"
 
-[node name="BaseUpgradeButton" type="Button" parent="MarginContainer/VBoxContainer2"]
+[node name="BaseUpgradeButton" type="Button" parent="MarginContainer/BasicUpgrades"]
 layout_mode = 2
 text = "Apply Base Upgrades"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/BasicUpgrades"]
+layout_mode = 2
+
+[node name="DelayUpgrade" type="VBoxContainer" parent="MarginContainer/BasicUpgrades"]
+layout_mode = 2
+
+[node name="DelayCheckBox" type="CheckBox" parent="MarginContainer/BasicUpgrades/DelayUpgrade"]
+layout_mode = 2
+theme = SubResource("Theme_mhnvy")
+text = "Delay Upgrade"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/BasicUpgrades/DelayUpgrade"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="MarginContainer/BasicUpgrades/DelayUpgrade/VBoxContainer4"]
+layout_mode = 2
+text = "Delay Repeats"
+label_settings = ExtResource("2_vjb58")
+
+[node name="DelayRepeatsInput" type="LineEdit" parent="MarginContainer/BasicUpgrades/DelayUpgrade/VBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("3_con2f")
+text = "2"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer/BasicUpgrades/DelayUpgrade"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="MarginContainer/BasicUpgrades/DelayUpgrade/VBoxContainer5"]
+layout_mode = 2
+text = "Delay Power (% of shot)"
+label_settings = ExtResource("2_vjb58")
+
+[node name="DelayPowerInput" type="LineEdit" parent="MarginContainer/BasicUpgrades/DelayUpgrade/VBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("3_con2f")
+text = "50"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/CalcButton" to="." method="_on_calc_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/RngButton" to="." method="_on_rng_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer2/BaseUpgradeButton" to="." method="_on_base_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/BasicUpgrades/BaseUpgradeButton" to="." method="_on_base_upgrade_button_pressed"]
