@@ -1,18 +1,18 @@
 extends CharacterBody2D
 
-const SPEED = 500.0
+const SPEED = 20000.0
 const OVERSHOOT_RADIUS = 5.0 #for smooth rendering when standstill
 
 var shot_damage := 5
 var shot_interval := 1.0
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	
 	var mouse_pos = get_global_mouse_position()
 	var direction = mouse_pos - global_position
 	
-	if direction.length() > OVERSHOOT_RADIUS:
-		velocity = direction.normalized() * SPEED
+	if direction.length_squared() > OVERSHOOT_RADIUS * OVERSHOOT_RADIUS:
+		velocity = direction.normalized() * SPEED * delta
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
