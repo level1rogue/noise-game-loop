@@ -5,7 +5,7 @@ var timer_interval = 1
 var enemy_max_speed = 0.5
 @export var init = true
 
-var enemy = preload("res://scenes/enemy.tscn")
+var enemy = load("res://scenes/enemy.tscn")
 
 func init_enemies():
 	

@@ -18,7 +18,6 @@ var up_arc_end_deg := 270 + (arc_length / 2)
 var recoil := 0.0
 
 func _ready() -> void:
-	prints("radius: ", ch_radius)
 	queue_redraw()
 
 func _process(delta):

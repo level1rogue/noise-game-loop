@@ -62,6 +62,7 @@ func initiate_me():
 	go_go_go = true
 
 func take_damage(amount: int):
+	print("taken damage")
 	health -= amount
 	$ColorRect.color.a = health / MAX_HEALTH
 	if health <= 0:

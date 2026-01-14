@@ -3,6 +3,7 @@ extends CanvasLayer
 signal render_requested(data: Dictionary)
 signal start_requested()
 signal update_base_upgrades(data: Dictionary)
+signal update_special_upgrades(upgrade_type: String, is_applied: bool)
 
 var constraints := {}
 
@@ -74,3 +75,7 @@ func _on_base_upgrade_button_pressed() -> void:
 		"shot_interval": shot_interval,
 		"shot_radius": shot_radius
 	})
+
+
+func _on_delay_check_box_toggled(toggled_on: bool) -> void:
+	emit_signal("update_special_upgrades", "delay", toggled_on)

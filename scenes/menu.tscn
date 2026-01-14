@@ -277,3 +277,4 @@ text = "50"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/RngButton" to="." method="_on_rng_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/BasicUpgrades/BaseUpgradeButton" to="." method="_on_base_upgrade_button_pressed"]
+[connection signal="toggled" from="MarginContainer/BasicUpgrades/DelayUpgrade/DelayCheckBox" to="." method="_on_delay_check_box_toggled"]

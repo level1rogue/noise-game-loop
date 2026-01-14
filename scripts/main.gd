@@ -36,6 +36,7 @@ func _ready() -> void:
 	$Menu.render_requested.connect(_on_render_requested)
 	$Menu.start_requested.connect(_on_start_requested)
 	$Menu.update_base_upgrades.connect($Player.update_base_upgrades)
+	$Menu.update_special_upgrades.connect($Player.update_special_upgrades)
 	screen_center = get_viewport_rect().size / 2
 	$Background.size = get_viewport_rect().size
 	r = calc_radius(rpctg)
