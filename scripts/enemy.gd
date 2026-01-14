@@ -50,19 +50,18 @@ func initiate_me():
 	skew_value = randf_range(-0.002, 0.002)
 	skew = randf_range(0.0, 0.3)
 	
-	var noise_color_value = randf() 
+	#var noise_color_value = randf() 
 	#$ColorRect.color = Color(noise_color_value, noise_color_value, noise_color_value, 1.0)
 	
  	# All enemies share world noise, but with offset timing for variation
-	var material = $ColorRect/TextureRect.material.duplicate() as ShaderMaterial
+	var shader_material = $ColorRect/TextureRect.material.duplicate() as ShaderMaterial
 	#material.set_shader_parameter("time_offset", time_offset)
 	#material.set_shader_parameter("flicker_speed", flicker_speed)
-	$ColorRect/TextureRect.material = material
+	$ColorRect/TextureRect.material = shader_material
 	
 	go_go_go = true
 
 func take_damage(amount: int):
-	print("taken damage")
 	health -= amount
 	$ColorRect.color.a = health / MAX_HEALTH
 	if health <= 0:
@@ -70,7 +69,7 @@ func take_damage(amount: int):
 		
 func die():
 	# Create multiple shards from enemy
-	var shard_count = randi_range(2, 5)
+	var shard_count = randi_range(2, 3)
 	for i in range(shard_count):
 		var shard = await create_shard()
 		get_tree().current_scene.add_child(shard)
@@ -100,7 +99,9 @@ func create_shard() -> RigidBody2D:
 		
 		# Noise texture with shader
 		var texture_rect = TextureRect.new()
-		texture_rect.material = $ColorRect/TextureRect.material.duplicate()
+		var new_material = $ColorRect/TextureRect.material.duplicate()
+		new_material.set_shader_parameter("global_opacity", 0.3)
+		texture_rect.material = new_material
 		texture_rect.texture = CanvasTexture.new()
 		texture_rect.size = shard_size
 		texture_rect.position = -shard_size / 2
@@ -111,7 +112,7 @@ func create_shard() -> RigidBody2D:
 		# Fade out and delete - fade the parent shard instead
 		await get_tree().process_frame  # Wait for shard to be added to tree
 		var tween = shard.create_tween()
-		var random_duration = randf_range(0.1, 3.5)
+		var random_duration = randf_range(0.1, 1.5)
 		tween.tween_property(shard, "modulate:a", 0.0, random_duration).set_delay(0.3)
 		tween.tween_callback(shard.queue_free)
 		

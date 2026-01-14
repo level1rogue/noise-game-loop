@@ -66,7 +66,6 @@ func _execute_shot(shot_data: ShotData):
 	await get_tree().process_frame # Wait for physics to detect overlapping
 
 	for body in shot_area.get_overlapping_bodies():
-		prints("overlapping:", body)
 		if body.has_method("take_damage"):
 			body.take_damage(shot_data.damage)
 			

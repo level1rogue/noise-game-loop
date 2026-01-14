@@ -5,7 +5,7 @@ uniform sampler2D noise_tex;
 uniform float flicker_speed = 24.5;
 uniform float world_scale = 0.01;
 uniform float glow_intensity = 4.5;
-uniform float global_opacity = 1;
+uniform float global_opacity = 1.0;
 
 void fragment() {
     vec2 world_pos = FRAGCOORD.xy * world_scale;
