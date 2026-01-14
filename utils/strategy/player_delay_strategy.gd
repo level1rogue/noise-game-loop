@@ -1,15 +1,15 @@
 class_name PlayerDelayStrategy extends PlayerBaseStrategy
 
-var delay_repeats := 4
+var delay_repeats := 2
 var delay_power := 0.5 # % of original shot power
 var delay_radius := 0.5 # % of original shot radius
-var delay_interval := 0.1
+var delay_interval := 0.15
 
 func apply_upgrade():
 	print("Delay upgrade")
 
 func on_shot_fired(player: CharacterBody2D, shot_data: ShotData):
-	var last_angle := 0.0
+	var used_angles : Array[float] = []
 	var min_angle_distance := PI * 0.5  # 90 degrees minimum between shots
 		
 	for i in range(delay_repeats):
@@ -18,12 +18,23 @@ func on_shot_fired(player: CharacterBody2D, shot_data: ShotData):
 		var delayed_damage : int = int(shot_data.damage * delay_power)
 		var delayed_radius : float = shot_data.radius * delay_radius
 		
-		# Random offset position around original shot
-		var angle : float = randf() * TAU
-		# Random angle avoiding previous shot
-		while local_angle_difference(angle, last_angle) < min_angle_distance:
-				angle = randf() * TAU
-		last_angle = angle
+		# Find angle that doesn't conflict with any used angles
+		var angle : float
+		var max_attempts := 100  # Prevent infinite loop
+		var attempts := 0
+		var valid := false
+		
+		while not valid and attempts < max_attempts:
+			angle = randf() * TAU
+			valid = true
+			# Check against all previously used angles
+			for used_angle in used_angles:
+				if local_angle_difference(angle, used_angle) < min_angle_distance:
+					valid = false
+					break
+			attempts += 1
+		
+		used_angles.append(angle)
 		var distance : float = (shot_data.radius + delayed_radius) * randf_range(1.0, 1.3)
 		var offset : Vector2 = Vector2(cos(angle), sin(angle)) * distance
 		var shot_pos : Vector2 = shot_data.position + offset

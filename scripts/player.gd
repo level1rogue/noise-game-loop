@@ -6,13 +6,15 @@ const OVERSHOOT_RADIUS = 5.0 #for smooth rendering when standstill
 var shot_damage := 5
 var shot_interval := 1.0
 var shot_radius := 50.0
-var shot_effect = preload("res://scenes/shot_effect.tscn")
+var shot_effect = preload("res://scenes/effects/shot_effect.tscn")
+var shockwave_effect = preload("res://scenes/effects/shockwave_effect.tscn")
 
 # Upgrades Dictionary of Upgrade Strategies
 var upgrades : Dictionary = {} # key = upgrade_type, value = strategy
 
 var upgrade_strategies := {
-	"delay": PlayerDelayStrategy
+	"delay": PlayerDelayStrategy,
+	"shockwave": PlayerShockwaveStrategy,
 }
 
 func _process(delta: float) -> void:
@@ -69,6 +71,14 @@ func _execute_shot(shot_data: ShotData):
 			body.take_damage(shot_data.damage)
 			
 	shot_area.queue_free()
+
+func _execute_sweep_shot(shot_data: ShotData, target_radius: float, damage: int):
+	var effect = shockwave_effect.instantiate()
+	effect.global_position = shot_data.position
+	effect.setup(shot_data.radius, target_radius, damage)
+	get_parent().add_child(effect)
+	
+	
 
 func _on_shot_timer_timeout() -> void:
 	trigger_shot()

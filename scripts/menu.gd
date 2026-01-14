@@ -79,3 +79,7 @@ func _on_base_upgrade_button_pressed() -> void:
 
 func _on_delay_check_box_toggled(toggled_on: bool) -> void:
 	emit_signal("update_special_upgrades", "delay", toggled_on)
+
+
+func _on_shockwave_check_box_toggled(toggled_on: bool) -> void:
+	emit_signal("update_special_upgrades", "shockwave", toggled_on)

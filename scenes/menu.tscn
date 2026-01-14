@@ -246,6 +246,7 @@ theme = SubResource("Theme_mhnvy")
 text = "Delay Upgrade"
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/BasicUpgrades/DelayUpgrade"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 4
 
@@ -260,6 +261,7 @@ theme = ExtResource("3_con2f")
 text = "2"
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer/BasicUpgrades/DelayUpgrade"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 4
 
@@ -273,8 +275,47 @@ layout_mode = 2
 theme = ExtResource("3_con2f")
 text = "50"
 
+[node name="ShockwaveUpgrade" type="VBoxContainer" parent="MarginContainer/BasicUpgrades"]
+layout_mode = 2
+
+[node name="ShockwaveCheckBox" type="CheckBox" parent="MarginContainer/BasicUpgrades/ShockwaveUpgrade"]
+layout_mode = 2
+theme = SubResource("Theme_mhnvy")
+text = "Shockwave"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/BasicUpgrades/ShockwaveUpgrade"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="MarginContainer/BasicUpgrades/ShockwaveUpgrade/VBoxContainer4"]
+layout_mode = 2
+text = "Delay Repeats"
+label_settings = ExtResource("2_vjb58")
+
+[node name="DelayRepeatsInput" type="LineEdit" parent="MarginContainer/BasicUpgrades/ShockwaveUpgrade/VBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("3_con2f")
+text = "2"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer/BasicUpgrades/ShockwaveUpgrade"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="MarginContainer/BasicUpgrades/ShockwaveUpgrade/VBoxContainer5"]
+layout_mode = 2
+text = "Delay Power (% of shot)"
+label_settings = ExtResource("2_vjb58")
+
+[node name="DelayPowerInput" type="LineEdit" parent="MarginContainer/BasicUpgrades/ShockwaveUpgrade/VBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("3_con2f")
+text = "50"
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/CalcButton" to="." method="_on_calc_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/RngButton" to="." method="_on_rng_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/BasicUpgrades/BaseUpgradeButton" to="." method="_on_base_upgrade_button_pressed"]
 [connection signal="toggled" from="MarginContainer/BasicUpgrades/DelayUpgrade/DelayCheckBox" to="." method="_on_delay_check_box_toggled"]
+[connection signal="toggled" from="MarginContainer/BasicUpgrades/ShockwaveUpgrade/ShockwaveCheckBox" to="." method="_on_shockwave_check_box_toggled"]
