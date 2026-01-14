@@ -47,8 +47,8 @@ func initiate_me():
 	var scale_val = randf_range(0.3, 0.8)
 	scale = Vector2(scale_val, scale_val)
 	rotation_value = randf_range(-0.002, 0.002)
-	skew_value = randf_range(-0.002, 0.002)
-	skew = randf_range(0.0, 0.3)
+	#skew_value = randf_range(-0.002, 0.002)
+	#skew = randf_range(0.0, 0.3)
 	
 	#var noise_color_value = randf() 
 	#$ColorRect.color = Color(noise_color_value, noise_color_value, noise_color_value, 1.0)
@@ -64,6 +64,13 @@ func initiate_me():
 func take_damage(amount: int):
 	health -= amount
 	$ColorRect.color.a = health / MAX_HEALTH
+	skew_value = randf_range(-0.008, 0.008)
+	var skew_amount = randf_range(0.1, 0.3) #should transition not happen instantly
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "skew", skew_amount, 0.1)  # Skew to 0.3 in 0.1 seconds
+	
 	if health <= 0:
 		die()
 		
@@ -84,36 +91,36 @@ func die():
 	queue_free()
 
 func create_shard() -> RigidBody2D:
-		var shard = RigidBody2D.new()
-		shard.gravity_scale = 0.0
-		
-		# Random shard size
-		var shard_size = Vector2(randf_range(5, 10), randf_range(5, 10))
-		
-		# Background color rect
-		var rect = ColorRect.new()
-		rect.size = shard_size
-		rect.position = -shard_size / 2
-		rect.color = $ColorRect.color
-		shard.add_child(rect)
-		
-		# Noise texture with shader
-		var texture_rect = TextureRect.new()
-		var new_material = $ColorRect/TextureRect.material.duplicate()
-		new_material.set_shader_parameter("global_opacity", 0.3)
-		texture_rect.material = new_material
-		texture_rect.texture = CanvasTexture.new()
-		texture_rect.size = shard_size
-		texture_rect.position = -shard_size / 2
-		texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
-		shard.add_child(texture_rect)
-		
-		# Fade out and delete - fade the parent shard instead
-		await get_tree().process_frame  # Wait for shard to be added to tree
-		var tween = shard.create_tween()
-		var random_duration = randf_range(0.1, 1.5)
-		tween.tween_property(shard, "modulate:a", 0.0, random_duration).set_delay(0.3)
-		tween.tween_callback(shard.queue_free)
-		
-		return shard
+	var shard = RigidBody2D.new()
+	shard.gravity_scale = 0.0
+	
+	# Random shard size
+	var shard_size = Vector2(randf_range(3, 8), randf_range(3, 8))
+	
+	# Background color rect
+	var rect = ColorRect.new()
+	rect.size = shard_size
+	rect.position = -shard_size / 2
+	rect.color = $ColorRect.color
+	shard.add_child(rect)
+	
+	# Noise texture with shader
+	var texture_rect = TextureRect.new()
+	var new_material = $ColorRect/TextureRect.material.duplicate()
+	new_material.set_shader_parameter("global_opacity", 0.5)
+	texture_rect.material = new_material
+	texture_rect.texture = CanvasTexture.new()
+	texture_rect.size = shard_size
+	texture_rect.position = -shard_size / 2
+	texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
+	shard.add_child(texture_rect)
+	
+	# Fade out and delete - fade the parent shard instead
+	await get_tree().process_frame  # Wait for shard to be added to tree
+	var tween = shard.create_tween()
+	var random_duration = randf_range(0.1, 1.5)
+	tween.tween_property(shard, "modulate:a", 0.0, random_duration).set_delay(0.3)
+	tween.tween_callback(shard.queue_free)
+	
+	return shard
