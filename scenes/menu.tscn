@@ -228,7 +228,7 @@ label_settings = ExtResource("2_vjb58")
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_con2f")
-text = "50"
+text = "20"
 
 [node name="BaseUpgradeButton" type="Button" parent="MarginContainer/BasicUpgrades"]
 layout_mode = 2

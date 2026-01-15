@@ -50,7 +50,8 @@ func _apply_damage(player: CharacterBody2D, position: Vector2, start_radius: flo
 				if not body in hit_enemies:
 					hit_enemies.append(body)
 					if body.has_method("take_damage"):
-						body.take_damage(damage)
-						# TODO: apply "shake" effect to enemies
+						body.take_damage(damage, position, ["knockback"])
+
+					
 		
 		

@@ -61,19 +61,63 @@ func initiate_me():
 	
 	go_go_go = true
 
-func take_damage(amount: int):
+func take_damage(amount: int, hit_position: Vector2 = global_position, damage_effects: Array = ["shake"]):
 	health -= amount
 	$ColorRect.color.a = health / MAX_HEALTH
+	
+	for effect in damage_effects:
+		var knockback_direction = (global_position - hit_position).normalized()
+		match effect:
+			"shake":
+				_apply_shake()
+			"rumble":
+				#_apply_rumble(knockback_direction)
+				pass
+			"knockback":
+				# add knockback effect
+				_apply_knockback(knockback_direction)
+				#pass
+
+	
 	skew_value = randf_range(-0.008, 0.008)
-	var skew_amount = randf_range(0.1, 0.3) #should transition not happen instantly
-	var tween = create_tween()
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "skew", skew_amount, 0.1)  # Skew to 0.3 in 0.1 seconds
+	#var skew_amount = randf_range(0.1, 0.3) #should transition not happen instantly
+	#var tween = create_tween()
+	#tween.set_trans(Tween.TRANS_QUAD)
+	#tween.set_ease(Tween.EASE_OUT)
+	#tween.tween_property(self, "skew", skew_amount, 0.1)  # Skew to 0.3 in 0.1 seconds
 	
 	if health <= 0:
 		die()
-		
+	
+func _apply_knockback(direction: Vector2, force: float = 10.0, height: float = 10.0, duration: float = 0.8):
+	var original_velocity = velocity
+	var original_z = z_index
+	var original_pos = global_position
+	var pushed_pos = original_pos + direction * force
+	velocity += direction * force
+	
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	# Increase z_index to appear "higher"
+	tween.tween_property(self, "z_index", original_z + int(height), duration * 0.3)
+	tween.parallel().tween_property(self, "global_position", pushed_pos, duration * 0.3)
+	
+	# Return
+	tween.tween_property(self, "z_index", original_z, duration * 0.3)
+	tween.parallel().tween_property(self, "global_position", original_pos + direction * force * (duration * 0.7), duration * 0.7)
+
+	tween.tween_method(func(weight):
+		velocity = original_velocity.lerp(velocity, 1.0 - weight),
+		0.0, 1.0, duration * 1.5
+		)
+
+func _apply_shake():
+	var tween = create_tween()
+	tween.tween_property(self, "skew", 0.2, 0.05)
+	tween.tween_property(self, "skew", 0.0, 0.15)
+
 func die():
 	# Create multiple shards from enemy
 	var shard_count = randi_range(2, 3)

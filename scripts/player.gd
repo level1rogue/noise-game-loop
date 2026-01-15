@@ -5,7 +5,7 @@ const OVERSHOOT_RADIUS = 5.0 #for smooth rendering when standstill
 
 var shot_damage := 5
 var shot_interval := 1.0
-var shot_radius := 50.0
+var shot_radius := 20.0
 var shot_effect = preload("res://scenes/effects/shot_effect.tscn")
 var shockwave_effect = preload("res://scenes/effects/shockwave_effect.tscn")
 
