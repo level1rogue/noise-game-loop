@@ -1,7 +1,11 @@
 extends CharacterBody2D
 
-const SPEED = 20000.0
-const OVERSHOOT_RADIUS = 5.0 #for smooth rendering when standstill
+const SPEED := 20000.0
+const OVERSHOOT_RADIUS := 5.0 #for smooth rendering when standstill
+const TOTAL_STEPS := 16
+
+var initial_shot_step_index := 8
+var active_seq_steps : Dictionary = {}
 
 var shot_damage := 5
 var shot_interval := 1.0
@@ -27,6 +31,13 @@ func _process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
+
+func set_initial_seq_steps(data: Dictionary):
+	for step in TOTAL_STEPS:
+		active_seq_steps[step] = ""
+	for i in data:
+		active_seq_steps[i] = data[i]
+	prints("ass:", active_seq_steps)
 
 func trigger_shot():
 	$ShotArea.animate_shot()
@@ -65,9 +76,10 @@ func _execute_shot(shot_data: ShotData):
 	await get_tree().process_frame # Wait for physics to detect overlapping
 	await get_tree().process_frame # Wait for physics to detect overlapping
 
-	for body in shot_area.get_overlapping_bodies():
-		if body.has_method("take_damage"):
-			body.take_damage(shot_data.damage)
+	if shot_area.has_overlapping_bodies():
+		for body in shot_area.get_overlapping_bodies():
+			if body.has_method("take_damage"):
+				body.take_damage(shot_data.damage)
 			
 	shot_area.queue_free()
 
@@ -79,8 +91,8 @@ func _execute_sweep_shot(shot_data: ShotData, target_radius: float, damage: int)
 	
 	
 
-func _on_shot_timer_timeout() -> void:
-	trigger_shot()
+#func _on_shot_timer_timeout() -> void:
+	#trigger_shot()
 	
 func update_base_upgrades(data: Dictionary):
 	if data.shot_damage != null:
@@ -100,3 +112,10 @@ func update_special_upgrades(upgrade_type, is_applied):
 		if upgrade_type in upgrades:
 			upgrades.erase(upgrade_type)
 		
+func _on_step(step: int):
+	var active_step = step % TOTAL_STEPS
+	if active_seq_steps[active_step]:
+		match active_seq_steps[active_step]:
+			"basic_shot":
+				trigger_shot()
+				

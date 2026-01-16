@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5we4ccv6c5yp"]
+[gd_scene load_steps=9 format=3 uid="uid://b5we4ccv6c5yp"]
 
 [ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://scenes/enemy_spawn_machine.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://de5efn574omjt" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dd6bilswadpa8" path="res://scenes/menu.tscn" id="2_tbgi4"]
 [ext_resource type="AudioStream" uid="uid://euab3xghe7f1" path="res://audio/noise_swell.mp3" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dbrs1rlqpfdmb" path="res://scenes/sequencer.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://y4eejjcgwy64" path="res://scenes/world_clock.tscn" id="7_o6xl0"]
 
 [sub_resource type="Environment" id="Environment_o5qli"]
 background_mode = 3
@@ -57,3 +59,7 @@ position = Vector2(491, 135)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jyhfs")
+
+[node name="Sequencer" parent="." instance=ExtResource("6_tefeu")]
+
+[node name="WorldClock" parent="." instance=ExtResource("7_o6xl0")]

@@ -18,6 +18,11 @@ var radius_ratio := 5.0 # fraction the inner radius is in relation to the outer 
 var orig_angle = PI/2 
 var screen_center : Vector2
 
+var initial_player_steps := {
+		0: "basic_shot",
+		8: "basic_shot"
+	}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Debug only
@@ -37,12 +42,18 @@ func _ready() -> void:
 	$Menu.start_requested.connect(_on_start_requested)
 	$Menu.update_base_upgrades.connect($Player.update_base_upgrades)
 	$Menu.update_special_upgrades.connect($Player.update_special_upgrades)
+	$WorldClock.step.connect($Player._on_step)
+	$WorldClock.step.connect($Sequencer._on_step_progress)
+	$WorldClock.beat.connect($Sequencer._on_beat_progress)
+	#$WorldClock.bar.connect($Sequencer._on_bar_progress)
 	screen_center = get_viewport_rect().size / 2
 	$Background.size = get_viewport_rect().size
 	r = calc_radius(rpctg)
 	render_polygon(n, r)
 	
-
+	$Player.set_initial_seq_steps(initial_player_steps)
+	$Sequencer.set_initial_seq_steps(initial_player_steps)
+	
 func calc_radius(radius_in_percent):
 	# calc the pixel value of radius with screen height and percentage radius
 	var screen_height = get_viewport_rect().size.y
