@@ -41,7 +41,7 @@ func set_initial_seq_steps(data: Dictionary):
 
 func trigger_shot():
 	$ShotArea.animate_shot()
-	#$ShotAudio.play()
+	$ShotAudio.play()
 	
 	var shot_data = ShotData.new()
 	shot_data.position = global_position

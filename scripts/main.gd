@@ -221,3 +221,4 @@ func _on_lane_entered(area: Area2D):
 
 func _on_start_requested(data: Dictionary):
 	$EnemySpawnMachine.start_timer(data)
+	$WorldClock._start_clock()

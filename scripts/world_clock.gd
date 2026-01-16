@@ -17,9 +17,9 @@ var _last_bar := -1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_seconds_per_beat = 60.0 / bpm
-	if audio_player:
-		audio_player.volume_db = -80.0 #NOTE: "Muted" for development; remove for prod!
-		audio_player.play()
+	#if audio_player:
+		#audio_player.volume_db = -80.0 #NOTE: "Muted" for development; remove for prod!
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,6 +33,11 @@ func _process(delta: float) -> void:
 	)
 	
 	_update_time(song_time)
+
+func _start_clock():
+	if audio_player:
+		audio_player.stop()
+		audio_player.play()
 
 func _update_time(time_sec: float):
 	var beats_f = time_sec / _seconds_per_beat
