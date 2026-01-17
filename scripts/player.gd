@@ -40,14 +40,13 @@ func set_initial_seq_steps(data: Dictionary):
 		active_seq_steps[step] = ""
 	for i in data:
 		active_seq_steps[i] = data[i]
-	prints("ass:", active_seq_steps)
 
 func set_movement_bounds(bound_left, bound_right):
 	boundary_left = bound_left
 	boundary_right = bound_right
 
 func trigger_shot():
-	$ShotArea.animate_shot()
+	%ShotArea.animate_shot()
 	$ShotAudio.play()
 	
 	var shot_data = ShotData.new()
@@ -109,7 +108,7 @@ func update_base_upgrades(data: Dictionary):
 		$ShotTimer.wait_time = shot_interval
 	if data.shot_radius != null:
 		shot_radius = data.shot_radius
-		$ShotArea.redraw_crosshair(data.shot_radius)
+		%ShotArea.redraw_crosshair(data.shot_radius)
 		
 func update_special_upgrades(upgrade_type, is_applied):
 	if is_applied:

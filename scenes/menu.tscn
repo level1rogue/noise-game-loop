@@ -181,6 +181,7 @@ text = "Start Sim"
 [node name="PauseButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 3
 text = "Pause"
 
 [node name="BasicUpgrades" type="VBoxContainer" parent="MarginContainer"]

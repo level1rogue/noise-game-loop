@@ -44,9 +44,9 @@ func _ready() -> void:
 	$Menu.render_requested.connect(_on_render_requested)
 	$Menu.start_requested.connect(_on_start_requested)
 	$Menu.toggle_pause_game.connect(_on_toggle_pause)
-	$Menu.update_base_upgrades.connect($Player.update_base_upgrades)
-	$Menu.update_special_upgrades.connect($Player.update_special_upgrades)
-	$WorldClock.step.connect($Player._on_step)
+	$Menu.update_base_upgrades.connect(%Player.update_base_upgrades)
+	$Menu.update_special_upgrades.connect(%Player.update_special_upgrades)
+	$WorldClock.step.connect(%Player._on_step)
 	$WorldClock.step.connect($Sequencer._on_step_progress)
 	$WorldClock.beat.connect($Sequencer._on_beat_progress)
 	#$WorldClock.bar.connect($Sequencer._on_bar_progress)
@@ -61,8 +61,8 @@ func _ready() -> void:
 	var bound_size = maxf(bound_size_by_ratio, bound_size_by_height)
 	player_bounds_left = bound_size
 	player_bounds_right = screen_size.x - bound_size
-	$Player.set_movement_bounds(player_bounds_left, player_bounds_right)	
-	$Player.set_initial_seq_steps(initial_player_steps)
+	%Player.set_movement_bounds(player_bounds_left, player_bounds_right)	
+	%Player.set_initial_seq_steps(initial_player_steps)
 	$Sequencer.set_initial_seq_steps(initial_player_steps)
 	
 func calc_radius(radius_in_percent):
@@ -142,9 +142,9 @@ func calc_lanes(inner_points, outer_points):
 					#Vector2(0, 1)   # i_point       → inner edge
 			#])
 
-			var blue_value = randf_range(0.2, 0.4)
-			var start_color = Color(0.1, 0.2, blue_value, 0.1)
-			var end_color = Color(0.1, 0.2, blue_value, 0.9)
+			var blue_value = randf_range(0.05, 0.2)
+			var start_color = Color(0.06, 0.1, blue_value, 0.35)
+			var end_color = Color(0.1, 0.2, blue_value, 1.0)
 			
 			var grad := Gradient.new()
 			grad.colors = PackedColorArray([start_color, end_color])
@@ -157,7 +157,7 @@ func calc_lanes(inner_points, outer_points):
 			lane_outline.position = lane.position
 			lane_outline.points = PackedVector2Array([prev_i_point, prev_o_point])
 			lane_outline.default_color = Color(0.98, 0.941, 0.62, 1.0)
-			lane_outline.width = 1
+			lane_outline.width = 2
 			outline_width_curve.add_point(Vector2(0,0.5))
 			outline_width_curve.add_point(Vector2(1,1))
 			#lane_outline.width_curve = outline_width_curve
@@ -191,11 +191,12 @@ func render_polygon(nr_of_sides, radius, sub_divisions := 3):
 	var outer_line = Line2D.new()
 	var inner_line = Line2D.new()
 	outer_line.default_color = Color(0.1, 0.2, randf_range(0.2, 0.4))
-	inner_line.default_color = Color(0.1, 0.2, randf_range(0.2, 0.4))
+	inner_line.default_color = Color(0.06, 0.1, randf_range(0.1, 0.2))
 	
 	var outer_points = calc_points(nr_of_sides, radius, sub_divisions)
 	
-	outer_line.width = 2
+	outer_line.width = 3
+	outer_line.antialiased = true
 	outer_line.position = screen_center
 	outer_line.points = outer_points
 	add_child(outer_line)

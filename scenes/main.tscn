@@ -1,12 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5we4ccv6c5yp"]
+[gd_scene load_steps=12 format=3 uid="uid://b5we4ccv6c5yp"]
 
 [ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://scenes/enemy_spawn_machine.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://de5efn574omjt" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dd6bilswadpa8" path="res://scenes/menu.tscn" id="2_tbgi4"]
+[ext_resource type="Shader" uid="uid://bfsmtb567wwwu" path="res://shaders/CRTShader.gdshader" id="2_tipki"]
 [ext_resource type="AudioStream" uid="uid://euab3xghe7f1" path="res://audio/noise_swell.mp3" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dbrs1rlqpfdmb" path="res://scenes/sequencer.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://y4eejjcgwy64" path="res://scenes/world_clock.tscn" id="7_o6xl0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
+shader = ExtResource("2_tipki")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.0410000019475
+shader_parameter/aberration = 0.0050000477375000685
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_eb6dy"]
 
 [sub_resource type="Environment" id="Environment_o5qli"]
 background_mode = 3
@@ -14,15 +41,24 @@ glow_enabled = true
 glow_normalized = true
 glow_intensity = 1.83
 glow_strength = 1.27
-glow_bloom = 0.18
+glow_bloom = 0.03
 glow_blend_mode = 0
-fog_enabled = true
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 8.25
+fog_sun_scatter = 0.9
+fog_density = 0.4682
+fog_height_density = 0.025
+volumetric_fog_density = 0.607
+volumetric_fog_emission_energy = 854.4
+volumetric_fog_length = 534.18
 
 [node name="Main" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_o5qli")
 
 [node name="Background" type="ColorRect" parent="."]
+light_mask = 8
+visibility_layer = 8
 custom_minimum_size = Vector2(4.95, 3.03)
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,9 +75,6 @@ size_flags_vertical = 3
 color = Color(0.007978929, 0.0006758069, 0.051645726, 1)
 metadata/_edit_lock_ = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_o5qli")
-
 [node name="InfoLabel" type="Label" parent="."]
 unique_name_in_owner = true
 offset_left = 29.0
@@ -54,12 +87,7 @@ theme_override_font_sizes/font_size = 24
 text = "Lane Nr. 3"
 metadata/_edit_use_anchors_ = true
 
-[node name="Menu" parent="." instance=ExtResource("2_tbgi4")]
-
 [node name="EnemySpawnMachine" parent="." instance=ExtResource("2_0wfyh")]
-
-[node name="Player" parent="." instance=ExtResource("2_sugp2")]
-position = Vector2(491, 135)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jyhfs")
@@ -67,3 +95,26 @@ stream = ExtResource("4_jyhfs")
 [node name="Sequencer" parent="." instance=ExtResource("6_tefeu")]
 
 [node name="WorldClock" parent="." instance=ExtResource("7_o6xl0")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="CRTShader" type="MeshInstance2D" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_tipki")
+position = Vector2(977.25006, 572.25006)
+scale = Vector2(1955.5001, 1145.5)
+mesh = SubResource("QuadMesh_eb6dy")
+
+[node name="Player" parent="." instance=ExtResource("2_sugp2")]
+unique_name_in_owner = true
+position = Vector2(491, 135)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 6
+
+[node name="Menu" parent="." instance=ExtResource("2_tbgi4")]
+layer = 6
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o5qli")
