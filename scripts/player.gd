@@ -13,6 +13,9 @@ var shot_radius := 20.0
 var shot_effect = preload("res://scenes/effects/shot_effect.tscn")
 var shockwave_effect = preload("res://scenes/effects/shockwave_effect.tscn")
 
+var boundary_left : float
+var boundary_right : float
+
 # Upgrades Dictionary of Upgrade Strategies
 var upgrades : Dictionary = {} # key = upgrade_type, value = strategy
 
@@ -26,7 +29,7 @@ func _process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var direction = mouse_pos - global_position
 	
-	if direction.length_squared() > OVERSHOOT_RADIUS * OVERSHOOT_RADIUS:
+	if direction.length_squared() > OVERSHOOT_RADIUS * OVERSHOOT_RADIUS and mouse_pos.x >= boundary_left and mouse_pos.x <= boundary_right:
 		velocity = direction.normalized() * SPEED * delta
 	else:
 		velocity = Vector2.ZERO
@@ -38,6 +41,10 @@ func set_initial_seq_steps(data: Dictionary):
 	for i in data:
 		active_seq_steps[i] = data[i]
 	prints("ass:", active_seq_steps)
+
+func set_movement_bounds(bound_left, bound_right):
+	boundary_left = bound_left
+	boundary_right = bound_right
 
 func trigger_shot():
 	$ShotArea.animate_shot()

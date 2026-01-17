@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	
-	draw_circle(Vector2(0,0), 8, Color.WHITE, true, -1.0, true)
+	draw_circle(Vector2(0,0), 8, Color(0.114, 0.918, 0.282, 1.0), true, -1.0, true)
 	
 func on_beat(beat):
 	modulate.a = 1.0

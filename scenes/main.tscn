@@ -11,11 +11,15 @@
 [sub_resource type="Environment" id="Environment_o5qli"]
 background_mode = 3
 glow_enabled = true
-glow_bloom = 0.07
+glow_normalized = true
+glow_intensity = 1.83
+glow_strength = 1.27
+glow_bloom = 0.18
 glow_blend_mode = 0
 fog_enabled = true
 
 [node name="Main" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_o5qli")
 
 [node name="Background" type="ColorRect" parent="."]

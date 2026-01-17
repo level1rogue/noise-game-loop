@@ -18,6 +18,9 @@ var radius_ratio := 5.0 # fraction the inner radius is in relation to the outer 
 var orig_angle = PI/2 
 var screen_center : Vector2
 
+var player_bounds_left : float
+var player_bounds_right : float
+
 var initial_player_steps := {
 		0: "basic_shot",
 		8: "basic_shot"
@@ -40,6 +43,7 @@ func _ready() -> void:
 	})
 	$Menu.render_requested.connect(_on_render_requested)
 	$Menu.start_requested.connect(_on_start_requested)
+	$Menu.toggle_pause_game.connect(_on_toggle_pause)
 	$Menu.update_base_upgrades.connect($Player.update_base_upgrades)
 	$Menu.update_special_upgrades.connect($Player.update_special_upgrades)
 	$WorldClock.step.connect($Player._on_step)
@@ -47,10 +51,17 @@ func _ready() -> void:
 	$WorldClock.beat.connect($Sequencer._on_beat_progress)
 	#$WorldClock.bar.connect($Sequencer._on_bar_progress)
 	screen_center = get_viewport_rect().size / 2
-	$Background.size = get_viewport_rect().size
+	var screen_size = get_viewport_rect().size
+	$Background.size = screen_size
 	r = calc_radius(rpctg)
 	render_polygon(n, r)
 	
+	var bound_size_by_ratio = screen_size.x / 5
+	var bound_size_by_height = (screen_size.x - screen_size.y) / 2
+	var bound_size = maxf(bound_size_by_ratio, bound_size_by_height)
+	player_bounds_left = bound_size
+	player_bounds_right = screen_size.x - bound_size
+	$Player.set_movement_bounds(player_bounds_left, player_bounds_right)	
 	$Player.set_initial_seq_steps(initial_player_steps)
 	$Sequencer.set_initial_seq_steps(initial_player_steps)
 	
@@ -220,5 +231,15 @@ func _on_lane_entered(area: Area2D):
 	%InfoLabel.text = area.lane_label
 
 func _on_start_requested(data: Dictionary):
-	$EnemySpawnMachine.start_timer(data)
-	$WorldClock._start_clock()
+	if not get_tree().paused:
+		$EnemySpawnMachine.start_timer(data)
+		$WorldClock._start_clock()
+
+func _on_toggle_pause(button: Button):
+	if get_tree().paused:
+		get_tree().paused = false
+		button.text = "Pause"
+	else:
+		get_tree().paused = true
+		button.text = "Resume"
+		

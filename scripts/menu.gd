@@ -4,6 +4,7 @@ signal render_requested(data: Dictionary)
 signal start_requested()
 signal update_base_upgrades(data: Dictionary)
 signal update_special_upgrades(upgrade_type: String, is_applied: bool)
+signal toggle_pause_game(button: Button)
 
 var constraints := {}
 
@@ -83,3 +84,10 @@ func _on_delay_check_box_toggled(toggled_on: bool) -> void:
 
 func _on_shockwave_check_box_toggled(toggled_on: bool) -> void:
 	emit_signal("update_special_upgrades", "shockwave", toggled_on)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("space_bar"):
+		_on_pause_button_pressed()
+
+func _on_pause_button_pressed() -> void:
+	emit_signal("toggle_pause_game", %PauseButton)

@@ -13,6 +13,7 @@ bg_color = Color(0.18563938, 0.18563938, 0.18563926, 1)
 default_font_size = 22
 
 [node name="Menu" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_yqeox")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -174,7 +175,13 @@ text = "0.5"
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
 layout_mode = 2
+focus_mode = 3
 text = "Start Sim"
+
+[node name="PauseButton" type="Button" parent="MarginContainer/VBoxContainer/BottomContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Pause"
 
 [node name="BasicUpgrades" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -242,6 +249,7 @@ layout_mode = 2
 
 [node name="DelayCheckBox" type="CheckBox" parent="MarginContainer/BasicUpgrades/DelayUpgrade"]
 layout_mode = 2
+focus_mode = 3
 theme = SubResource("Theme_mhnvy")
 text = "Delay Upgrade"
 
@@ -280,6 +288,7 @@ layout_mode = 2
 
 [node name="ShockwaveCheckBox" type="CheckBox" parent="MarginContainer/BasicUpgrades/ShockwaveUpgrade"]
 layout_mode = 2
+focus_mode = 3
 theme = SubResource("Theme_mhnvy")
 text = "Shockwave"
 
@@ -316,6 +325,7 @@ text = "50"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/CalcButton" to="." method="_on_calc_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopContainer/RngButton" to="." method="_on_rng_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="MarginContainer/BasicUpgrades/BaseUpgradeButton" to="." method="_on_base_upgrade_button_pressed"]
 [connection signal="toggled" from="MarginContainer/BasicUpgrades/DelayUpgrade/DelayCheckBox" to="." method="_on_delay_check_box_toggled"]
 [connection signal="toggled" from="MarginContainer/BasicUpgrades/ShockwaveUpgrade/ShockwaveCheckBox" to="." method="_on_shockwave_check_box_toggled"]
