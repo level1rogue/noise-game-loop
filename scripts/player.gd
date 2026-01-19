@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED := 80000.0
-const OVERSHOOT_RADIUS := 5.0 #for smooth rendering when standstill
+const OVERSHOOT_RADIUS := 6.0 #for smooth rendering when standstill
 const TOTAL_STEPS := 16
 
 var initial_shot_step_index := 8
@@ -24,16 +24,25 @@ var upgrade_strategies := {
 	"shockwave": PlayerShockwaveStrategy,
 }
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	var mouse_pos = get_global_mouse_position()
 	var direction = mouse_pos - global_position
+	var distance = direction.length()
 	
-	if direction.length_squared() > OVERSHOOT_RADIUS * OVERSHOOT_RADIUS and mouse_pos.x >= boundary_left and mouse_pos.x <= boundary_right:
-		velocity = direction.normalized() * SPEED * delta
+	if mouse_pos.x > boundary_left and mouse_pos.x < boundary_right:
+		var max_step = SPEED * delta
+
+		if distance <= max_step:
+			# Snap exactly to cursor when close enough
+			velocity = direction / delta
+		else:
+			velocity = direction.normalized() * SPEED
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
+	# Snap to pixel grid
+	#global_position = global_position.round()
 
 func set_initial_seq_steps(data: Dictionary):
 	for step in TOTAL_STEPS:

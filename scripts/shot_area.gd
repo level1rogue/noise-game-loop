@@ -22,8 +22,9 @@ func _ready() -> void:
 
 func _process(delta):
 	recoil = lerp(recoil, 0.0, 1.0 - exp(-delta * 10.0))
-
-	queue_redraw()
+	if recoil > 0.01:
+		print(recoil)
+		queue_redraw()
 
 func _draw() -> void:
 	# draw center dot

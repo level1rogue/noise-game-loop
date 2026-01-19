@@ -98,6 +98,7 @@ stream = ExtResource("4_jyhfs")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 5
+visible = false
 
 [node name="CRTShader" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_tipki")

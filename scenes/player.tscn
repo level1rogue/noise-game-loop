@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://de5efn574omjt"]
+[gd_scene load_steps=9 format=3 uid="uid://de5efn574omjt"]
 
 [ext_resource type="Script" uid="uid://rudtu6r6lqfu" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cjivci2bwvs2i" path="res://scripts/shot_area.gd" id="2_dqkch"]
 [ext_resource type="AudioStream" uid="uid://ddavnyv878jb1" path="res://audio/shot-F5-V127-XBYW.mp3" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://c14sn5i8y1e57" path="res://assets/graphics/icons/crosshair_w.png" id="4_dqkch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 50.0
@@ -52,3 +53,7 @@ libraries = {
 
 [node name="ShotAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_g2els")
+
+[node name="CrosshairW" type="Sprite2D" parent="."]
+scale = Vector2(0.4453125, 0.4453125)
+texture = ExtResource("4_dqkch")
