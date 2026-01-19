@@ -164,7 +164,7 @@ func create_shard() -> RigidBody2D:
 	await get_tree().process_frame  # Wait for shard to be added to tree
 	var tween = shard.create_tween()
 	var random_duration = randf_range(0.1, 1.5)
-	tween.tween_property(shard, "modulate:a", 0.0, random_duration).set_delay(0.3)
+	tween.tween_property(shard, "modulate:a", 0.0, random_duration).set_delay(0.3) # TODO: Use material's global_opacity instead
 	tween.tween_callback(shard.queue_free)
 	
 	return shard

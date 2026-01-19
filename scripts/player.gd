@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 20000.0
+const SPEED := 80000.0
 const OVERSHOOT_RADIUS := 5.0 #for smooth rendering when standstill
 const TOTAL_STEPS := 16
 
@@ -105,7 +105,7 @@ func update_base_upgrades(data: Dictionary):
 		shot_damage = data.shot_damage
 	if data.shot_interval != null:
 		shot_interval = data.shot_interval
-		$ShotTimer.wait_time = shot_interval
+		#$ShotTimer.wait_time = shot_interval
 	if data.shot_radius != null:
 		shot_radius = data.shot_radius
 		%ShotArea.redraw_crosshair(data.shot_radius)

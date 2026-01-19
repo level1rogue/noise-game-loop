@@ -100,7 +100,6 @@ stream = ExtResource("4_jyhfs")
 layer = 5
 
 [node name="CRTShader" type="MeshInstance2D" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_tipki")
 position = Vector2(977.25006, 572.25006)
 scale = Vector2(1955.5001, 1145.5)
