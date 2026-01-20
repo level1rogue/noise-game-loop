@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqp2mwcq3tkv4"]
+
+[ext_resource type="Script" uid="uid://dbt3jvs0mhe6a" path="res://scripts/ui/map_ui.gd" id="1_k3mub"]
+
+[node name="MapUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_k3mub")
+
+[node name="LevelContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 10
+
+[node name="MapBackground" type="ColorRect" parent="LevelContainer"]
+custom_minimum_size = Vector2(280, 380)
+layout_mode = 2
+color = Color(0.027113749, 0.027113752, 0.027113749, 1)
+
+[node name="Line1" type="Line2D" parent="LevelContainer"]
+position = Vector2(1.4300003, -59.570007)
+points = PackedVector2Array(111, 392, 245, 260)
+width = 2.43
+default_color = Color(1, 1, 1, 0.25490198)
+
+[node name="Line2" type="Line2D" parent="LevelContainer"]
+position = Vector2(137, -191)
+points = PackedVector2Array(111, 391, 20, 259)
+width = 2.43
+default_color = Color(1, 1, 1, 0.25490198)
+
+[node name="Levels" type="VBoxContainer" parent="LevelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 120
+
+[node name="Level3" type="MarginContainer" parent="LevelContainer/Levels"]
+layout_mode = 2
+theme_override_constants/margin_left = -30
+
+[node name="ColorRect" type="ColorRect" parent="LevelContainer/Levels/Level3"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.2681376, 0.26813763, 0.2681376, 1)
+
+[node name="Level2" type="MarginContainer" parent="LevelContainer/Levels"]
+layout_mode = 2
+theme_override_constants/margin_left = 150
+
+[node name="ColorRect" type="ColorRect" parent="LevelContainer/Levels/Level2"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.2681376, 0.26813763, 0.2681376, 1)
+
+[node name="Level1" type="MarginContainer" parent="LevelContainer/Levels"]
+layout_mode = 2
+theme_override_constants/margin_left = -120
+
+[node name="ColorRect" type="ColorRect" parent="LevelContainer/Levels/Level1"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

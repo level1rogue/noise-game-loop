@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://dskv2cjfxsvhu"]
+
+[ext_resource type="Script" uid="uid://dy4ggdbx8wu5r" path="res://scripts/data/level_data.gd" id="1_ia1ul"]
+
+[resource]
+script = ExtResource("1_ia1ul")
+lvl_index = 2
+duration = 12
+polygon_sides = 4
+polygon_sub_divs = 3
+enemy_init_count = 50
+enemy_spawn_interval = 1.0
+enemy_speed = 0.5
+enemy_health = 5.0
+metadata/_custom_type_script = "uid://dy4ggdbx8wu5r"

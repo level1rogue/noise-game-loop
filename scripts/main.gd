@@ -14,7 +14,7 @@ var r := 200 # circumradius in px
 var n := 5 # nr. of sides = nr. of points / must be at least 3
 var subs := 3 # nr. of sub divisions for each side
 var offset := 10 # nr of pixels a polygon point might get offset randomly (range will be from -offset to offset)
-var radius_ratio := 5.0 # fraction the inner radius is in relation to the outer radius
+var radius_ratio := 8.0 # fraction the inner radius is in relation to the outer radius
 var orig_angle = PI/2 
 var screen_center : Vector2
 
@@ -46,6 +46,7 @@ func _ready() -> void:
 	$Menu.toggle_pause_game.connect(_on_toggle_pause)
 	$Menu.update_base_upgrades.connect(%Player.update_base_upgrades)
 	$Menu.update_special_upgrades.connect(%Player.update_special_upgrades)
+	
 	$WorldClock.step.connect(%Player._on_step)
 	$WorldClock.step.connect($Sequencer._on_step_progress)
 	$WorldClock.beat.connect($Sequencer._on_beat_progress)
@@ -53,8 +54,7 @@ func _ready() -> void:
 	screen_center = get_viewport_rect().size / 2
 	var screen_size = get_viewport_rect().size
 	$Background.size = screen_size
-	r = calc_radius(rpctg)
-	render_polygon(n, r)
+	load_next_level()
 	
 	var bound_size_by_ratio = screen_size.x / 5
 	var bound_size_by_height = (screen_size.x - screen_size.y) / 2
@@ -243,4 +243,15 @@ func _on_toggle_pause(button: Button):
 	else:
 		get_tree().paused = true
 		button.text = "Resume"
+		
+func load_next_level():
+	var lvl = $LevelManager.load_next_level()
+	n = lvl.polygon_sides
+	subs = lvl.polygon_sub_divs
+	r = calc_radius(rpctg)
+	render_polygon(n, r)
+	
+	#TODO: set duration in sequencer, start count in, start level
+	
+	
 		

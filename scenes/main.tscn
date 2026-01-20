@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5we4ccv6c5yp"]
+[gd_scene load_steps=14 format=3 uid="uid://b5we4ccv6c5yp"]
 
 [ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://scenes/enemy_spawn_machine.tscn" id="2_0wfyh"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://euab3xghe7f1" path="res://audio/noise_swell.mp3" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://dbrs1rlqpfdmb" path="res://scenes/sequencer.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://y4eejjcgwy64" path="res://scenes/world_clock.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dvgps37wxh62k" path="res://scenes/ui/cockpit_ui.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://ds1tl3eymfccp" path="res://scenes/level_manager.tscn" id="8_choun"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
 shader = ExtResource("2_tipki")
@@ -25,7 +27,7 @@ shader_parameter/distort_intensity = 0.05
 shader_parameter/noise_opacity = 0.4
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.0410000019475
-shader_parameter/aberration = 0.0050000477375000685
+shader_parameter/aberration = 0.00500004773750006
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = false
 shader_parameter/warp_amount = 0.0
@@ -77,6 +79,7 @@ metadata/_edit_lock_ = true
 
 [node name="InfoLabel" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = 29.0
 offset_top = 1004.0
 offset_right = 147.0
@@ -93,6 +96,7 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("4_jyhfs")
 
 [node name="Sequencer" parent="." instance=ExtResource("6_tefeu")]
+visible = false
 
 [node name="WorldClock" parent="." instance=ExtResource("7_o6xl0")]
 
@@ -110,11 +114,16 @@ mesh = SubResource("QuadMesh_eb6dy")
 unique_name_in_owner = true
 position = Vector2(491, 135)
 
+[node name="LevelManager" parent="." instance=ExtResource("8_choun")]
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 6
 
+[node name="CockpitUI" parent="." instance=ExtResource("8_85g3d")]
+
 [node name="Menu" parent="." instance=ExtResource("2_tbgi4")]
 layer = 6
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o5qli")

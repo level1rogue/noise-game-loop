@@ -53,7 +53,9 @@ libraries = {
 
 [node name="ShotAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_g2els")
+bus = &"Shot"
 
 [node name="CrosshairW" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.4453125, 0.4453125)
 texture = ExtResource("4_dqkch")

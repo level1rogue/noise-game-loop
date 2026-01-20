@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dd6bilswadpa8"]
 
 [ext_resource type="Script" uid="uid://r7xjwebp08n3" path="res://scripts/menu.gd" id="1_yqeox"]
-[ext_resource type="Theme" uid="uid://dpmx0hrcpso1f" path="res://resorces/styles/vbox.tres" id="2_4ytvr"]
-[ext_resource type="LabelSettings" uid="uid://dh0p4hu8ohueu" path="res://resorces/styles/label.tres" id="2_vjb58"]
-[ext_resource type="Theme" uid="uid://ccc7rx81xcnx4" path="res://resorces/styles/line_edit.tres" id="3_con2f"]
+[ext_resource type="Theme" uid="uid://dpmx0hrcpso1f" path="res://resources/styles/vbox.tres" id="2_4ytvr"]
+[ext_resource type="LabelSettings" uid="uid://dh0p4hu8ohueu" path="res://resources/styles/label.tres" id="2_vjb58"]
+[ext_resource type="Theme" uid="uid://ccc7rx81xcnx4" path="res://resources/styles/line_edit.tres" id="3_con2f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhnvy"]
 content_margin_left = 8.0

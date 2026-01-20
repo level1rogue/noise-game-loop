@@ -4,12 +4,13 @@
 [ext_resource type="Script" uid="uid://66vei6tfuqmg" path="res://scripts/custom/icon.gd" id="3_y4tvy"]
 
 [node name="StepPad" type="Control"]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1874.0
-offset_bottom = -1034.0
+offset_right = -1880.0
+offset_bottom = -1040.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjelw")
