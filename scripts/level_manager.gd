@@ -11,6 +11,8 @@ var current_level: LevelData
 
 func load_next_level():
 	current_level_idx += 1
+	if current_level_idx > LEVELS.size():
+		current_level_idx = 1
 	current_level = LEVELS[current_level_idx]
 	return current_level
 	

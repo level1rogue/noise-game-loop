@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b5we4ccv6c5yp"]
+[gd_scene format=3 uid="uid://b5we4ccv6c5yp"]
 
 [ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://scenes/enemy_spawn_machine.tscn" id="2_0wfyh"]
@@ -54,11 +54,11 @@ volumetric_fog_density = 0.607
 volumetric_fog_emission_energy = 854.4
 volumetric_fog_length = 534.18
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=193928734]
 process_mode = 1
 script = ExtResource("1_o5qli")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1737748974]
 light_mask = 8
 visibility_layer = 8
 custom_minimum_size = Vector2(4.95, 3.03)
@@ -77,7 +77,7 @@ size_flags_vertical = 3
 color = Color(0.007978929, 0.0006758069, 0.051645726, 1)
 metadata/_edit_lock_ = true
 
-[node name="InfoLabel" type="Label" parent="."]
+[node name="InfoLabel" type="Label" parent="." unique_id=1880832290]
 unique_name_in_owner = true
 visible = false
 offset_left = 29.0
@@ -90,40 +90,40 @@ theme_override_font_sizes/font_size = 24
 text = "Lane Nr. 3"
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemySpawnMachine" parent="." instance=ExtResource("2_0wfyh")]
+[node name="EnemySpawnMachine" parent="." unique_id=1960937370 instance=ExtResource("2_0wfyh")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2019227226]
 stream = ExtResource("4_jyhfs")
 
-[node name="Sequencer" parent="." instance=ExtResource("6_tefeu")]
+[node name="Sequencer" parent="." unique_id=1167282730 instance=ExtResource("6_tefeu")]
 visible = false
 
-[node name="WorldClock" parent="." instance=ExtResource("7_o6xl0")]
+[node name="WorldClock" parent="." unique_id=896245553 instance=ExtResource("7_o6xl0")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1397239852]
 layer = 5
 visible = false
 
-[node name="CRTShader" type="MeshInstance2D" parent="CanvasLayer"]
+[node name="CRTShader" type="MeshInstance2D" parent="CanvasLayer" unique_id=129965520]
 material = SubResource("ShaderMaterial_tipki")
 position = Vector2(977.25006, 572.25006)
 scale = Vector2(1955.5001, 1145.5)
 mesh = SubResource("QuadMesh_eb6dy")
 
-[node name="Player" parent="." instance=ExtResource("2_sugp2")]
+[node name="Player" parent="." unique_id=247561293 instance=ExtResource("2_sugp2")]
 unique_name_in_owner = true
 position = Vector2(491, 135)
 
-[node name="LevelManager" parent="." instance=ExtResource("8_choun")]
+[node name="LevelManager" parent="." unique_id=759793166 instance=ExtResource("8_choun")]
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1584216265]
 layer = 6
 
-[node name="CockpitUI" parent="." instance=ExtResource("8_85g3d")]
+[node name="CockpitUI" parent="." unique_id=1807888223 instance=ExtResource("8_85g3d")]
 
-[node name="Menu" parent="." instance=ExtResource("2_tbgi4")]
+[node name="OverlayMenu" parent="." unique_id=107279050 instance=ExtResource("2_tbgi4")]
 layer = 6
 visible = false
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=390722321]
 environment = SubResource("Environment_o5qli")

@@ -12,8 +12,8 @@ var constraints := {}
 func _ready() -> void:
 	pass # Replace with function body.
 
-func get_input_value(name: String) -> String:
-	var path := NodePath("%" + name)
+func get_input_value(p_name: String) -> String:
+	var path := NodePath("%" + p_name)
 	var node := get_node_or_null(path)
 	if node is LineEdit:
 		return node.text

@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 const BEATS_PER_BAR := 4
 const STEPS_PER_BEAT := 4
@@ -30,7 +30,8 @@ func _process(delta: float) -> void:
 	pass
 
 # called by World Clock signal
-func _on_step_progress(step: int):
+func on_step_progress(step: int):
+	#prints("step progress", step)
 	var step_in_bar = step % STEPS_PER_BAR
 	seq_step = step_in_bar
 	seq_beat = (step_in_bar / STEPS_PER_BEAT)
@@ -45,7 +46,7 @@ func _on_step_progress(step: int):
 		else:
 			all_steps[STEPS_PER_BAR - 1].set_active(false)
 
-func _on_beat_progress(beat: int):
+func on_beat_progress(beat: int):
 	if %BPMIndicator: %BPMIndicator.on_beat(beat)
 
 func set_initial_seq_steps(data):

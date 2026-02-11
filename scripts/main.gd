@@ -1,13 +1,13 @@
 extends Node2D
 
-var MIN_RADIUS := 20
-var MAX_RADIUS := 45
-var MAX_SIDES := 11
-var MAX_OFFSET := 3
-var MIN_RATIO := 1.5
-var MAX_RATIO := 10.0
-var MIN_SUB_DIVS := 0
-var MAX_SUB_DIVS := 5
+const MIN_RADIUS := 20
+const MAX_RADIUS := 45
+const MAX_SIDES := 11
+const MAX_OFFSET := 3
+const MIN_RATIO := 1.5
+const MAX_RATIO := 10.0
+const MIN_SUB_DIVS := 0
+const MAX_SUB_DIVS := 5
 
 var rpctg := 40.0 # circumradius (from center to point) in percentage of screen
 var r := 200 # circumradius in px
@@ -26,12 +26,14 @@ var initial_player_steps := {
 		8: "basic_shot"
 	}
 
+var loaded_level: LevelData
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Debug only
 	#get_tree().debug_collisions_hint = true
 	
-	$Menu.set_constraints({
+	$OverlayMenu.set_constraints({
 		"min_radius": MIN_RADIUS,
 		"max_radius": MAX_RADIUS,
 		"max_sides": MAX_SIDES,
@@ -41,16 +43,16 @@ func _ready() -> void:
 		"min_sub_divs": MIN_SUB_DIVS,
 		"max_sub_divs": MAX_SUB_DIVS
 	})
-	$Menu.render_requested.connect(_on_render_requested)
-	$Menu.start_requested.connect(_on_start_requested)
-	$Menu.toggle_pause_game.connect(_on_toggle_pause)
-	$Menu.update_base_upgrades.connect(%Player.update_base_upgrades)
-	$Menu.update_special_upgrades.connect(%Player.update_special_upgrades)
+	$OverlayMenu.render_requested.connect(_on_render_requested)
+	$OverlayMenu.start_requested.connect(_on_start_requested)
+	$OverlayMenu.toggle_pause_game.connect(_on_toggle_pause)
+	$OverlayMenu.update_base_upgrades.connect(%Player.update_base_upgrades)
+	$OverlayMenu.update_special_upgrades.connect(%Player.update_special_upgrades)
 	
 	$WorldClock.step.connect(%Player._on_step)
-	$WorldClock.step.connect($Sequencer._on_step_progress)
-	$WorldClock.beat.connect($Sequencer._on_beat_progress)
-	#$WorldClock.bar.connect($Sequencer._on_bar_progress)
+	$WorldClock.step.connect($CockpitUI/%Sequencer.on_step_progress)
+	$WorldClock.beat.connect($CockpitUI/%Sequencer.on_beat_progress)
+	$WorldClock.request_level_ended.connect(_on_level_ended)
 	screen_center = get_viewport_rect().size / 2
 	var screen_size = get_viewport_rect().size
 	$Background.size = screen_size
@@ -63,7 +65,9 @@ func _ready() -> void:
 	player_bounds_right = screen_size.x - bound_size
 	%Player.set_movement_bounds(player_bounds_left, player_bounds_right)	
 	%Player.set_initial_seq_steps(initial_player_steps)
-	$Sequencer.set_initial_seq_steps(initial_player_steps)
+	$CockpitUI.on_start_level_pressed.connect(_on_start_requested)
+	$CockpitUI.on_load_next_pressed.connect(load_next_level)
+	$CockpitUI/%Sequencer.set_initial_seq_steps(initial_player_steps)
 	
 func calc_radius(radius_in_percent):
 	# calc the pixel value of radius with screen height and percentage radius
@@ -231,10 +235,25 @@ func _on_render_requested(data: Dictionary) -> void:
 func _on_lane_entered(area: Area2D):
 	%InfoLabel.text = area.lane_label
 
-func _on_start_requested(data: Dictionary):
+func _on_destroy_level():
+	for child in get_children():
+		if child is Area2D or child is Line2D:
+			child.queue_free()
+
+func _on_start_requested():
+	_start_level_timer()
+	
+func _start_level_timer():
 	if not get_tree().paused:
-		$EnemySpawnMachine.start_timer(data)
-		$WorldClock._start_clock()
+		$EnemySpawnMachine.start_timer(loaded_level)
+		$WorldClock.setup_level_and_start_clock(loaded_level)
+
+func _create_level():
+	_on_destroy_level()
+	n = loaded_level.polygon_sides
+	subs = loaded_level.polygon_sub_divs
+	r = calc_radius(rpctg)
+	render_polygon(n, r)
 
 func _on_toggle_pause(button: Button):
 	if get_tree().paused:
@@ -243,15 +262,16 @@ func _on_toggle_pause(button: Button):
 	else:
 		get_tree().paused = true
 		button.text = "Resume"
-		
+
+func _on_level_ended():
+	_on_destroy_level()
+	$EnemySpawnMachine.end_level()
+
 func load_next_level():
-	var lvl = $LevelManager.load_next_level()
-	n = lvl.polygon_sides
-	subs = lvl.polygon_sub_divs
-	r = calc_radius(rpctg)
-	render_polygon(n, r)
+	$WorldClock.stop_level()
+	loaded_level = $LevelManager.load_next_level()
+	_create_level()
 	
-	#TODO: set duration in sequencer, start count in, start level
 	
 	
 		

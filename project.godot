@@ -8,11 +8,19 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="noise game loop"
 run/main_scene="uid://b5we4ccv6c5yp"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
+
+[audio]
+
+buses/default_bus_layout="uid://3j4qsagw8t68"
 
 [display]
 
@@ -20,6 +28,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [input]
 
@@ -33,5 +45,5 @@ space_bar={
 
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1
-anti_aliasing/quality/use_taa=true
 anti_aliasing/quality/use_debanding=true
+anti_aliasing/quality/use_taa=true

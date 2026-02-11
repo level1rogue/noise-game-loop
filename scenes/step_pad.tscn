@@ -34,6 +34,6 @@ grow_vertical = 2
 color = Color(0.1466411, 0.1466411, 0.1466411, 1)
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(23, 22)
+position = Vector2(20, 17.999998)
 scale = Vector2(0.083, 0.083)
 script = ExtResource("3_y4tvy")
