@@ -1,7 +1,9 @@
-extends Sprite2D
+extends TextureRect
 
 var icons: Dictionary = {
-	"basic_shot": "res://assets/graphics/icons/crosshair_w.png"
+	"basic_shot": "res://assets/graphics/icons/sequencer_icons/shot_snipe_round.png",
+	"sniper_shot": "res://assets/graphics/icons/sequencer_icons/shot_snipe_round.png",
+	"bump_shot": "res://assets/graphics/icons/sequencer_icons/shot_bump.png",
 }
 
 # Called when the node enters the scene tree for the first time.

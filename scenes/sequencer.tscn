@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://cmn73goarxtdl" path="res://scripts/sequencer.gd" id="1_vbedp"]
 [ext_resource type="Script" uid="uid://w7sq50q75wec" path="res://scripts/bpm_indicator.gd" id="2_vbedp"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbedp"]
+bg_color = Color(0, 0.8509804, 0.5411765, 0.6117647)
+
 [node name="Sequencer" type="Control" unique_id=1605387223]
 custom_minimum_size = Vector2(0, 135)
 layout_mode = 3
@@ -13,6 +16,7 @@ size_flags_horizontal = 3
 script = ExtResource("1_vbedp")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=454193276]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,28 +46,66 @@ size_flags_horizontal = 0
 layout_mode = 2
 theme_override_constants/margin_left = 10
 
-[node name="BPMIndicator" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=999290409]
+[node name="IndicatorContainer" type="Control" parent="." unique_id=1536547033]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BPMIndicator" type="TextureRect" parent="IndicatorContainer" unique_id=999290409]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_left = 1733.0
+offset_top = 67.5
+offset_right = 1733.0
+offset_bottom = 67.5
 script = ExtResource("2_vbedp")
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1497869327]
-layout_mode = 2
+[node name="SequencerContainer" type="Control" parent="." unique_id=1174534945]
+layout_mode = 1
+anchors_preset = 0
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=50508490]
-layout_mode = 2
-color = Color(0.1455886, 0.51770294, 0.27561274, 0.5058824)
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=344540675]
-layout_mode = 2
-theme_override_constants/margin_left = 2
+[node name="MarginContainer" type="MarginContainer" parent="SequencerContainer" unique_id=1714411422]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 19
 theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
 
-[node name="SequencerGrid" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=954942485]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="SequencerContainer/MarginContainer" unique_id=1010214126]
 layout_mode = 2
-theme_override_constants/h_separation = 1
-theme_override_constants/v_separation = 1
+theme_override_constants/separation = 16
+
+[node name="MarginContainer2" type="MarginContainer" parent="SequencerContainer/MarginContainer/HBoxContainer" unique_id=872860467]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SequencerContainer/MarginContainer/HBoxContainer/MarginContainer2" unique_id=603970674]
+layout_mode = 2
+theme_override_colors/font_color = Color(5.0055983e-06, 0.8528268, 0.5421115, 1)
+theme_override_font_sizes/font_size = 36
+text = "45"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="SequencerContainer/MarginContainer/HBoxContainer" unique_id=1497869327]
+layout_mode = 2
+
+[node name="ColorPanel" type="Panel" parent="SequencerContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=1739852639]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vbedp")
+
+[node name="MarginContainer" type="MarginContainer" parent="SequencerContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=344540675]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="SequencerGrid" type="GridContainer" parent="SequencerContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=954942485]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
 columns = 8

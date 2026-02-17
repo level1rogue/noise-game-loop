@@ -1,5 +1,7 @@
 extends Control
 
+signal call_on_beat(beat: int)
+
 const BEATS_PER_BAR := 4
 const STEPS_PER_BEAT := 4
 const STEPS_PER_BAR := BEATS_PER_BAR * STEPS_PER_BEAT
@@ -47,7 +49,7 @@ func on_step_progress(step: int):
 			all_steps[STEPS_PER_BAR - 1].set_active(false)
 
 func on_beat_progress(beat: int):
-	if %BPMIndicator: %BPMIndicator.on_beat(beat)
+	call_on_beat.emit(beat)
 
 func set_initial_seq_steps(data):
 	for step in data:

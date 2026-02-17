@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://6tgp7by8jheu"]
+
+[ext_resource type="FontFile" uid="uid://ci4gu1mlwijrg" path="res://assets/fonts/TimeburnerBold-peGR.ttf" id="1_fj88f"]
+
+[resource]
+default_font = ExtResource("1_fj88f")
+default_font_size = 28
+Label/colors/font_color = Color(0, 0, 0, 1)

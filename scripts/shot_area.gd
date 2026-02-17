@@ -1,9 +1,9 @@
 extends Area2D
 
 # crosshair (ch) variables
-var ch_radius := 20.0
+var ch_radius := 40.0
 var ch_color := Color.LIGHT_GREEN
-var ch_width := 3.0
+var ch_width := 4.0
 var arc_length := ch_radius / 0.9 #degrees
 
 var right_arc_start_deg := 0 - (arc_length / 2) 
@@ -28,7 +28,7 @@ func _process(delta):
 
 func _draw() -> void:
 	# draw center dot
-	draw_circle(Vector2(0,0), 2, ch_color, false, 2.0, true)
+	draw_circle(Vector2(0,0), 4, ch_color, false, 4.0, true)
 	
 	# draw outer arcs
 	var radius = ch_radius + recoil * 12.0
@@ -53,3 +53,6 @@ func animate_shot():
 	
 func get_targets():
 	return get_overlapping_bodies()
+
+func set_radius(radius: float):
+	ch_radius = radius

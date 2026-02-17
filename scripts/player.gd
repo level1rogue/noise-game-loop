@@ -9,7 +9,7 @@ var active_seq_steps : Dictionary = {}
 
 var shot_damage := 5
 var shot_interval := 1.0
-var shot_radius := 20.0
+var shot_radius := 40.0
 var shot_effect = preload("res://scenes/effects/shot_effect.tscn")
 var shockwave_effect = preload("res://scenes/effects/shockwave_effect.tscn")
 
@@ -23,6 +23,9 @@ var upgrade_strategies := {
 	"delay": PlayerDelayStrategy,
 	"shockwave": PlayerShockwaveStrategy,
 }
+
+func _ready() -> void:
+	$ShotArea.set_radius(shot_radius)
 
 func _physics_process(delta: float) -> void:
 	

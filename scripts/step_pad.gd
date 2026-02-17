@@ -25,6 +25,6 @@ func _update_visual():
 	if active_state:
 		$ColorRect.color = Color("189758ff")
 	elif highlight_state:
-		$ColorRect.color = Color("ffffff1b")
+		$ColorRect.color = Color("2b965e3e")
 	else:
-		$ColorRect.color = Color("0b0b0bff")
+		$ColorRect.color = Color("0e180eff")

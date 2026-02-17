@@ -15,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 3
 
 [node name="LeftPanel" type="ColorRect" parent="Control" unique_id=567952589]
 custom_minimum_size = Vector2(384, 0)

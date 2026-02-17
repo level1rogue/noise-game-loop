@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://y4eejjcgwy64" path="res://scenes/world_clock.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dvgps37wxh62k" path="res://scenes/ui/cockpit_ui.tscn" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://ds1tl3eymfccp" path="res://scenes/level_manager.tscn" id="8_choun"]
+[ext_resource type="PackedScene" uid="uid://b3nug37fsys0n" path="res://scenes/ui/upgrade_screen.tscn" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://b1kv7haeowpg1" path="res://scenes/ui/cockpit_layer.tscn" id="12_eb6dy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
 shader = ExtResource("2_tipki")
@@ -67,13 +69,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -2.475
 offset_top = -1.515
-offset_right = 13.565001
-offset_bottom = 6.195
+offset_right = 25.809397
+offset_bottom = 14.017911
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(121.850746, 147.71957)
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_default_cursor_shape = 3
 color = Color(0.007978929, 0.0006758069, 0.051645726, 1)
 metadata/_edit_lock_ = true
 
@@ -106,8 +109,8 @@ visible = false
 
 [node name="CRTShader" type="MeshInstance2D" parent="CanvasLayer" unique_id=129965520]
 material = SubResource("ShaderMaterial_tipki")
-position = Vector2(977.25006, 572.25006)
-scale = Vector2(1955.5001, 1145.5)
+position = Vector2(1732.2499, 1108.25)
+scale = Vector2(1779.4998, 1793.5)
 mesh = SubResource("QuadMesh_eb6dy")
 
 [node name="Player" parent="." unique_id=247561293 instance=ExtResource("2_sugp2")]
@@ -120,10 +123,18 @@ position = Vector2(491, 135)
 layer = 6
 
 [node name="CockpitUI" parent="." unique_id=1807888223 instance=ExtResource("8_85g3d")]
+visible = false
 
 [node name="OverlayMenu" parent="." unique_id=107279050 instance=ExtResource("2_tbgi4")]
 layer = 6
 visible = false
 
+[node name="CockpitLayer" parent="." unique_id=1829790468 instance=ExtResource("12_eb6dy")]
+layer = 6
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=390722321]
 environment = SubResource("Environment_o5qli")
+
+[node name="UpgradeScreen" parent="." unique_id=126912765 instance=ExtResource("11_ya4ey")]
+layer = 10
+visible = false

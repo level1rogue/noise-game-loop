@@ -42,9 +42,9 @@ func _physics_process(delta: float) -> void:
 func initiate_me():
 	SPEED = randf_range(MIN_SPEED, max_speed)
 	DIRECTION = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
-	position = get_viewport_rect().size / 2 + DIRECTION * randi_range(20, 90)
+	position = get_viewport_rect().size / 2 + DIRECTION * randi_range(20, get_viewport_rect().size.x / 20)
 	rotate(randf_range(0.0, PI))
-	var scale_val = randf_range(0.3, 0.8)
+	var scale_val = randf_range(1.3, 1.8)
 	scale = Vector2(scale_val, scale_val)
 	rotation_value = randf_range(-0.002, 0.002)
 	#skew_value = randf_range(-0.002, 0.002)
@@ -139,7 +139,7 @@ func create_shard() -> RigidBody2D:
 	shard.gravity_scale = 0.0
 	
 	# Random shard size
-	var shard_size = Vector2(randf_range(3, 8), randf_range(3, 8))
+	var shard_size = Vector2(randf_range(9, 18), randf_range(9, 18))
 	
 	# Background color rect
 	var rect = ColorRect.new()
