@@ -7,7 +7,7 @@ const TOTAL_STEPS := 16
 var initial_shot_step_index := 8
 var active_seq_steps : Dictionary = {}
 
-var shot_damage := 5
+var shot_damage := 10
 var shot_interval := 1.0
 var shot_radius := 40.0
 var shot_effect = preload("res://scenes/effects/shot_effect.tscn")

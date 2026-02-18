@@ -5,10 +5,10 @@ extends CharacterBody2D
 @export var noise_frequency : float = 0.3
 @export var time_offset : float = 0.0
 
-var MIN_SPEED := 0.01
-var max_speed := 0.5
+var MIN_SPEED := 2.5
+var max_speed := 5.5
 
-var SPEED := 0.0
+var SPEED := 0.5
 var DIRECTION := Vector2(0,0)
 var rotation_value := 0.0
 var skew_value := 0.0
