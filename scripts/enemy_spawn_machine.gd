@@ -1,5 +1,7 @@
 extends Node2D
 
+signal on_add_to_credits(credits: int)
+
 var init_count = 100
 var timer_interval = 1
 var enemy_max_speed = 0.5
@@ -11,18 +13,17 @@ func init_enemies():
 #	
 	# Instantiate new initial enemies
 	for i in init_count:
-		var en = enemy.instantiate()
-		en.max_speed = enemy_max_speed
-		#set_random_values(en)
-		get_parent().add_child(en)
+		_initiate_enemy()
 
 func _on_timer_timeout() -> void:
+	_initiate_enemy()	
 	
+func _initiate_enemy() -> void:
 	var en = enemy.instantiate()
 	en.max_speed = enemy_max_speed
-	#set_random_values(en)
+	en.add_to_credits.connect(_on_add_to_credits)
 	get_parent().add_child(en)
-	
+
 func set_random_values(en):
 	en.flicker_speed = randf_range(4.8, 5.2)
 	en.noise_frequency = randf_range(0.1, 0.2)
@@ -53,3 +54,6 @@ func remove_all_existing():
 	for child in get_parent().get_children():
 		if child.has_method("die"):
 			child.die()
+			
+func _on_add_to_credits(credits: int):
+	on_add_to_credits.emit(credits)

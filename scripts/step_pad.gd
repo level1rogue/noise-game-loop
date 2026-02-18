@@ -23,7 +23,7 @@ func set_highlight(highlight: bool):
 	
 func _update_visual():
 	if active_state:
-		$ColorRect.color = Color("189758ff")
+		$ColorRect.color = Color("00d98aff")
 	elif highlight_state:
 		$ColorRect.color = Color("2b965e3e")
 	else:

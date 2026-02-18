@@ -82,6 +82,9 @@ func _ready() -> void:
 	$CockpitLayer.load_next_level.connect(load_next_level )
 	$CockpitLayer/%Sequencer.set_initial_seq_steps(initial_player_steps)
 	
+	$EnemySpawnMachine.on_add_to_credits.connect(on_credit_change)
+	#$EnemySpawnMachine.on_add_to_credits.connect($CockpitLayer/%DisplayControl.on_credit_change)
+	
 func calc_radius(radius_in_percent):
 	# calc the pixel value of radius with screen height and percentage radius
 	var screen_height = get_viewport_rect().size.y
@@ -289,6 +292,7 @@ func _on_level_ended():
 	_on_destroy_level()
 	$EnemySpawnMachine.end_level()
 	$CockpitLayer/%Sequencer.set_finished()
+	$RewardScreen.set_level_rewards(loaded_level)
 
 func load_next_level():
 	$WorldClock.stop_level()
@@ -296,6 +300,8 @@ func load_next_level():
 	$CockpitLayer/%Sequencer.set_initial_bars(loaded_level.duration)
 	_create_level()
 	
-	
+func on_credit_change(amount: int):
+	$Player.on_credit_change(amount)
+	$CockpitLayer/%DisplayControl.on_credit_change()	
 	
 		

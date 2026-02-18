@@ -2,12 +2,14 @@
 
 [ext_resource type="StyleBox" uid="uid://jjbo41rnuer3" path="res://resources/styles/ui_box_with_shadow.tres" id="1_bd1lb"]
 [ext_resource type="Theme" uid="uid://6tgp7by8jheu" path="res://resources/styles/bold_text.tres" id="1_eg2gl"]
+[ext_resource type="Script" uid="uid://d0e5c18aaq6x2" path="res://scripts/ui/reward_screen.gd" id="1_xpnye"]
 [ext_resource type="Theme" uid="uid://f2dkwgc8jy7t" path="res://resources/styles/big_button.tres" id="2_bd1lb"]
 
 [sub_resource type="Theme" id="Theme_clnow"]
 Panel/styles/panel = ExtResource("1_bd1lb")
 
-[node name="UpgradeScreen" type="CanvasLayer" unique_id=126912765]
+[node name="RewardScreen" type="CanvasLayer" unique_id=126912765]
+script = ExtResource("1_xpnye")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1544903866]
 custom_minimum_size = Vector2(400, 400)

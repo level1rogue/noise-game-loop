@@ -22,6 +22,11 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 buses/default_bus_layout="uid://3j4qsagw8t68"
 
+[autoload]
+
+PlayerData="*uid://d26ob838g24v3"
+Helpers="*uid://dmafmnpf0simb"
+
 [display]
 
 window/size/viewport_width=3456

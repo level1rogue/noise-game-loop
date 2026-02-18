@@ -7,9 +7,6 @@ const TOTAL_STEPS := 16
 var initial_shot_step_index := 8
 var active_seq_steps : Dictionary = {}
 
-var shot_damage := 10
-var shot_interval := 1.0
-var shot_radius := 40.0
 var shot_effect = preload("res://scenes/effects/shot_effect.tscn")
 var shockwave_effect = preload("res://scenes/effects/shockwave_effect.tscn")
 
@@ -25,7 +22,7 @@ var upgrade_strategies := {
 }
 
 func _ready() -> void:
-	$ShotArea.set_radius(shot_radius)
+	$ShotArea.set_radius(PlayerData.shot_radius)
 
 func _physics_process(delta: float) -> void:
 	
@@ -63,8 +60,8 @@ func trigger_shot():
 	
 	var shot_data = ShotData.new()
 	shot_data.position = global_position
-	shot_data.damage = shot_damage
-	shot_data.radius = shot_radius
+	shot_data.damage = PlayerData.shot_damage
+	shot_data.radius = PlayerData.shot_radius
 	
 	_execute_shot(shot_data)
 	
@@ -114,12 +111,9 @@ func _execute_sweep_shot(shot_data: ShotData, target_radius: float, damage: int)
 	
 func update_base_upgrades(data: Dictionary):
 	if data.shot_damage != null:
-		shot_damage = data.shot_damage
-	if data.shot_interval != null:
-		shot_interval = data.shot_interval
-		#$ShotTimer.wait_time = shot_interval
+		PlayerData.shot_damage = data.shot_damage
 	if data.shot_radius != null:
-		shot_radius = data.shot_radius
+		PlayerData.shot_radius = data.shot_radius
 		%ShotArea.redraw_crosshair(data.shot_radius)
 		
 func update_special_upgrades(upgrade_type, is_applied):
@@ -137,3 +131,6 @@ func _on_step(step: int):
 			"basic_shot":
 				trigger_shot()
 				
+func on_credit_change(credits: int):
+	PlayerData.credits += credits
+	prints("player credits", PlayerData.credits)

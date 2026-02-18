@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://48lgw05a2y0d" path="res://assets/graphics/ui_elements/parts/map.png" id="4_u4ogu"]
 [ext_resource type="Texture2D" uid="uid://bps5qwlsdamhd" path="res://assets/graphics/ui_elements/parts/sequencer_plus.png" id="5_x08du"]
 [ext_resource type="PackedScene" uid="uid://dbrs1rlqpfdmb" path="res://scenes/sequencer.tscn" id="6_qujgm"]
+[ext_resource type="PackedScene" uid="uid://bjt4agfrhk2a3" path="res://scenes/ui/display_control.tscn" id="8_e0qi7"]
 [ext_resource type="Script" uid="uid://015i05q7borf" path="res://scripts/ui/bpm_indicator_light.gd" id="9_bq38i"]
 [ext_resource type="Texture2D" uid="uid://bn1wpie5janyf" path="res://assets/graphics/ui_elements/parts/sequencer_bpm_indicator.png" id="9_x08du"]
 [ext_resource type="Texture2D" uid="uid://cx8eo1e83jdmo" path="res://assets/graphics/ui_elements/parts/companion_1_empty.png" id="12_pq6cs"]
@@ -112,17 +113,34 @@ texture = ExtResource("3_fxcac")
 layout_mode = 1
 anchors_preset = 0
 
-[node name="MapModule" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=2054421085]
+[node name="DisplayModule" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=2054421085]
 anchors_preset = 0
 offset_top = 6.796112
 offset_right = 699.0
 offset_bottom = 916.79614
 
-[node name="TextureRect" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/MapModule" unique_id=1039427120]
+[node name="TextureRect" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/DisplayModule" unique_id=1039427120]
 layout_mode = 0
 offset_right = 705.0
 offset_bottom = 907.0
 texture = ExtResource("4_u4ogu")
+
+[node name="DisplayControl" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/DisplayModule" unique_id=1954027334 instance=ExtResource("8_e0qi7")]
+unique_name_in_owner = true
+z_index = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.528
+anchor_top = 0.5
+anchor_right = 0.528
+anchor_bottom = 0.5
+offset_left = -260.81198
+offset_top = -286.77002
+offset_right = 261.18802
+offset_bottom = 286.77026
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="SequencerModule" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=1128202304]
 anchors_preset = 0

@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var noise_frequency : float = 0.3
 @export var time_offset : float = 0.0
 
+signal add_to_credits(credits: float)
+
 var MIN_SPEED := 2.5
 var max_speed := 5.5
 
@@ -133,6 +135,7 @@ func die():
 		shard.angular_velocity = randf_range(-15, 15)
 			
 	queue_free()
+	add_to_credits.emit(MAX_HEALTH)
 
 func create_shard() -> RigidBody2D:
 	var shard = RigidBody2D.new()
