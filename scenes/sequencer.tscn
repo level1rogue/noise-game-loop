@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cmn73goarxtdl" path="res://scripts/sequencer.gd" id="1_vbedp"]
 [ext_resource type="Script" uid="uid://w7sq50q75wec" path="res://scripts/bpm_indicator.gd" id="2_vbedp"]
+[ext_resource type="FontFile" uid="uid://srdhab5e6crv" path="res://assets/fonts/Segment7-4Gml.otf" id="3_7ykl1"]
+
+[sub_resource type="Theme" id="Theme_aegiu"]
+default_font = ExtResource("3_7ykl1")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbedp"]
 bg_color = Color(0, 0.8509804, 0.5411765, 0.6117647)
@@ -69,21 +73,36 @@ anchors_preset = 0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/margin_left = 19
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SequencerContainer/MarginContainer" unique_id=1010214126]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 8
 
 [node name="MarginContainer2" type="MarginContainer" parent="SequencerContainer/MarginContainer/HBoxContainer" unique_id=872860467]
 layout_mode = 2
+theme_override_constants/margin_top = 18
 
-[node name="Label" type="Label" parent="SequencerContainer/MarginContainer/HBoxContainer/MarginContainer2" unique_id=603970674]
+[node name="VBoxContainer" type="VBoxContainer" parent="SequencerContainer/MarginContainer/HBoxContainer/MarginContainer2" unique_id=1869258661]
 layout_mode = 2
+
+[node name="BarLabel" type="Label" parent="SequencerContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=603970674]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_aegiu")
 theme_override_colors/font_color = Color(5.0055983e-06, 0.8528268, 0.5421115, 1)
-theme_override_font_sizes/font_size = 36
-text = "45"
+theme_override_font_sizes/font_size = 48
+text = "00"
+horizontal_alignment = 1
+
+[node name="BeatLabel" type="Label" parent="SequencerContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1105764882]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_aegiu")
+theme_override_colors/font_color = Color(5.0055983e-06, 0.8528268, 0.5421115, 1)
+theme_override_font_sizes/font_size = 48
+text = "00"
 horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="SequencerContainer/MarginContainer/HBoxContainer" unique_id=1497869327]

@@ -16,7 +16,13 @@ var display_bar : int
 
 var all_steps : Array[StepPad] = []
 
+var level_initiated := false
+
 var step_pad = preload("res://scenes/step_pad.tscn")
+
+@onready var bar_label = $%BarLabel
+@onready var beat_label = $%BeatLabel
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if %SequencerGrid:
@@ -50,8 +56,33 @@ func on_step_progress(step: int):
 
 func on_beat_progress(beat: int):
 	call_on_beat.emit(beat)
+	beat_label.text = convert_to_string((beat%4)+1, 2)
+
+func convert_to_string(og_number, digits):
+	if og_number < (10^(digits-1))-1:
+		var int_str := ""
+		for i in (digits-1):
+			int_str += "0"
+		return int_str + str(og_number)
+	else:
+		return str(og_number)
+
+func on_bar_progress(bar: int):
+	bar_label.text = convert_to_string(bar, 2)
+
+func set_initial_bars(bars: int):
+	bar_label.text = convert_to_string(bars, 2)
+	beat_label.text = "00"
 
 func set_initial_seq_steps(data):
 	for step in data:
 		if all_steps[step]:
 			all_steps[step].set_icon(data[step])
+	level_initiated = true
+
+func set_finished():
+	if level_initiated:
+		bar_label.text = "00"
+		beat_label.text = "00"
+		for step in all_steps:
+			step.set_active(false)

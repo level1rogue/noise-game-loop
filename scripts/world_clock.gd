@@ -100,7 +100,7 @@ func _update_time(time_sec: float):
 			
 		if bar_i != _last_bar:
 			_last_bar = bar_i
-			#bar.emit(bar_i)
+			bar.emit(total_bars - bar_i)
 			
 func setup_level_and_start_clock(lvl: LevelData) -> void:
 	total_bars = lvl.duration

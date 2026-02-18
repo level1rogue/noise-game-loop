@@ -58,6 +58,7 @@ func _ready() -> void:
 	$WorldClock.step.connect(%Player._on_step)
 	$WorldClock.step.connect($CockpitLayer/%Sequencer.on_step_progress)
 	$WorldClock.beat.connect($CockpitLayer/%Sequencer.on_beat_progress)
+	$WorldClock.bar.connect($CockpitLayer/%Sequencer.on_bar_progress)
 	$WorldClock.count_in_beat.connect(_on_count_in)
 	$WorldClock.level_started.connect(_start_level)
 	$WorldClock.request_level_ended.connect(_on_level_ended)
@@ -287,10 +288,12 @@ func _on_count_in(beat: int) -> void:
 func _on_level_ended():
 	_on_destroy_level()
 	$EnemySpawnMachine.end_level()
+	$CockpitLayer/%Sequencer.set_finished()
 
 func load_next_level():
 	$WorldClock.stop_level()
 	loaded_level = $LevelManager.load_next_level()
+	$CockpitLayer/%Sequencer.set_initial_bars(loaded_level.duration)
 	_create_level()
 	
 	
