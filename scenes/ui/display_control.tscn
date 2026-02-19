@@ -49,7 +49,7 @@ theme_override_constants/separation = 12
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=1121950635]
 layout_mode = 2
 theme = ExtResource("1_kq4m7")
-text = "Credits:"
+text = "Dust:"
 
 [node name="CreditsLabel" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=137691678]
 layout_mode = 2

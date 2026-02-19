@@ -23,7 +23,7 @@ var player_bounds_right : float
 
 var initial_player_steps := {
 		0: "basic_shot",
-		8: "basic_shot"
+		#9: "basic_shot"
 	}
 
 var loaded_level: LevelData
@@ -36,35 +36,35 @@ var count_in_label = load("res://scenes/ui/count_in.tscn")
 func _ready() -> void:
 	# Debug only
 	#get_tree().debug_collisions_hint = true
-	
-	$OverlayMenu.set_constraints({
-		"min_radius": MIN_RADIUS,
-		"max_radius": MAX_RADIUS,
-		"max_sides": MAX_SIDES,
-		"max_offset": MAX_OFFSET,
-		"min_ratio": MIN_RATIO,
-		"max_ratio": MAX_RATIO,
-		"min_sub_divs": MIN_SUB_DIVS,
-		"max_sub_divs": MAX_SUB_DIVS
-	})
-	$OverlayMenu.render_requested.connect(_on_render_requested)
-	$OverlayMenu.start_requested.connect(_on_start_requested)
-	$OverlayMenu.toggle_pause_game.connect(_on_toggle_pause)
-	$OverlayMenu.update_base_upgrades.connect(%Player.update_base_upgrades)
-	$OverlayMenu.update_special_upgrades.connect(%Player.update_special_upgrades)
-	
-	
-	
-	$WorldClock.step.connect(%Player._on_step)
-	$WorldClock.step.connect($CockpitLayer/%Sequencer.on_step_progress)
-	$WorldClock.beat.connect($CockpitLayer/%Sequencer.on_beat_progress)
-	$WorldClock.bar.connect($CockpitLayer/%Sequencer.on_bar_progress)
-	$WorldClock.count_in_beat.connect(_on_count_in)
-	$WorldClock.level_started.connect(_start_level)
-	$WorldClock.request_level_ended.connect(_on_level_ended)
+	#
+	#$OverlayMenu.set_constraints({
+		#"min_radius": MIN_RADIUS,
+		#"max_radius": MAX_RADIUS,
+		#"max_sides": MAX_SIDES,
+		#"max_offset": MAX_OFFSET,
+		#"min_ratio": MIN_RATIO,
+		#"max_ratio": MAX_RATIO,
+		#"min_sub_divs": MIN_SUB_DIVS,
+		#"max_sub_divs": MAX_SUB_DIVS
+	#})
+	#$OverlayMenu.render_requested.connect(_on_render_requested)
+	#$OverlayMenu.start_requested.connect(_on_start_requested)
+	#$OverlayMenu.toggle_pause_game.connect(_on_toggle_pause)
+	#$OverlayMenu.update_base_upgrades.connect($World/%Player.update_base_upgrades)
+	#$OverlayMenu.update_special_upgrades.connect($World/%Player.update_special_upgrades)
+	#
+	#
+	#
+	$World/WorldClock.step.connect($World/%Player._on_step)
+	$World/WorldClock.step.connect($HUDLayer/CockpitLayer/%Sequencer.on_step_progress)
+	$World/WorldClock.beat.connect($HUDLayer/CockpitLayer/%Sequencer.on_beat_progress)
+	$World/WorldClock.bar.connect($HUDLayer/CockpitLayer/%Sequencer.on_bar_progress)
+	$World/WorldClock.count_in_beat.connect(_on_count_in)
+	$World/WorldClock.level_started.connect(_start_level)
+	$World/WorldClock.request_level_ended.connect(_on_level_ended)
 	screen_center = get_viewport_rect().size / 2
 	var screen_size = get_viewport_rect().size
-	$Background.size = screen_size
+	$World/Background.size = screen_size
 	load_next_level()
 	
 	var bound_size_by_ratio = screen_size.x / 5
@@ -72,18 +72,18 @@ func _ready() -> void:
 	var bound_size = maxf(bound_size_by_ratio, bound_size_by_height)
 	player_bounds_left = bound_size
 	player_bounds_right = screen_size.x - bound_size
-	%Player.set_movement_bounds(player_bounds_left, player_bounds_right)	
-	%Player.set_initial_seq_steps(initial_player_steps)
+	$World/%Player.set_movement_bounds(player_bounds_left, player_bounds_right)	
+	$World/%Player.set_initial_seq_steps(initial_player_steps)
 	#$CockpitUI.on_start_level_pressed.connect(_on_start_requested)
 	#$CockpitUI.on_load_next_pressed.connect(load_next_level)
 	#$CockpitUI/%Sequencer.set_initial_seq_steps(initial_player_steps)
 	
-	$CockpitLayer.start_level.connect(_on_start_requested)
-	$CockpitLayer.load_next_level.connect(load_next_level )
-	$CockpitLayer/%Sequencer.set_initial_seq_steps(initial_player_steps)
+	$HUDLayer/CockpitLayer.start_level.connect(_on_start_requested)
+	$HUDLayer/CockpitLayer.load_next_level.connect(load_next_level )
+	$HUDLayer/CockpitLayer/%Sequencer.set_initial_seq_steps(initial_player_steps)
 	
-	$EnemySpawnMachine.on_add_to_credits.connect(on_credit_change)
-	#$EnemySpawnMachine.on_add_to_credits.connect($CockpitLayer/%DisplayControl.on_credit_change)
+	$World/EnemySpawnMachine.on_add_to_credits.connect(on_credit_change)
+	#$World/EnemySpawnMachine.on_add_to_credits.connect($HUDLayer/CockpitLayer/%DisplayControl.on_credit_change)
 	
 func calc_radius(radius_in_percent):
 	# calc the pixel value of radius with screen height and percentage radius
@@ -233,7 +233,7 @@ func render_polygon(nr_of_sides, radius, sub_divisions := 3):
 
 
 func _on_render_requested(data: Dictionary) -> void:
-	$EnemySpawnMachine.stop_timer()
+	$World/EnemySpawnMachine.stop_timer()
 	n = data.n
 	subs = data.subs
 	rpctg = data.rpctg
@@ -261,12 +261,12 @@ func _on_start_requested():
 	
 func _start_level_count_in():
 	if not get_tree().paused:
-		$WorldClock.setup_level_and_start_clock(loaded_level)
+		$World/WorldClock.setup_level_and_start_clock(loaded_level)
 		
 func _start_level():
 	#count_in_label.set_finished()
 	if not get_tree().paused:
-		$EnemySpawnMachine.start_timer(loaded_level)
+		$World/EnemySpawnMachine.start_timer(loaded_level)
 
 func _create_level():
 	_on_destroy_level()
@@ -290,18 +290,18 @@ func _on_count_in(beat: int) -> void:
 
 func _on_level_ended():
 	_on_destroy_level()
-	$EnemySpawnMachine.end_level()
-	$CockpitLayer/%Sequencer.set_finished()
-	$RewardScreen.set_level_rewards(loaded_level)
+	$World/EnemySpawnMachine.end_level()
+	$HUDLayer/CockpitLayer/%Sequencer.set_finished()
+	$HUDLayer/RewardScreen.set_level_rewards(loaded_level)
 
 func load_next_level():
-	$WorldClock.stop_level()
-	loaded_level = $LevelManager.load_next_level()
-	$CockpitLayer/%Sequencer.set_initial_bars(loaded_level.duration)
+	$World/WorldClock.stop_level()
+	loaded_level = $World/LevelManager.load_next_level()
+	$HUDLayer/CockpitLayer/%Sequencer.set_initial_bars(loaded_level.duration)
 	_create_level()
 	
 func on_credit_change(amount: int):
-	$Player.on_credit_change(amount)
-	$CockpitLayer/%DisplayControl.on_credit_change()	
+	$World/%Player.on_credit_change(amount)
+	$HUDLayer/CockpitLayer/%DisplayControl.on_credit_change()	
 	
 		

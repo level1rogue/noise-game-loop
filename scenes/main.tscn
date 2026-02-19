@@ -3,12 +3,9 @@
 [ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://scenes/enemy_spawn_machine.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://de5efn574omjt" path="res://scenes/player.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://dd6bilswadpa8" path="res://scenes/menu.tscn" id="2_tbgi4"]
 [ext_resource type="Shader" uid="uid://bfsmtb567wwwu" path="res://shaders/CRTShader.gdshader" id="2_tipki"]
 [ext_resource type="AudioStream" uid="uid://euab3xghe7f1" path="res://audio/noise_swell.mp3" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://dbrs1rlqpfdmb" path="res://scenes/sequencer.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://y4eejjcgwy64" path="res://scenes/world_clock.tscn" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://dvgps37wxh62k" path="res://scenes/ui/cockpit_ui.tscn" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://ds1tl3eymfccp" path="res://scenes/level_manager.tscn" id="8_choun"]
 [ext_resource type="PackedScene" uid="uid://b3nug37fsys0n" path="res://scenes/ui/upgrade_screen.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://b1kv7haeowpg1" path="res://scenes/ui/cockpit_layer.tscn" id="12_eb6dy"]
@@ -60,7 +57,9 @@ volumetric_fog_length = 534.18
 process_mode = 1
 script = ExtResource("1_o5qli")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1737748974]
+[node name="World" type="Node" parent="." unique_id=7307695]
+
+[node name="Background" type="ColorRect" parent="World" unique_id=1737748974]
 light_mask = 8
 visibility_layer = 8
 custom_minimum_size = Vector2(4.95, 3.03)
@@ -69,8 +68,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -2.475
 offset_top = -1.515
-offset_right = 25.809397
-offset_bottom = 14.017911
+offset_right = 25.809326
+offset_bottom = 14.017822
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(121.850746, 147.71957)
@@ -80,28 +79,28 @@ mouse_default_cursor_shape = 3
 color = Color(0.007978929, 0.0006758069, 0.051645726, 1)
 metadata/_edit_lock_ = true
 
-[node name="InfoLabel" type="Label" parent="." unique_id=1880832290]
+[node name="Player" parent="World" unique_id=247561293 instance=ExtResource("2_sugp2")]
 unique_name_in_owner = true
-visible = false
-offset_left = 29.0
-offset_top = 1004.0
-offset_right = 147.0
-offset_bottom = 1038.0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 24
-text = "Lane Nr. 3"
-metadata/_edit_use_anchors_ = true
+position = Vector2(491, 135)
 
-[node name="EnemySpawnMachine" parent="." unique_id=1960937370 instance=ExtResource("2_0wfyh")]
+[node name="WorldClock" parent="World" unique_id=896245553 node_paths=PackedStringArray("audio_player") instance=ExtResource("7_o6xl0")]
+audio_player = NodePath("../AudioStreamPlayer")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2019227226]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World" unique_id=2019227226]
 stream = ExtResource("4_jyhfs")
 
-[node name="Sequencer" parent="." unique_id=1167282730 instance=ExtResource("6_tefeu")]
-visible = false
+[node name="EnemySpawnMachine" parent="World" unique_id=1960937370 instance=ExtResource("2_0wfyh")]
 
-[node name="WorldClock" parent="." unique_id=896245553 instance=ExtResource("7_o6xl0")]
+[node name="LevelManager" parent="World" unique_id=759793166 instance=ExtResource("8_choun")]
+
+[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1084234578]
+
+[node name="CockpitLayer" parent="HUDLayer" unique_id=1829790468 instance=ExtResource("12_eb6dy")]
+layer = 6
+
+[node name="RewardScreen" parent="HUDLayer" unique_id=126912765 instance=ExtResource("11_ya4ey")]
+layer = 10
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1397239852]
 layer = 5
@@ -113,28 +112,5 @@ position = Vector2(1732.2499, 1108.25)
 scale = Vector2(1779.4998, 1793.5)
 mesh = SubResource("QuadMesh_eb6dy")
 
-[node name="Player" parent="." unique_id=247561293 instance=ExtResource("2_sugp2")]
-unique_name_in_owner = true
-position = Vector2(491, 135)
-
-[node name="LevelManager" parent="." unique_id=759793166 instance=ExtResource("8_choun")]
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1584216265]
-layer = 6
-
-[node name="CockpitUI" parent="." unique_id=1807888223 instance=ExtResource("8_85g3d")]
-visible = false
-
-[node name="OverlayMenu" parent="." unique_id=107279050 instance=ExtResource("2_tbgi4")]
-layer = 6
-visible = false
-
-[node name="CockpitLayer" parent="." unique_id=1829790468 instance=ExtResource("12_eb6dy")]
-layer = 6
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=390722321]
 environment = SubResource("Environment_o5qli")
-
-[node name="RewardScreen" parent="." unique_id=126912765 instance=ExtResource("11_ya4ey")]
-layer = 10
-visible = false
