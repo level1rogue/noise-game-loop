@@ -89,6 +89,7 @@ offset_left = 1025.0
 offset_top = 281.0
 offset_right = 2822.0
 offset_bottom = 2125.0
+mouse_default_cursor_shape = 3
 
 [node name="BackgroundImage" type="TextureRect" parent="CockpitRoot/CockpitPivot/CenterScreen" unique_id=241368181]
 layout_mode = 0
