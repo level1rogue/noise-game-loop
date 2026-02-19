@@ -133,4 +133,3 @@ func _on_step(step: int):
 				
 func on_credit_change(credits: int):
 	PlayerData.credits += credits
-	prints("player credits", PlayerData.credits)

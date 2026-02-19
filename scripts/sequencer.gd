@@ -20,8 +20,8 @@ var level_initiated := false
 
 var step_pad = preload("res://scenes/step_pad.tscn")
 
-@onready var bar_label = $%BarLabel
-@onready var beat_label = $%BeatLabel
+@onready var bar_label = %BarLabel
+@onready var beat_label = %BeatLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -66,13 +66,15 @@ func set_initial_bars(bars: int):
 	bar_label.text = Helpers.convert_int_to_string(bars, 2)
 	beat_label.text = "00"
 
-func set_initial_seq_steps(data):
-	for step in data:
+func set_initial_seq_steps(step_data: Dictionary):
+	prints("initial steps:", step_data)
+	for step in step_data:
 		if all_steps[step]:
-			all_steps[step].set_icon(data[step])
+			all_steps[step].set_icon(step_data[step])
 	level_initiated = true
 
-func set_finished():
+func set_finished(): 
+	prints("FINISHED")
 	if level_initiated:
 		bar_label.text = "00"
 		beat_label.text = "00"
