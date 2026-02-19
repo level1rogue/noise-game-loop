@@ -48,7 +48,7 @@ volumetric_fog_density = 0.607
 volumetric_fog_emission_energy = 854.4
 volumetric_fog_length = 534.18
 
-[node name="Main" type="Node2D" unique_id=193928734]
+[node name="Game" type="Node2D" unique_id=193928734]
 process_mode = 1
 script = ExtResource("1_o5qli")
 
@@ -56,11 +56,11 @@ script = ExtResource("1_o5qli")
 
 [node name="HUDLayer" parent="." unique_id=1195061263 instance=ExtResource("3_jyhfs")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1397239852]
+[node name="ShaderLayer" type="CanvasLayer" parent="." unique_id=1397239852]
 layer = 5
 visible = false
 
-[node name="CRTShader" type="MeshInstance2D" parent="CanvasLayer" unique_id=129965520]
+[node name="CRTShader" type="MeshInstance2D" parent="ShaderLayer" unique_id=129965520]
 material = SubResource("ShaderMaterial_tipki")
 position = Vector2(1732.2499, 1108.25)
 scale = Vector2(1779.4998, 1793.5)

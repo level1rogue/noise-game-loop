@@ -8,4 +8,4 @@
 [node name="MainMenu" parent="." unique_id=2099403043 instance=ExtResource("1_twpsu")]
 visible = false
 
-[node name="Main" parent="." unique_id=312641127 instance=ExtResource("2_lrqlo")]
+[node name="Game" parent="." unique_id=312641127 instance=ExtResource("2_lrqlo")]
