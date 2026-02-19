@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://y4eejjcgwy64"]
+
+[ext_resource type="Script" uid="uid://dmgmu8u0tobmo" path="res://systems/game/world/world_clock/world_clock.gd" id="1_2jptk"]
+[ext_resource type="AudioStream" path="res://audio/noise_swell.mp3" id="2_hhumg"]
+
+[node name="WorldClock" type="Node" unique_id=113473349 node_paths=PackedStringArray("audio_player")]
+script = ExtResource("1_2jptk")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1717248921]
+stream = ExtResource("2_hhumg")

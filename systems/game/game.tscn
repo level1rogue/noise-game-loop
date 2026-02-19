@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://b5we4ccv6c5yp"]
+
+[ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://systems/game/game.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bi7on0k3dtfwh" path="res://systems/game/world/world.tscn" id="2_tbgi4"]
+[ext_resource type="Shader" uid="uid://bfsmtb567wwwu" path="res://assets/shaders/CRTShader.gdshader" id="2_tipki"]
+[ext_resource type="PackedScene" uid="uid://fn3503xj06c2" path="res://systems/game/ui/hud_layer.tscn" id="3_jyhfs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
+shader = ExtResource("2_tipki")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.0410000019475
+shader_parameter/aberration = 0.00500004773750006
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_eb6dy"]
+
+[sub_resource type="Environment" id="Environment_o5qli"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.83
+glow_strength = 1.27
+glow_bloom = 0.03
+glow_blend_mode = 0
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 8.25
+fog_sun_scatter = 0.9
+fog_density = 0.4682
+fog_height_density = 0.025
+volumetric_fog_density = 0.607
+volumetric_fog_emission_energy = 854.4
+volumetric_fog_length = 534.18
+
+[node name="Main" type="Node2D" unique_id=193928734]
+process_mode = 1
+script = ExtResource("1_o5qli")
+
+[node name="World" parent="." unique_id=834831237 instance=ExtResource("2_tbgi4")]
+
+[node name="HUDLayer" parent="." unique_id=1195061263 instance=ExtResource("3_jyhfs")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1397239852]
+layer = 5
+visible = false
+
+[node name="CRTShader" type="MeshInstance2D" parent="CanvasLayer" unique_id=129965520]
+material = SubResource("ShaderMaterial_tipki")
+position = Vector2(1732.2499, 1108.25)
+scale = Vector2(1779.4998, 1793.5)
+mesh = SubResource("QuadMesh_eb6dy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=390722321]
+environment = SubResource("Environment_o5qli")

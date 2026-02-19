@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dg6tsv01wqj1j"]
+
+[ext_resource type="Script" uid="uid://bu1y64ia73plp" path="res://systems/game/world/enemy_spawn_machine/enemy_spawn_machine.gd" id="1_yteuk"]
+[ext_resource type="PackedScene" uid="uid://lkg37dnvthk1" path="res://entities/enemies/enemy.tscn" id="2_qttno"]
+
+[node name="EnemySpawnMachine" type="Node2D" unique_id=3045881]
+script = ExtResource("1_yteuk")
+enemy = ExtResource("2_qttno")
+
+[node name="Timer" type="Timer" parent="." unique_id=1770122468]
+wait_time = 0.421
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

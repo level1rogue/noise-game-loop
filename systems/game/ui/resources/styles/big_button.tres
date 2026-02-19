@@ -1,0 +1,13 @@
+[gd_resource type="Theme" format=3 uid="uid://f2dkwgc8jy7t"]
+
+[ext_resource type="StyleBox" uid="uid://hjgh1ryrnxgs" path="res://systems/game/ui/resources/styles/button_with_corners_hovered.tres" id="1_5kbea"]
+[ext_resource type="FontFile" uid="uid://ci4gu1mlwijrg" path="res://assets/fonts/TimeburnerBold-peGR.ttf" id="1_d67o3"]
+[ext_resource type="StyleBox" uid="uid://cjoda23lrh2jr" path="res://systems/game/ui/resources/styles/button_with_corners.tres" id="1_wseom"]
+[ext_resource type="StyleBox" uid="uid://yafqup1rqa2c" path="res://systems/game/ui/resources/styles/button_with_corners_pressed.tres" id="3_efx6y"]
+
+[resource]
+default_font = ExtResource("1_d67o3")
+Button/font_sizes/font_size = 18
+Button/styles/hover = ExtResource("1_5kbea")
+Button/styles/normal = ExtResource("1_wseom")
+Button/styles/pressed = ExtResource("3_efx6y")

@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://b3nug37fsys0n"]
+
+[ext_resource type="Script" uid="uid://d0e5c18aaq6x2" path="res://systems/game/ui/overlays/reward_screen/reward_screen.gd" id="1_khrhm"]
+[ext_resource type="StyleBox" uid="uid://jjbo41rnuer3" path="res://systems/game/ui/resources/styles/ui_box_with_shadow.tres" id="2_52ina"]
+[ext_resource type="Theme" uid="uid://6tgp7by8jheu" path="res://systems/game/ui/resources/styles/bold_text.tres" id="3_w4ci8"]
+[ext_resource type="Theme" uid="uid://f2dkwgc8jy7t" path="res://systems/game/ui/resources/styles/big_button.tres" id="4_52sme"]
+
+[sub_resource type="Theme" id="Theme_clnow"]
+Panel/styles/panel = ExtResource("2_52ina")
+
+[node name="RewardScreen" type="CanvasLayer" unique_id=126912765]
+script = ExtResource("1_khrhm")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1544903866]
+custom_minimum_size = Vector2(400, 400)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.64, 1.64)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background" type="Panel" parent="MarginContainer" unique_id=2021001283]
+layout_mode = 2
+theme = SubResource("Theme_clnow")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=458007825]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=1703547810]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer2" unique_id=80149417]
+layout_mode = 2
+theme = ExtResource("3_w4ci8")
+text = "Choose one:"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer2" unique_id=1085507839]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=2034407131]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1395126053]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1641660351]
+visible = false
+layout_mode = 2
+
+[node name="OptionButton1" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1544370882]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_52sme")
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer/OptionButton1" unique_id=129965713]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 22.0
+text = "nununu"
+
+[node name="OptionButton2" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1451505052]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_52sme")
+text = "Test 1"
+
+[node name="OptionButton3" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=743066808]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_52sme")
+text = "Test 1"

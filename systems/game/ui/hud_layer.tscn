@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://fn3503xj06c2"]
+
+[ext_resource type="PackedScene" uid="uid://b1kv7haeowpg1" path="res://systems/game/ui/cockpit/cockpit_layer.tscn" id="1_bmymb"]
+[ext_resource type="Script" uid="uid://0ok1pl40m2uj" path="res://systems/game/ui/hud_layer.gd" id="1_rypyx"]
+[ext_resource type="PackedScene" uid="uid://b3nug37fsys0n" path="res://systems/game/ui/overlays/reward_screen/reward_screen.tscn" id="2_rypyx"]
+[ext_resource type="PackedScene" uid="uid://dx40vyd6cnwku" path="res://systems/game/ui/overlays/count_in/count_in.tscn" id="2_uhix2"]
+
+[node name="HUDLayer" type="CanvasLayer" unique_id=1195061263]
+script = ExtResource("1_rypyx")
+count_in_label = ExtResource("2_uhix2")
+
+[node name="CockpitLayer" parent="." unique_id=1829790468 instance=ExtResource("1_bmymb")]
+layer = 6
+
+[node name="RewardScreen" parent="." unique_id=126912765 instance=ExtResource("2_rypyx")]
+layer = 10
+visible = false

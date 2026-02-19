@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://btgmnlwlwnd66"]
-
-[ext_resource type="Script" uid="uid://b2ksq1bymkg67" path="res://scripts/poly_lane.gd" id="1_t84yw"]
-
-[node name="PolyLane" type="Area2D"]
-script = ExtResource("1_t84yw")

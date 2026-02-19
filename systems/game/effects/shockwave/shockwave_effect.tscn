@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cn2ivwjo8m1fe"]
+
+[ext_resource type="Script" uid="uid://2aq60t7g362u" path="res://systems/game/effects/shockwave/shockwave_effect.gd" id="1_mb46f"]
+
+[node name="ShockwaveEffect" type="Node2D" unique_id=1462564435]
+script = ExtResource("1_mb46f")

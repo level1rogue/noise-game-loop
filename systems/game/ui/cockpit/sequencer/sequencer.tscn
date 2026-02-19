@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://dbrs1rlqpfdmb"]
+
+[ext_resource type="Script" uid="uid://cmn73goarxtdl" path="res://systems/game/ui/cockpit/sequencer/sequencer.gd" id="1_b6h6u"]
+[ext_resource type="PackedScene" uid="uid://wcjcu0tylos1" path="res://systems/game/ui/cockpit/sequencer/step_pad/step_pad.tscn" id="2_dgccm"]
+[ext_resource type="FontFile" uid="uid://srdhab5e6crv" path="res://assets/fonts/Segment7-4Gml.otf" id="4_ocmnj"]
+
+[sub_resource type="GDScript" id="GDScript_kytx5"]
+script/source = "extends TextureRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	queue_redraw()
+
+func _draw() -> void:
+	
+	draw_circle(Vector2(0,0), 8, Color(0.114, 0.918, 0.282, 1.0), true, -1.0, true)
+	
+func on_beat(beat):
+	prints(\"on boeat\", beat)
+	modulate.a = 1.0
+	queue_redraw()
+	var tween = create_tween()
+	tween.tween_property(self, \"modulate:a\", 0.0, 0.2)
+"
+
+[sub_resource type="Theme" id="Theme_aegiu"]
+default_font = ExtResource("4_ocmnj")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vbedp"]
+bg_color = Color(0, 0.8509804, 0.5411765, 0.6117647)
+
+[node name="Sequencer" type="Control" unique_id=1605387223]
+custom_minimum_size = Vector2(0, 135)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+script = ExtResource("1_b6h6u")
+step_pad = ExtResource("2_dgccm")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=454193276]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -18.0
+offset_right = 17.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/margin_top = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=23023669]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1338673956]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1822639239]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="IndicatorContainer" type="Control" parent="." unique_id=1536547033]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BPMIndicator" type="TextureRect" parent="IndicatorContainer" unique_id=999290409]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1733.0
+offset_top = 67.5
+offset_right = 1733.0
+offset_bottom = 67.5
+script = SubResource("GDScript_kytx5")
+
+[node name="SequencerContainer" type="Control" parent="." unique_id=1174534945]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="SequencerContainer" unique_id=1714411422]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SequencerContainer/MarginContainer" unique_id=1010214126]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MarginContainer2" type="MarginContainer" parent="SequencerContainer/MarginContainer/HBoxContainer" unique_id=872860467]
+layout_mode = 2
+theme_override_constants/margin_top = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SequencerContainer/MarginContainer/HBoxContainer/MarginContainer2" unique_id=1869258661]
+layout_mode = 2
+
+[node name="BarLabel" type="Label" parent="SequencerContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=603970674]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_aegiu")
+theme_override_colors/font_color = Color(0, 0.8509804, 0.5411765, 1)
+theme_override_font_sizes/font_size = 48
+text = "00"
+horizontal_alignment = 1
+
+[node name="BeatLabel" type="Label" parent="SequencerContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1105764882]
+unique_name_in_owner = true
+layout_mode = 2
+theme = SubResource("Theme_aegiu")
+theme_override_colors/font_color = Color(5.0055983e-06, 0.8528268, 0.5421115, 1)
+theme_override_font_sizes/font_size = 48
+text = "00"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="SequencerContainer/MarginContainer/HBoxContainer" unique_id=1497869327]
+layout_mode = 2
+
+[node name="ColorPanel" type="Panel" parent="SequencerContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=1739852639]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vbedp")
+
+[node name="MarginContainer" type="MarginContainer" parent="SequencerContainer/MarginContainer/HBoxContainer/PanelContainer" unique_id=344540675]
+layout_mode = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="SequencerGrid" type="GridContainer" parent="SequencerContainer/MarginContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=954942485]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 2
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 8

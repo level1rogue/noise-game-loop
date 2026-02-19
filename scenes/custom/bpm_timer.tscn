@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnuj8pim4bq6g"]
-
-[ext_resource type="Script" uid="uid://h5qmdmc1ybto" path="res://scripts/custom/bpm_timer.gd" id="1_l5srn"]
-
-[node name="Timer" type="Timer"]
-script = ExtResource("1_l5srn")
-
-[connection signal="timeout" from="." to="." method="_on_timeout"]

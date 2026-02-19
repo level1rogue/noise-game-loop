@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bjt4agfrhk2a3"]
+
+[ext_resource type="Script" uid="uid://b37pipp2dh33i" path="res://systems/game/ui/cockpit/display/display_control.gd" id="1_5m7wd"]
+[ext_resource type="Theme" uid="uid://dnl7sv13ogw46" path="res://systems/game/ui/resources/styles/label_stats.tres" id="2_xwgx8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr1in"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nr1in"]
+color = Color(0, 0.8509804, 0.5411765, 1)
+
+[node name="DisplayControl" type="Control" unique_id=1954027334 node_paths=PackedStringArray("credits", "damage", "radius")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 197.0
+offset_right = 592.0
+offset_bottom = 746.20386
+script = ExtResource("1_5m7wd")
+credits = NodePath("VBoxContainer/HBoxContainer3/CreditsLabel")
+damage = NodePath("VBoxContainer/HBoxContainer/DamageLabel")
+radius = NodePath("VBoxContainer/HBoxContainer2/RadiusLabel")
+
+[node name="Panel" type="Panel" parent="." unique_id=1732706354]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nr1in")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=631554678]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 48.0
+offset_right = 419.0
+offset_bottom = 491.0
+theme_override_constants/separation = 28
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=1938172656]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=1121950635]
+layout_mode = 2
+theme = ExtResource("2_xwgx8")
+text = "Dust:"
+
+[node name="CreditsLabel" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=137691678]
+layout_mode = 2
+theme = ExtResource("2_xwgx8")
+text = "000000"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1197161296]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_nr1in")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=453937276]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=281606383]
+layout_mode = 2
+theme = ExtResource("2_xwgx8")
+text = "Equipped:"
+
+[node name="EquippedLabel" type="Label" parent="VBoxContainer/VBoxContainer" unique_id=385529295]
+layout_mode = 2
+theme = ExtResource("2_xwgx8")
+text = "Arc 2000"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1495536505]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1184261015]
+layout_mode = 2
+theme = ExtResource("2_xwgx8")
+text = "Damage:"
+
+[node name="DamageLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1735599600]
+layout_mode = 2
+theme = ExtResource("2_xwgx8")
+text = "10"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=287523084]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1943171014]
+layout_mode = 2
+theme = ExtResource("2_xwgx8")
+text = "Radius:"
+
+[node name="RadiusLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1413412256]
+layout_mode = 2
+theme = ExtResource("2_xwgx8")
+text = "10"

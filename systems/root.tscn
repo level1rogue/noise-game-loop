@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cgjcsb5kox5nv"]
+
+[ext_resource type="PackedScene" uid="uid://cp1rjxl2pu6ad" path="res://systems/splash_screen/main_menu.tscn" id="1_twpsu"]
+[ext_resource type="PackedScene" uid="uid://b5we4ccv6c5yp" path="res://systems/game/game.tscn" id="2_lrqlo"]
+
+[node name="Root" type="Node2D" unique_id=1407214061]
+
+[node name="MainMenu" parent="." unique_id=2099403043 instance=ExtResource("1_twpsu")]
+visible = false
+
+[node name="Main" parent="." unique_id=312641127 instance=ExtResource("2_lrqlo")]
