@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://citt1fammdfer"]
+
+[ext_resource type="StyleBox" uid="uid://c8motel6vx0to" path="res://systems/game/ui/resources/styles/ui_box_.tres" id="1_d88ca"]
+
+[resource]
+Panel/styles/panel = ExtResource("1_d88ca")

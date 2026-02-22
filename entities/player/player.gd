@@ -130,6 +130,3 @@ func _on_step(step: int):
 		match active_seq_steps[active_step]:
 			"basic_shot":
 				trigger_shot()
-				
-func on_credit_change(credits: int):
-	PlayerData.credits += credits

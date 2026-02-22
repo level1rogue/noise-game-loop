@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UpgradeSystem" format=3 uid="uid://d1w3vrdefhhhd"]
+
+[ext_resource type="Resource" uid="uid://2ex48r1x4di3" path="res://entities/player/upgrades/upgrade_database.tres" id="1_6kuf4"]
+[ext_resource type="Script" uid="uid://xwpag5v5rxf" path="res://systems/shared/resources/upgrades/upgrade_system.gd" id="1_kkct3"]
+
+[resource]
+script = ExtResource("1_kkct3")
+database = ExtResource("1_6kuf4")
+metadata/_custom_type_script = "uid://xwpag5v5rxf"

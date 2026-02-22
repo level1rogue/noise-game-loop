@@ -4,6 +4,5 @@
 
 [resource]
 default_font = ExtResource("1_7a5mw")
-default_font_size = 48
 Label/colors/font_color = Color(0, 0.8509804, 0.5411765, 1)
-Label/font_sizes/font_size = 48
+Label/font_sizes/font_size = 22

@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://da33h5sram8xb"]
+
+[ext_resource type="FontFile" uid="uid://cs60n58nroyio" path="res://assets/fonts/Y224-2vdae.ttf" id="1_lvmqw"]
+
+[resource]
+default_font = ExtResource("1_lvmqw")
+Label/colors/font_color = Color(0, 0.8509804, 0.5411765, 1)
+Label/font_sizes/font_size = 42

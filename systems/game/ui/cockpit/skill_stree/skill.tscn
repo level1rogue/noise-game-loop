@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dnqcdlwos3q34"]
+
+[ext_resource type="Script" uid="uid://dya4u8awoh84l" path="res://systems/game/ui/cockpit/skill_stree/skill.gd" id="1_uwtpv"]
+[ext_resource type="Theme" uid="uid://hk0yuful0lnf" path="res://systems/game/ui/resources/styles/label_header.tres" id="1_xphhx"]
+[ext_resource type="Theme" uid="uid://cnev7rfnbos30" path="res://systems/game/ui/resources/styles/button_green.tres" id="3_hbhl1"]
+
+[node name="Skill" type="Control" unique_id=1381084851]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 3
+script = ExtResource("1_uwtpv")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=265350542]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1553145714]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=2025439816]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_xphhx")
+text = "Skill:"
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=2013220168]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_xphhx")
+text = "0"
+
+[node name="UpgradeButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=799313057]
+layout_mode = 2
+theme = ExtResource("3_hbhl1")
+text = "+"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

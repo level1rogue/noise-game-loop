@@ -41,10 +41,11 @@ func load_next_level(level: LevelData):
 	
 func _on_level_ended():
 	$HUDLayer/CockpitLayer/%Sequencer.set_finished()
-	$HUDLayer/RewardScreen.set_level_rewards(loaded_level)
+	#$HUDLayer/RewardScreen.set_level_rewards(loaded_level)
+	$HUDLayer/CockpitLayer.toggle_skill_tree()
 
 func on_credit_change(amount: int):
-	$World/%Player.on_credit_change(amount)
+	$HUDLayer/CockpitLayer/SkillTree.on_add_credits(amount)
 	$HUDLayer/CockpitLayer/%DisplayControl.on_credit_change()	
 	
 		

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://bk8puf163hmu7"]
+
+[ext_resource type="Script" uid="uid://b61m8y12g1cyg" path="res://systems/shared/resources/upgrades/upgrade_definition.gd" id="1_6prlw"]
+
+[resource]
+script = ExtResource("1_6prlw")
+id = "shot_radius_up"
+display_name = "Shot Radius"
+skill_ref = "shot_radius"
+max_level = 10
+base_value = 40.0
+value_per_level = 10.0
+metadata/_custom_type_script = "uid://b61m8y12g1cyg"

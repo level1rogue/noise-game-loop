@@ -230,7 +230,7 @@ func _create_level():
 
 
 func load_next_level():
-	$WorldClock.stop_level()
+	#$WorldClock.stop_level()
 	loaded_level = $LevelManager.load_next_level()
 	on_load_next_level.emit(loaded_level)
 	_create_level()
@@ -251,6 +251,7 @@ func _on_count_in(beat: int) -> void:
 	on_count_in.emit(beat)
 	
 func _on_level_ended():
+	prints("LEVEL ENDED!")
 	_on_destroy_level()
 	$EnemySpawnMachine.end_level()
 	on_level_ended.emit()

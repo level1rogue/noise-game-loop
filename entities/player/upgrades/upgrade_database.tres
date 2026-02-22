@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeDatabase" format=3 uid="uid://2ex48r1x4di3"]
+
+[ext_resource type="Script" uid="uid://ijldkhkturo4" path="res://systems/shared/resources/upgrades/upgrade_database.gd" id="1_t5ibh"]
+[ext_resource type="Script" uid="uid://b61m8y12g1cyg" path="res://systems/shared/resources/upgrades/upgrade_definition.gd" id="2_rtscb"]
+[ext_resource type="Resource" uid="uid://du2b6w2gxh4ev" path="res://entities/player/upgrades/01_shot_damage.tres" id="3_m5lgw"]
+[ext_resource type="Resource" uid="uid://bk8puf163hmu7" path="res://entities/player/upgrades/02_shot_radius.tres" id="4_hiycv"]
+
+[resource]
+script = ExtResource("1_t5ibh")
+upgrades = Array[ExtResource("2_rtscb")]([ExtResource("3_m5lgw"), ExtResource("4_hiycv")])
+metadata/_custom_type_script = "uid://ijldkhkturo4"

@@ -60,6 +60,7 @@ func _stop_clock():
 		audio_player.stop()
 
 func _end_level():
+	prints("Worldclock ENDS LEVEL")
 	_stop_clock()
 	request_level_ended.emit()
 

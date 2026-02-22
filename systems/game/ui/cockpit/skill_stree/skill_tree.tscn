@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cwj2m2e7vk588"]
+
+[ext_resource type="Script" uid="uid://j4vjaocqemrv" path="res://systems/game/ui/cockpit/skill_stree/skill_tree.gd" id="1_8ayga"]
+[ext_resource type="Theme" uid="uid://da33h5sram8xb" path="res://systems/game/ui/resources/styles/label_header_big.tres" id="1_s74yl"]
+[ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_8ayga"]
+[ext_resource type="PackedScene" uid="uid://dnqcdlwos3q34" path="res://systems/game/ui/cockpit/skill_stree/skill.tscn" id="4_8ayga"]
+[ext_resource type="Theme" uid="uid://dd0q24b2lp5w5" path="res://systems/game/ui/resources/styles/big_button_green.tres" id="5_8ubk6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ubk6"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="SkillTree" type="CanvasLayer" unique_id=1843494220]
+layer = 10
+script = ExtResource("1_8ayga")
+upgrade_system = ExtResource("2_8ayga")
+skill_scene = ExtResource("4_8ayga")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=98505698]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -955.0
+offset_top = -1024.0
+offset_right = 955.0
+offset_bottom = 1024.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 92
+theme_override_constants/margin_top = 92
+theme_override_constants/margin_right = 92
+theme_override_constants/margin_bottom = 92
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=453641012]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ubk6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1069418545]
+layout_mode = 2
+theme_override_constants/separation = 42
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=541359290]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_s74yl")
+text = "Upgrades"
+
+[node name="SkillContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1481301600]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1917672207]
+layout_mode = 2
+theme = ExtResource("5_8ubk6")
+text = "Continue"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

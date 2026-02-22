@@ -15,3 +15,9 @@ func _process(delta: float) -> void:
 func set_level_rewards(level: LevelData):
 	if level != null:
 		prints("set rewards: ", level)
+		visible = true
+	else:
+		prints("rewards, no level set")
+
+func _on_continue_button_pressed() -> void:
+	visible = false
