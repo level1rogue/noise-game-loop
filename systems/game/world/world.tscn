@@ -17,10 +17,10 @@ custom_minimum_size = Vector2(4.95, 3.03)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.475
-offset_top = -1.515
-offset_right = 25.809326
-offset_bottom = 14.017822
+offset_left = -3746.484
+offset_top = -2476.5283
+offset_right = -3656.747
+offset_bottom = -2427.4858
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(121.850746, 147.71957)
@@ -28,7 +28,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_default_cursor_shape = 3
 color = Color(0.007978929, 0.0006758069, 0.051645726, 1)
-metadata/_edit_lock_ = true
 
 [node name="Player" parent="." unique_id=2022821257 instance=ExtResource("1_mmdvd")]
 unique_name_in_owner = true

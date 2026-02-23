@@ -40,6 +40,8 @@ script = ExtResource("1_bls4j")
 upgrade_system = ExtResource("2_qiwj3")
 shot_effect = ExtResource("2_8fjmc")
 shockwave_effect = ExtResource("3_qiwj3")
+metadata/_edit_horizontal_guides_ = [-629.0, 2245.0]
+metadata/_edit_vertical_guides_ = [3450.0]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=813763577]
 visible = false
@@ -81,3 +83,14 @@ bus = &"Shot"
 visible = false
 scale = Vector2(0.4453125, 0.4453125)
 texture = ExtResource("4_qiwj3")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=691741702]
+limit_left = -200
+limit_top = -200
+limit_right = 3950
+limit_bottom = 2245
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
