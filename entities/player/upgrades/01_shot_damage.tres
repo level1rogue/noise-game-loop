@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_f6i2h")
-id = "shot_damage_up"
+id = "shot_damage"
 display_name = "Shot Damage"
 skill_ref = "shot_damage"
 max_level = 20

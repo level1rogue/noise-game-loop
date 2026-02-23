@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://rudtu6r6lqfu" path="res://entities/player/player.gd" id="1_bls4j"]
 [ext_resource type="PackedScene" uid="uid://1tpyl5fdih2v" path="res://systems/game/effects/basic_shot/shot_effect.tscn" id="2_8fjmc"]
 [ext_resource type="Script" uid="uid://cjivci2bwvs2i" path="res://entities/player/parts/shot_area.gd" id="2_fkugw"]
+[ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://cn2ivwjo8m1fe" path="res://systems/game/effects/shockwave/shockwave_effect.tscn" id="3_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://c14sn5i8y1e57" path="res://assets/graphics/icons/crosshair_w.png" id="4_qiwj3"]
 [ext_resource type="AudioStream" uid="uid://ddavnyv878jb1" path="res://assets/audio/shot-F5-V127-XBYW.mp3" id="5_8fjmc"]
@@ -36,6 +37,7 @@ _data = {
 physics_interpolation_mode = 1
 collision_layer = 4
 script = ExtResource("1_bls4j")
+upgrade_system = ExtResource("2_qiwj3")
 shot_effect = ExtResource("2_8fjmc")
 shockwave_effect = ExtResource("3_qiwj3")
 

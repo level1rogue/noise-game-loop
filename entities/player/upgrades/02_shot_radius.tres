@@ -4,10 +4,12 @@
 
 [resource]
 script = ExtResource("1_6prlw")
-id = "shot_radius_up"
+id = "shot_radius"
 display_name = "Shot Radius"
 skill_ref = "shot_radius"
 max_level = 10
+base_cost = 120
+cost_mult = 1.75
 base_value = 40.0
-value_per_level = 10.0
+value_per_level = 5.0
 metadata/_custom_type_script = "uid://b61m8y12g1cyg"

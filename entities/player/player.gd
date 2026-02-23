@@ -7,6 +7,7 @@ const TOTAL_STEPS := 16
 var initial_shot_step_index := 8
 var active_seq_steps : Dictionary = {}
 
+@export var upgrade_system : UpgradeSystem
 @export var shot_effect : PackedScene
 @export var shockwave_effect : PackedScene
 
@@ -22,7 +23,9 @@ var upgrade_strategies := {
 }
 
 func _ready() -> void:
-	$ShotArea.set_radius(PlayerData.shot_radius)
+	upgrade_system.upgrade_done.connect(_on_upgrade_done)
+	
+	$ShotArea.set_radius(upgrade_system.get_stat("shot_radius"))
 
 func _physics_process(delta: float) -> void:
 	
@@ -60,8 +63,8 @@ func trigger_shot():
 	
 	var shot_data = ShotData.new()
 	shot_data.position = global_position
-	shot_data.damage = PlayerData.shot_damage
-	shot_data.radius = PlayerData.shot_radius
+	shot_data.damage = upgrade_system.get_stat("shot_damage")
+	shot_data.radius = upgrade_system.get_stat("shot_radius")
 	
 	_execute_shot(shot_data)
 	
@@ -104,17 +107,20 @@ func _execute_sweep_shot(shot_data: ShotData, target_radius: float, damage: int)
 	effect.setup(shot_data.radius, target_radius, damage)
 	get_parent().add_child(effect)
 	
-	
+
+func _on_upgrade_done(id: String, stat: int):
+	if id == "shot_radius":
+		$ShotArea.set_radius(stat)
 
 #func _on_shot_timer_timeout() -> void:
 	#trigger_shot()
 	
-func update_base_upgrades(data: Dictionary):
-	if data.shot_damage != null:
-		PlayerData.shot_damage = data.shot_damage
-	if data.shot_radius != null:
-		PlayerData.shot_radius = data.shot_radius
-		%ShotArea.redraw_crosshair(data.shot_radius)
+#func update_base_upgrades(data: Dictionary):
+	#if data.shot_damage != null:
+		#upgrade_system.get_stat("shot_damage") = data.shot_damage
+	#if data.shot_radius != null:
+		#upgrade_system.get_stat("shot_radius") = data.shot_radius
+		#%ShotArea.redraw_crosshair(data.shot_radius)
 		
 func update_special_upgrades(upgrade_type, is_applied):
 	if is_applied:

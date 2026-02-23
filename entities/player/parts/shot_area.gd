@@ -56,3 +56,4 @@ func get_targets():
 
 func set_radius(radius: float):
 	ch_radius = radius
+	queue_redraw()
