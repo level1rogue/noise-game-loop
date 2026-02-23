@@ -85,8 +85,8 @@ scale = Vector2(0.4453125, 0.4453125)
 texture = ExtResource("4_qiwj3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=691741702]
-limit_left = -200
-limit_top = -200
+limit_left = 0
+limit_top = -50
 limit_right = 3950
 limit_bottom = 2245
 limit_smoothed = true

@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_8ayga"]
 [ext_resource type="PackedScene" uid="uid://dnqcdlwos3q34" path="res://systems/game/ui/cockpit/skill_stree/skill.tscn" id="4_8ayga"]
 [ext_resource type="Theme" uid="uid://dd0q24b2lp5w5" path="res://systems/game/ui/resources/styles/big_button_green.tres" id="5_8ubk6"]
+[ext_resource type="Theme" uid="uid://cnev7rfnbos30" path="res://systems/game/ui/resources/styles/button_green.tres" id="5_ht3md"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ubk6"]
 bg_color = Color(0, 0, 0, 1)
@@ -46,12 +47,28 @@ size_flags_horizontal = 4
 theme = ExtResource("1_s74yl")
 text = "Upgrades"
 
-[node name="SkillContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1481301600]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1659910975]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 92
+
+[node name="SkillContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1481301600]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
 theme_override_constants/separation = 12
 alignment = 1
+
+[node name="ModuleUnlockContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1531210801]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="EffectModuleButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/ModuleUnlockContainer" unique_id=343000589]
+layout_mode = 2
+theme = ExtResource("5_ht3md")
+text = "Install Effects Module"
 
 [node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1917672207]
 layout_mode = 2
