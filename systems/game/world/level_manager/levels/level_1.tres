@@ -1,15 +1,18 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dgrdcbmtn5r67"]
 
+[ext_resource type="Script" uid="uid://d2n5clsgksxjm" path="res://data/enemy_spawn_data.gd" id="1_85v6r"]
 [ext_resource type="Script" uid="uid://dy4ggdbx8wu5r" path="res://data/level_data.gd" id="1_hndnq"]
+
+[sub_resource type="Resource" id="Resource_iomnq"]
+script = ExtResource("1_85v6r")
+speed = 0.5
+metadata/_custom_type_script = "uid://d2n5clsgksxjm"
 
 [resource]
 script = ExtResource("1_hndnq")
 lvl_index = 1
-duration = 4
+duration = 2
 polygon_sides = 3
 polygon_sub_divs = 2
-enemy_init_count = 20
-enemy_spawn_interval = 2.0
-enemy_speed = 0.5
-enemy_health = 5.0
+enemy_configs = Array[ExtResource("1_85v6r")]([SubResource("Resource_iomnq")])
 metadata/_custom_type_script = "uid://dy4ggdbx8wu5r"

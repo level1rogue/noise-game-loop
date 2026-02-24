@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 600.0
+const SPEED := 10000.0
 const OVERSHOOT_RADIUS := 6.0 #for smooth rendering when standstill
 const TOTAL_STEPS := 16
 

@@ -45,4 +45,5 @@ stream = ExtResource("3_sc4t8")
 [node name="LevelManager" parent="." unique_id=2067356212 instance=ExtResource("5_4papg")]
 
 [node name="NoiseParticles" parent="." unique_id=1022737236 instance=ExtResource("7_38vj2")]
+visible = false
 position = Vector2(1741, 1008)

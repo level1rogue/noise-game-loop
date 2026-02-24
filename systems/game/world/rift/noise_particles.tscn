@@ -27,6 +27,12 @@ curve = SubResource("Curve_27vyb")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bw3dq"]
 lifetime_randomness = 0.25
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 59.5
+emission_ring_inner_radius = 1.17
+emission_ring_cone_angle = 90.0
 angle_min = 1.0728835e-05
 angle_max = 238.10002
 inherit_velocity_ratio = 0.576

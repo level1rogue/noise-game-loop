@@ -39,7 +39,8 @@ func _ready() -> void:
 	$WorldClock.request_level_ended.connect(_on_level_ended)
 	$WorldClock.step.connect(%Player._on_step)
 	$WorldClock.count_in_beat.connect(_on_count_in)
-	
+	$WorldClock.beat.connect($EnemySpawnMachine.on_beat)
+	$WorldClock.bar.connect($EnemySpawnMachine.on_bar)
 	screen_center = get_viewport_rect().size / 2
 	$NoiseParticles.position = screen_center
 	var screen_size = get_viewport_rect().size
@@ -246,7 +247,7 @@ func _start_level_count_in():
 func _start_level():
 	#count_in_label.set_finished()
 	if not get_tree().paused:
-		$EnemySpawnMachine.start_timer(loaded_level)
+		$EnemySpawnMachine.start_level(loaded_level)
 
 func _on_count_in(beat: int) -> void:
 	on_count_in.emit(beat)

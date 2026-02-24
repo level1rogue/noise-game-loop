@@ -15,8 +15,11 @@ var DIRECTION := Vector2(0,0)
 var rotation_value := 0.0
 var skew_value := 0.0
 
-var MAX_HEALTH := 10.0
-var health = MAX_HEALTH
+var max_health := 10.0
+var health: float
+var color: Color
+
+var scale_value : float
 
 var go_go_go := false
 # Called when the node enters the scene tree for the first time.
@@ -31,14 +34,12 @@ func _physics_process(delta: float) -> void:
 		rotation += rotation_value
 		skew += skew_value
 		
-		# Pulsing glow effect
-		#var pulse = sin(get_tree().get_frame() * 0.05) * 0.1
-		var updated_material = $ColorRect/TextureRect.material.duplicate()
-		# enemy opacity dependent on health
-		#updated_material.set_shader_parameter("global_opacity", health/MAX_HEALTH + pulse)
-		# glow intensity dependent on health
-		updated_material.set_shader_parameter("glow_intensity", 0.0 if health <= MAX_HEALTH/2 else 4.5)
-		$ColorRect/TextureRect.material = updated_material
+		 # Only update glow if health changed
+		if health <= max_health/2:
+			var material = $ColorRect/TextureRect.material as ShaderMaterial
+			if material.get_shader_parameter("glow_intensity") != 0.0:
+				material.set_shader_parameter("glow_intensity", 0.0)
+		
 		move_and_slide()
 
 func initiate_me():
@@ -46,9 +47,16 @@ func initiate_me():
 	DIRECTION = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
 	position = get_viewport_rect().size / 2 + DIRECTION * randi_range(20, get_viewport_rect().size.x / 20)
 	rotate(randf_range(0.0, PI))
-	var scale_val = randf_range(1.3, 1.8)
-	scale = Vector2(scale_val, scale_val)
+	var scale_base = max_health / 15
+	scale_value = randf_range(1.3, 1.8)  * scale_base
+	prints("SCALE VALUE: ", scale_value)
+	
+	scale = Vector2(scale_value, scale_value)
 	rotation_value = randf_range(-0.002, 0.002)
+	
+	health = max_health
+	
+	%ColorOverlay.color = color
 	#skew_value = randf_range(-0.002, 0.002)
 	#skew = randf_range(0.0, 0.3)
 	
@@ -65,7 +73,7 @@ func initiate_me():
 
 func take_damage(amount: int, hit_position: Vector2 = global_position, damage_effects: Array = ["shake"]):
 	health -= amount
-	$ColorRect.color.a = health / MAX_HEALTH
+	$ColorRect.modulate.a = health / max_health
 	
 	for effect in damage_effects:
 		var knockback_direction = (global_position - hit_position).normalized()
@@ -120,13 +128,13 @@ func _apply_shake():
 	tween.tween_property(self, "skew", 0.2, 0.05)
 	tween.tween_property(self, "skew", 0.0, 0.15)
 
-func die():
+func die(give_credits: String = ""):
 	# Create multiple shards from enemy
 	var shard_count = randi_range(2, 3)
 	for i in range(shard_count):
 		var shard = await create_shard()
 		get_tree().current_scene.add_child(shard)
-		shard.global_position = global_position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
+		shard.global_position = global_position + Vector2(randf_range(-10, 10), randf_range(-10, 10)) * scale_value
 		
 		# Random velocity outward
 		#var angle = randf() * TAU
@@ -135,33 +143,36 @@ func die():
 		shard.angular_velocity = randf_range(-15, 15)
 			
 	queue_free()
-	add_to_credits.emit(MAX_HEALTH)
+	if give_credits != "no_credits":
+		add_to_credits.emit(max_health)
 
 func create_shard() -> RigidBody2D:
 	var shard = RigidBody2D.new()
 	shard.gravity_scale = 0.0
 	
 	# Random shard size
-	var shard_size = Vector2(randf_range(9, 18), randf_range(9, 18))
+
+	var shard_size = Vector2(randf_range(scale_value * 10, scale_value * 12), randf_range(scale_value * 10, scale_value * 12))
 	
 	# Background color rect
 	var rect = ColorRect.new()
 	rect.size = shard_size
-	rect.position = -shard_size / 2
-	rect.color = $ColorRect.color
+	rect.position = -shard_size / 4
+	rect.color = %ColorOverlay.color
+	rect.modulate.a = 0.4
 	shard.add_child(rect)
 	
 	# Noise texture with shader
-	var texture_rect = TextureRect.new()
-	var new_material = $ColorRect/TextureRect.material.duplicate()
-	new_material.set_shader_parameter("global_opacity", 0.5)
-	texture_rect.material = new_material
-	texture_rect.texture = CanvasTexture.new()
-	texture_rect.size = shard_size
-	texture_rect.position = -shard_size / 2
-	texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
-	shard.add_child(texture_rect)
+	#var texture_rect = TextureRect.new()
+	#var new_material = $ColorRect/TextureRect.material.duplicate()
+	#new_material.set_shader_parameter("global_opacity", 0.5)
+	#texture_rect.material = new_material
+	#texture_rect.texture = CanvasTexture.new()
+	#texture_rect.size = shard_size
+	#texture_rect.position = -shard_size / 2
+	#texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	#texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
+	#shard.add_child(texture_rect)
 	
 	# Fade out and delete - fade the parent shard instead
 	await get_tree().process_frame  # Wait for shard to be added to tree

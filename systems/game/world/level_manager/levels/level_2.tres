@@ -1,6 +1,13 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://dskv2cjfxsvhu"]
 
 [ext_resource type="Script" uid="uid://dy4ggdbx8wu5r" path="res://data/level_data.gd" id="1_ia1ul"]
+[ext_resource type="Script" uid="uid://d2n5clsgksxjm" path="res://data/enemy_spawn_data.gd" id="1_pix5n"]
+
+[sub_resource type="Resource" id="Resource_ui64m"]
+script = ExtResource("1_pix5n")
+init_spawn_count = 20
+speed = 0.75
+metadata/_custom_type_script = "uid://d2n5clsgksxjm"
 
 [resource]
 script = ExtResource("1_ia1ul")
@@ -8,8 +15,5 @@ lvl_index = 2
 duration = 12
 polygon_sides = 4
 polygon_sub_divs = 3
-enemy_init_count = 50
-enemy_spawn_interval = 1.0
-enemy_speed = 0.5
-enemy_health = 5.0
+enemy_configs = Array[ExtResource("1_pix5n")]([SubResource("Resource_ui64m")])
 metadata/_custom_type_script = "uid://dy4ggdbx8wu5r"
