@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://euab3xghe7f1" path="res://assets/audio/noise_swell.mp3" id="3_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://systems/game/world/enemy_spawn_machine/enemy_spawn_machine.tscn" id="4_ai45w"]
 [ext_resource type="PackedScene" uid="uid://ds1tl3eymfccp" path="res://systems/game/world/level_manager/level_manager.tscn" id="5_4papg"]
+[ext_resource type="PackedScene" uid="uid://dygg11we17w1j" path="res://systems/game/world/rift/noise_particles.tscn" id="7_38vj2"]
 
 [node name="World" type="Node2D" unique_id=834831237]
 script = ExtResource("1_fn3g3")
@@ -42,3 +43,6 @@ stream = ExtResource("3_sc4t8")
 [node name="EnemySpawnMachine" parent="." unique_id=1639557741 instance=ExtResource("4_ai45w")]
 
 [node name="LevelManager" parent="." unique_id=2067356212 instance=ExtResource("5_4papg")]
+
+[node name="NoiseParticles" parent="." unique_id=1022737236 instance=ExtResource("7_38vj2")]
+position = Vector2(1741, 1008)

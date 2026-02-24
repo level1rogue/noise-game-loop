@@ -29,6 +29,7 @@ script = ExtResource("1_bcflq")
 
 [node name="SkillTree" parent="." unique_id=1828296432 instance=ExtResource("6_608f7")]
 visible = false
+upgrade_system = null
 
 [node name="CockpitRoot" type="Control" parent="." unique_id=1442145762]
 layout_mode = 3

@@ -3,18 +3,20 @@ extends CanvasLayer
 
 signal request_load_next_level
 
-@export var upgrade_system: UpgradeSystem
+
 @export var skill_scene: PackedScene
 
+@onready var upgrade_system: UpgradeSystem = GlobalData.upgrade_system
 @onready var skill_container = %SkillContainer
 
 var upgrade_list: Array[UpgradeDefinition]
 var skill_map: Dictionary = {}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	upgrade_list = upgrade_system.get_all_upgrades()
-	
-	update_skill_tree()
+	if upgrade_system: 
+		prints("upgrade system ready")
+		upgrade_list = upgrade_system.get_all_upgrades()
+		update_skill_tree()
 				
 func update_skill_tree():
 	for upgrade in upgrade_list:	

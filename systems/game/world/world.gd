@@ -41,6 +41,7 @@ func _ready() -> void:
 	$WorldClock.count_in_beat.connect(_on_count_in)
 	
 	screen_center = get_viewport_rect().size / 2
+	$NoiseParticles.position = screen_center
 	var screen_size = get_viewport_rect().size
 	$Background.size = screen_size
 	load_next_level()

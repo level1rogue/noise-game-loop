@@ -1,10 +1,11 @@
 extends Control
 
-@export var upgrade_system: UpgradeSystem
 
 @export var credits: Label
 @export var damage: Label
 @export var radius: Label
+
+@onready var upgrade_system: UpgradeSystem = GlobalData.upgrade_system
 
 var _last_credits : int
 

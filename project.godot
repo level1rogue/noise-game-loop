@@ -26,6 +26,7 @@ buses/default_bus_layout=""
 
 PlayerData="*uid://d26ob838g24v3"
 Helpers="*uid://dmafmnpf0simb"
+GlobalData="*uid://bqgshkqj5b1kg"
 
 [display]
 
