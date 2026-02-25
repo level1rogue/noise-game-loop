@@ -7,6 +7,7 @@ signal load_next_level
 func _ready() -> void:
 	$SkillTree.request_load_next_level.connect(_on_request_load_next_level)
 	%Sequencer.call_on_beat.connect(%BPMIndicatorLight.on_beat)	
+	%LevelInfoControl.request_start_level.connect(func(): start_level.emit())
 	_fit_ui_to_res()
 
 

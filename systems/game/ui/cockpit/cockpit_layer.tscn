@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cwj2m2e7vk588" path="res://systems/game/ui/cockpit/skill_stree/skill_tree.tscn" id="6_608f7"]
 [ext_resource type="Texture2D" uid="uid://mk167mdk5dw8" path="res://assets/graphics/ui_elements/parts/panel_right.png" id="6_b7sfu"]
 [ext_resource type="Texture2D" uid="uid://48lgw05a2y0d" path="res://assets/graphics/ui_elements/parts/map.png" id="7_nqukr"]
+[ext_resource type="PackedScene" uid="uid://buf1r57vx0wmj" path="res://systems/game/ui/cockpit/center_display/level_info_control.tscn" id="7_run0f"]
 [ext_resource type="PackedScene" uid="uid://bjt4agfrhk2a3" path="res://systems/game/ui/cockpit/display/display_control.tscn" id="8_jn78n"]
 [ext_resource type="Texture2D" uid="uid://bps5qwlsdamhd" path="res://assets/graphics/ui_elements/parts/sequencer_plus.png" id="9_xtbsf"]
 [ext_resource type="Texture2D" uid="uid://dw2oqwmh82kho" path="res://assets/graphics/ui_elements/parts/normal maps/map_normalMap.png" id="10_608f7"]
@@ -86,6 +87,8 @@ grow_vertical = 2
 
 [node name="NoiseMonitor" parent="CockpitRoot/CockpitPivot/LeftCase/ModuleContainer" unique_id=233545694 instance=ExtResource("5_run0f")]
 layout_mode = 0
+offset_top = 0.0
+offset_bottom = 456.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CockpitRoot/CockpitPivot/LeftCase" unique_id=648233958]
 layer = 7
@@ -136,10 +139,16 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 24
 
+[node name="LevelInfoControl" parent="CockpitRoot/CockpitPivot/CenterScreen/MainDisplay/MarginContainer" unique_id=905419828 instance=ExtResource("7_run0f")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
 [node name="DisplayFrameImage" type="TextureRect" parent="CockpitRoot/CockpitPivot/CenterScreen" unique_id=241368181]
 layout_mode = 0
 offset_right = 1793.0001
 offset_bottom = 1836.0
+mouse_filter = 2
 texture = ExtResource("5_6oge8")
 
 [node name="RightCase" type="Control" parent="CockpitRoot/CockpitPivot" unique_id=1084629457]

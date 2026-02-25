@@ -30,7 +30,7 @@ var player_bounds_left : float
 var player_bounds_right : float
 
 var initial_player_steps : Dictionary = {
-		0: "basic_shot",
+		8: "basic_shot",
 		#9: "basic_shot"
 	}
 
@@ -53,7 +53,7 @@ func _ready() -> void:
 	$NoiseParticles.position = screen_center
 	var screen_size = get_viewport_rect().size
 	$Background.size = screen_size
-	load_next_level()
+	
 	
 	var bound_size_by_ratio = screen_size.x / 5
 	var bound_size_by_height = (screen_size.x - screen_size.y) / 2

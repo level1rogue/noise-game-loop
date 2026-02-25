@@ -25,9 +25,9 @@ func end_level():
 	for enemy_control in enemy_controls:
 		enemy_control.end_level()
 
-func on_beat():
+func on_beat(beat: int):
 	pass
-func on_bar():
+func on_bar(bar: int):
 	pass
 
 func _on_add_to_credits(credits: int):

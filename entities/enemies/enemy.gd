@@ -55,19 +55,15 @@ func initiate_me():
 	DIRECTION = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
 	position = get_viewport_rect().size / 2 + DIRECTION * randi_range(20, get_viewport_rect().size.x / 20)
 	rotate(randf_range(0.0, PI))
-	var scale_base = max_health / 15
+	var scale_base = max_health / 20
 	scale_value = randf_range(1.3, 1.8)  * scale_base
 	
-	scale = Vector2(scale_value, scale_value)
+	scale = Vector2.ZERO
+	modulate.a = 0.0
+	
 	rotation_value = randf_range(-0.002, 0.002)
 	
 	health = max_health
-	#
-	#var new_poly = Polygon2D.new()
-	#new_poly = outer_line
-	#new_poly.color = Color(1.0, 1.0, 1.0, 1.0)
-	
-	#get_parent().get_parent().add_child(new_poly)
 	
 	%ColorOverlay.color = color
 	#skew_value = randf_range(-0.002, 0.002)
@@ -81,6 +77,14 @@ func initiate_me():
 	#material.set_shader_parameter("time_offset", time_offset)
 	#material.set_shader_parameter("flicker_speed", flicker_speed)
 	$ColorRect/TextureRect.material = shader_material
+	
+	# Animate entrance
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector2(scale_value, scale_value), 0.4)
+	tween.parallel().tween_property(self, "modulate:a", 1.0, 0.4)
+	
 	
 	go_go_go = true
 

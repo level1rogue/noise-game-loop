@@ -27,6 +27,7 @@ func _ready() -> void:
 
 	$GameOverScreen.request_restart.connect(_on_game_restart)
 
+	_request_load_next_level()
 func _on_toggle_pause(button: Button):
 	if get_tree().paused:
 		get_tree().paused = false
@@ -41,6 +42,8 @@ func _request_load_next_level():
 func load_next_level(level: LevelData):
 	prints("hello next level")
 	$HUDLayer/CockpitLayer/%Sequencer.set_initial_bars(level.duration)
+	$HUDLayer/CockpitLayer/%LevelInfoControl.level_info = level.lvl_info
+	$HUDLayer/CockpitLayer/%LevelInfoControl.fade_in()
 	loaded_level = level
 	
 func _on_level_ended():
@@ -53,7 +56,7 @@ func on_credit_change(amount: int):
 	$HUDLayer/CockpitLayer/%DisplayControl.on_credit_change()	
 	
 func _on_game_over():
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(1.2).timeout
 	get_tree().paused = true
 	var game_over_screen = $GameOverScreen
 	var game_over_control = $GameOverScreen/GameOverControl

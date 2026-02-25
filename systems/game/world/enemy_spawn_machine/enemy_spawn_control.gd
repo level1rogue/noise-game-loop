@@ -17,6 +17,7 @@ func init_enemies():
 	# Instantiate new initial enemies
 	for i in init_count:
 		_initiate_enemy()
+		await get_tree().create_timer(0.1).timeout
 
 func _on_timer_timeout() -> void:
 	_initiate_enemy()

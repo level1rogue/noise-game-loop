@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://buf1r57vx0wmj"]
+
+[ext_resource type="Theme" uid="uid://da33h5sram8xb" path="res://systems/game/ui/resources/styles/label_header_big.tres" id="1_2hg8f"]
+[ext_resource type="Script" uid="uid://dlff8v2u8x65y" path="res://systems/game/ui/cockpit/center_display/level_info_control.gd" id="1_6xrl2"]
+[ext_resource type="FontFile" uid="uid://ci4gu1mlwijrg" path="res://assets/fonts/TimeburnerBold-peGR.ttf" id="2_6xrl2"]
+[ext_resource type="Theme" uid="uid://dd0q24b2lp5w5" path="res://systems/game/ui/resources/styles/big_button_green.tres" id="3_btl24"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyo8s"]
+bg_color = Color(0, 0.078431375, 0.03529412, 0.7294118)
+border_width_top = 1
+border_color = Color(0, 0.8509804, 0.5411765, 1)
+
+[sub_resource type="Theme" id="Theme_m3fqk"]
+default_font = ExtResource("2_6xrl2")
+Label/colors/font_color = Color(0, 0.8509804, 0.5411765, 1)
+Label/font_sizes/font_size = 36
+
+[node name="LevelInfoControl" type="Control" unique_id=905419828]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+script = ExtResource("1_6xrl2")
+
+[node name="Panel" type="Panel" parent="." unique_id=632568204]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nyo8s")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=30304492]
+layout_mode = 0
+offset_right = 1773.0
+offset_bottom = 800.0
+theme_override_constants/margin_left = 92
+theme_override_constants/margin_top = 92
+theme_override_constants/margin_right = 92
+theme_override_constants/margin_bottom = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1825646943]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=169270159]
+layout_mode = 2
+theme = ExtResource("1_2hg8f")
+text = "Level Info"
+
+[node name="InfoLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=68570966]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = SubResource("Theme_m3fqk")
+text = "Modi consequatur consectetur placeat maiores in aliquid. Cumque voluptas quaerat consequuntur tempora aspernatur at exercitationem repellat."
+autowrap_mode = 3
+
+[node name="StartButton" type="Button" parent="MarginContainer" unique_id=747877107]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("3_btl24")
+text = "Start Level"
+
+[connection signal="pressed" from="MarginContainer/StartButton" to="." method="_on_start_button_pressed"]
