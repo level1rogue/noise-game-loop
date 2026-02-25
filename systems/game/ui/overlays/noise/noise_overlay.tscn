@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://d3bh3000xtjv"]
+
+[ext_resource type="Script" uid="uid://ck4ymqta3rba8" path="res://systems/game/ui/overlays/noise/noise_overlay.gd" id="1_3ik7d"]
+[ext_resource type="Shader" uid="uid://bfsmtb567wwwu" path="res://assets/shaders/CRTShader.gdshader" id="1_k4qk6"]
+[ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_v1w5d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ik7d"]
+shader = ExtResource("1_k4qk6")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.10000000149012
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.47600002261
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 4.7499999933364734e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v1w5d"]
+bg_color = Color(0.42686015, 0.010413521, 0.019919898, 0.15294118)
+
+[node name="NoiseOverlay" type="CanvasLayer" unique_id=1366325368]
+layer = 10
+script = ExtResource("1_3ik7d")
+upgrade_system = ExtResource("2_v1w5d")
+
+[node name="ShaderPanel" type="Panel" parent="." unique_id=1589866889]
+material = SubResource("ShaderMaterial_3ik7d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v1w5d")

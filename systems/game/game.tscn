@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://bfsmtb567wwwu" path="res://assets/shaders/CRTShader.gdshader" id="2_tipki"]
 [ext_resource type="PackedScene" uid="uid://r17s674oaaui" path="res://systems/game/ui/overlays/game_over_screen/game_over_screen.tscn" id="2_tsptn"]
 [ext_resource type="PackedScene" uid="uid://fn3503xj06c2" path="res://systems/game/ui/hud_layer.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://d3bh3000xtjv" path="res://systems/game/ui/overlays/noise/noise_overlay.tscn" id="7_sc4om"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
 shader = ExtResource("2_tipki")
@@ -63,6 +64,7 @@ upgrade_system = ExtResource("2_q6kid")
 layer = 5
 
 [node name="CRTShader" type="MeshInstance2D" parent="ShaderLayer" unique_id=129965520]
+visible = false
 material = SubResource("ShaderMaterial_tipki")
 position = Vector2(1823.0001, 1139.5)
 scale = Vector2(3092.0002, 2299)
@@ -73,3 +75,5 @@ environment = SubResource("Environment_o5qli")
 
 [node name="GameOverScreen" parent="." unique_id=429192159 instance=ExtResource("2_tsptn")]
 visible = false
+
+[node name="NoiseOverlay" parent="." unique_id=1366325368 instance=ExtResource("7_sc4om")]

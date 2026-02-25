@@ -52,3 +52,4 @@ size_flags_vertical = 0
 theme = ExtResource("2_tykru")
 text = "0"
 script = ExtResource("6_b5836")
+decimals = 2
