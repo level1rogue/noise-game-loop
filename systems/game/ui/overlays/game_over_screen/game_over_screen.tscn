@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://r17s674oaaui"]
+
+[ext_resource type="Theme" uid="uid://iq146kfcm4i1" path="res://systems/game/ui/resources/styles/label_header_huge.tres" id="1_d04ut"]
+[ext_resource type="Script" uid="uid://cr0gjo23syqu" path="res://systems/game/ui/overlays/game_over_screen/game_over_screen.gd" id="1_p3tbi"]
+[ext_resource type="Theme" uid="uid://dd0q24b2lp5w5" path="res://systems/game/ui/resources/styles/big_button_green.tres" id="2_p3tbi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3tbi"]
+bg_color = Color(0.29463828, 1.8349849e-07, 4.813075e-08, 0.6784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2p4f"]
+bg_color = Color(0.084237956, 4.1738385e-08, 1.6544945e-08, 1)
+
+[node name="GameOverScreen" type="CanvasLayer" unique_id=429192159]
+process_mode = 2
+layer = 12
+script = ExtResource("1_p3tbi")
+
+[node name="GameOverControl" type="Control" parent="." unique_id=588741742]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="GameOverControl" unique_id=1117649064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p3tbi")
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameOverControl" unique_id=1027119985]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -179.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="GameOverControl/MarginContainer2" unique_id=1811315229]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v2p4f")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverControl/MarginContainer2" unique_id=1956368496]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverControl/MarginContainer2/MarginContainer" unique_id=1794793100]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="GameOverControl/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1128126699]
+layout_mode = 2
+theme = ExtResource("1_d04ut")
+text = "GAME OVER!"
+
+[node name="RestartButton" type="Button" parent="GameOverControl/MarginContainer2/MarginContainer/VBoxContainer" unique_id=544652992]
+layout_mode = 2
+theme = ExtResource("2_p3tbi")
+text = "start new run"
+
+[connection signal="pressed" from="GameOverControl/MarginContainer2/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

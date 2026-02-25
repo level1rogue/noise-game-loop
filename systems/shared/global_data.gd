@@ -1,5 +1,7 @@
 extends Node
 
+const DEADLY_NOISE_AMOUNT := 100.0
+
 var upgrade_system: UpgradeSystem
 
 var polygon_outer_line: Polygon2D

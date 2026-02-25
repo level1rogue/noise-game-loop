@@ -5,15 +5,15 @@
 
 [sub_resource type="Resource" id="Resource_iomnq"]
 script = ExtResource("1_85v6r")
-init_spawn_count = 1
+init_spawn_count = 5
 spawn_interval = 100.0
-speed = 2.5
+speed = 0.5
 metadata/_custom_type_script = "uid://d2n5clsgksxjm"
 
 [resource]
 script = ExtResource("1_hndnq")
 lvl_index = 1
-duration = 12
+duration = 4
 polygon_sides = 3
 polygon_sub_divs = 2
 enemy_configs = Array[ExtResource("1_85v6r")]([SubResource("Resource_iomnq")])

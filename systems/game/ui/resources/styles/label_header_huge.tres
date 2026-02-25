@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://iq146kfcm4i1"]
+
+[ext_resource type="FontFile" uid="uid://cs60n58nroyio" path="res://assets/fonts/Y224-2vdae.ttf" id="1_3ptjj"]
+
+[resource]
+default_font = ExtResource("1_3ptjj")
+Label/colors/font_color = Color(0.9446873, 0.22046798, 0.19759056, 1)
+Label/font_sizes/font_size = 128

@@ -6,6 +6,7 @@ signal on_load_next_level(level: LevelData)
 signal on_level_ended()
 signal on_set_initial_seq_steps(steps: Dictionary)
 signal on_count_in(beat: int)
+signal game_over
 
 const MIN_RADIUS := 20
 const MAX_RADIUS := 45
@@ -44,7 +45,9 @@ func _ready() -> void:
 	$WorldClock.beat.connect($EnemySpawnMachine.on_beat)
 	$WorldClock.bar.connect($EnemySpawnMachine.on_bar)
 	
-	$EnemySpawnMachine.on_add_to_noise.connect(_on_noise_changed)
+	$EnemySpawnMachine.on_add_to_noise.connect(_on_add_to_noise)
+	
+	upgrade_system.noise_changed.connect(_on_noise_changed)
 	
 	screen_center = get_viewport_rect().size / 2
 	$NoiseParticles.position = screen_center
@@ -265,8 +268,13 @@ func _start_level():
 func _on_count_in(beat: int) -> void:
 	on_count_in.emit(beat)
 	
-func _on_noise_changed(noise: float):
+func _on_add_to_noise(noise: float):
 	upgrade_system.on_noise_changed(noise)
+	
+func _on_noise_changed():
+	if upgrade_system.noise >= GlobalData.DEADLY_NOISE_AMOUNT:
+		prints("game over. noise:", upgrade_system.noise)
+		game_over.emit()
 	
 func _on_level_ended():
 	prints("LEVEL ENDED!")

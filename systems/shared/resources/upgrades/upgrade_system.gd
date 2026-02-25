@@ -73,10 +73,14 @@ func on_subtract_credits(_credits: int):
 	credits -= _credits
 	credits_changed.emit()
 	
-func on_noise_changed(_noise: int):
-	prints("noise changed:", _noise)
-	if _noise > noise:
-		noise += _noise
-	if _noise < noise:
-		noise -= _noise
+func on_noise_changed(_noise: int):	
+	noise += _noise
+	if noise >= GlobalData.DEADLY_NOISE_AMOUNT: noise = GlobalData.DEADLY_NOISE_AMOUNT
 	noise_changed.emit()
+	
+func reset_all():
+	noise = 0.0
+	credits = 0
+	
+	for key in levels.keys():
+		levels[key] = 0

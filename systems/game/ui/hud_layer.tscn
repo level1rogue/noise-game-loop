@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dx40vyd6cnwku" path="res://systems/game/ui/overlays/count_in/count_in.tscn" id="2_uhix2"]
 
 [node name="HUDLayer" type="CanvasLayer" unique_id=1195061263]
+process_mode = 1
 script = ExtResource("1_rypyx")
 count_in_label = ExtResource("2_uhix2")
 

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bjt4agfrhk2a3"]
 
 [ext_resource type="Script" uid="uid://b37pipp2dh33i" path="res://systems/game/ui/cockpit/display/display_control.gd" id="1_5m7wd"]
-[ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_v303p"]
 [ext_resource type="Theme" uid="uid://dnl7sv13ogw46" path="res://systems/game/ui/resources/styles/label_stats.tres" id="2_xwgx8"]
 [ext_resource type="Script" uid="uid://bc3ffp78wkgg4" path="res://systems/shared/animated_number_label.gd" id="4_6rg5b"]
 [ext_resource type="StyleBox" uid="uid://dhcw84k38gxn3" path="res://systems/game/ui/resources/styles/line_green.tres" id="5_mpows"]
@@ -21,7 +20,6 @@ offset_top = 197.0
 offset_right = 592.0
 offset_bottom = 746.20386
 script = ExtResource("1_5m7wd")
-upgrade_system = ExtResource("2_v303p")
 credits = NodePath("VBoxContainer/HBoxContainer3/CreditsLabel")
 damage = NodePath("VBoxContainer/HBoxContainer/DamageLabel")
 radius = NodePath("VBoxContainer/HBoxContainer2/RadiusLabel")

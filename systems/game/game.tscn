@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://b5we4ccv6c5yp"]
 
 [ext_resource type="Script" uid="uid://d18g5hx153w0" path="res://systems/game/game.gd" id="1_o5qli"]
+[ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_q6kid"]
 [ext_resource type="PackedScene" uid="uid://bi7on0k3dtfwh" path="res://systems/game/world/world.tscn" id="2_tbgi4"]
 [ext_resource type="Shader" uid="uid://bfsmtb567wwwu" path="res://assets/shaders/CRTShader.gdshader" id="2_tipki"]
+[ext_resource type="PackedScene" uid="uid://r17s674oaaui" path="res://systems/game/ui/overlays/game_over_screen/game_over_screen.tscn" id="2_tsptn"]
 [ext_resource type="PackedScene" uid="uid://fn3503xj06c2" path="res://systems/game/ui/hud_layer.tscn" id="3_jyhfs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tipki"]
@@ -49,8 +51,9 @@ volumetric_fog_emission_energy = 854.4
 volumetric_fog_length = 534.18
 
 [node name="Game" type="Node2D" unique_id=193928734]
-process_mode = 1
+process_mode = 3
 script = ExtResource("1_o5qli")
+upgrade_system = ExtResource("2_q6kid")
 
 [node name="World" parent="." unique_id=834831237 instance=ExtResource("2_tbgi4")]
 
@@ -58,13 +61,15 @@ script = ExtResource("1_o5qli")
 
 [node name="ShaderLayer" type="CanvasLayer" parent="." unique_id=1397239852]
 layer = 5
-visible = false
 
 [node name="CRTShader" type="MeshInstance2D" parent="ShaderLayer" unique_id=129965520]
 material = SubResource("ShaderMaterial_tipki")
-position = Vector2(1732.2499, 1108.25)
-scale = Vector2(1779.4998, 1793.5)
+position = Vector2(1823.0001, 1139.5)
+scale = Vector2(3092.0002, 2299)
 mesh = SubResource("QuadMesh_eb6dy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=390722321]
 environment = SubResource("Environment_o5qli")
+
+[node name="GameOverScreen" parent="." unique_id=429192159 instance=ExtResource("2_tsptn")]
+visible = false

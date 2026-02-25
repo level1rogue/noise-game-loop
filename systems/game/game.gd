@@ -1,10 +1,12 @@
 extends Node2D
 
+@export var upgrade_system: UpgradeSystem
+
 var loaded_level: LevelData
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	#_on_game_over()
 	$World.on_load_next_level.connect(load_next_level)
 	$World.on_level_ended.connect(_on_level_ended)
 	
@@ -21,7 +23,9 @@ func _ready() -> void:
 	
 	$World/EnemySpawnMachine.on_add_to_credits.connect(on_credit_change)
 	#$World/EnemySpawnMachine.on_add_to_credits.connect($HUDLayer/CockpitLayer/%DisplayControl.on_credit_change)
-	
+	$World.game_over.connect(_on_game_over)
+
+	$GameOverScreen.request_restart.connect(_on_game_restart)
 
 func _on_toggle_pause(button: Button):
 	if get_tree().paused:
@@ -48,4 +52,17 @@ func on_credit_change(amount: int):
 	$HUDLayer/CockpitLayer/SkillTree.on_add_credits(amount)
 	$HUDLayer/CockpitLayer/%DisplayControl.on_credit_change()	
 	
-		
+func _on_game_over():
+	await get_tree().create_timer(0.7).timeout
+	get_tree().paused = true
+	var game_over_screen = $GameOverScreen
+	var game_over_control = $GameOverScreen/GameOverControl
+	game_over_control.modulate.a = 0.0
+	game_over_screen.visible = true
+	var tween = create_tween()
+	tween.tween_property(game_over_control, "modulate:a", 1.0, 1.0)
+
+func _on_game_restart():
+	get_tree().paused = false
+	upgrade_system.reset_all()
+	get_tree().reload_current_scene()

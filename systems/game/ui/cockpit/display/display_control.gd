@@ -30,7 +30,7 @@ func set_stat(stat: String, type: String):
 			radius.text = stat
 
 func on_credit_change(): #TODO: add functionality for subtracting credit (use tweens instead!)
-	%CreditsLabel.credits = upgrade_system.credits
+	%CreditsLabel.units = upgrade_system.credits
 	#TODO: Find better (working!) way to set the stats after upgrade!
 	
 

@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dygg11we17w1j" path="res://systems/game/world/rift/noise_particles.tscn" id="7_38vj2"]
 
 [node name="World" type="Node2D" unique_id=834831237]
+process_mode = 1
 script = ExtResource("1_fn3g3")
 upgrade_system = ExtResource("2_bw3dq")
 
