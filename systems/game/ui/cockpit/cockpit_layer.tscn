@@ -92,6 +92,7 @@ offset_bottom = 456.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CockpitRoot/CockpitPivot/LeftCase" unique_id=648233958]
 layer = 7
+visible = false
 
 [node name="StartButton" type="Button" parent="CockpitRoot/CockpitPivot/LeftCase/CanvasLayer" unique_id=29240756]
 offset_left = 216.0

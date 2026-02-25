@@ -23,6 +23,7 @@ var upgrade_strategies := {
 }
 
 func _ready() -> void:
+	global_position = get_viewport_rect().size / 2
 	upgrade_system.upgrade_done.connect(_on_upgrade_done)
 	
 	$ShotArea.set_radius(upgrade_system.get_stat("shot_radius"))

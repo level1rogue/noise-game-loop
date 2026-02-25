@@ -35,7 +35,7 @@ color = Color(0.007978929, 0.0006758069, 0.051645726, 1)
 
 [node name="Player" parent="." unique_id=2022821257 instance=ExtResource("1_mmdvd")]
 unique_name_in_owner = true
-position = Vector2(491, 135)
+position = Vector2(1729, 1110)
 
 [node name="WorldClock" parent="." unique_id=722259250 node_paths=PackedStringArray("audio_player") instance=ExtResource("2_fn3g3")]
 audio_player = NodePath("../AudioStreamPlayer")
