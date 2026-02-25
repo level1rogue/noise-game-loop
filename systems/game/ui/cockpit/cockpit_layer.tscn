@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cr5ovs3vac1bm" path="res://assets/graphics/ui_elements/parts/panel_left.png" id="3_fcohk"]
 [ext_resource type="Texture2D" uid="uid://dadkyxiyryjdr" path="res://assets/graphics/ui_elements/parts/center_screen.png" id="5_6oge8"]
 [ext_resource type="Theme" uid="uid://cnev7rfnbos30" path="res://systems/game/ui/resources/styles/button_green.tres" id="5_608f7"]
-[ext_resource type="Texture2D" uid="uid://coidguxplvm40" path="res://assets/graphics/ui_elements/parts/monitor.png" id="5_c5ggg"]
+[ext_resource type="PackedScene" uid="uid://yff1qg8pmee8" path="res://systems/game/ui/cockpit/noise_monitor/noise_monitor.tscn" id="5_run0f"]
 [ext_resource type="PackedScene" uid="uid://cwj2m2e7vk588" path="res://systems/game/ui/cockpit/skill_stree/skill_tree.tscn" id="6_608f7"]
 [ext_resource type="Texture2D" uid="uid://mk167mdk5dw8" path="res://assets/graphics/ui_elements/parts/panel_right.png" id="6_b7sfu"]
 [ext_resource type="Texture2D" uid="uid://48lgw05a2y0d" path="res://assets/graphics/ui_elements/parts/map.png" id="7_nqukr"]
@@ -29,7 +29,6 @@ script = ExtResource("1_bcflq")
 
 [node name="SkillTree" parent="." unique_id=1828296432 instance=ExtResource("6_608f7")]
 visible = false
-upgrade_system = null
 
 [node name="CockpitRoot" type="Control" parent="." unique_id=1442145762]
 layout_mode = 3
@@ -85,17 +84,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Monitor" type="Control" parent="CockpitRoot/CockpitPivot/LeftCase/ModuleContainer" unique_id=1470145659]
-anchors_preset = 0
-offset_top = 2.0
-offset_right = 703.0
-offset_bottom = 458.0
-
-[node name="TextureRect" type="TextureRect" parent="CockpitRoot/CockpitPivot/LeftCase/ModuleContainer/Monitor" unique_id=74488195]
+[node name="NoiseMonitor" parent="CockpitRoot/CockpitPivot/LeftCase/ModuleContainer" unique_id=233545694 instance=ExtResource("5_run0f")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("5_c5ggg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CockpitRoot/CockpitPivot/LeftCase" unique_id=648233958]
 layer = 7

@@ -30,13 +30,19 @@ shader_parameter/color_overlay = Color(1, 0.2, 0.6, 1)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4ra3w"]
 polygon = PackedVector2Array(24, 24, 24, 0, 0, 0, 0, 24)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1684913425]
+[node name="Enemy" type="CharacterBody2D" unique_id=328088587]
 scale = Vector2(2, 2)
 collision_layer = 2
 script = ExtResource("1_5lf1o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1495314937]
 visible = false
+position = Vector2(12, 12)
+shape = SubResource("RectangleShape2D_8tegq")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1780872074]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=598261196]
 position = Vector2(12, 12)
 shape = SubResource("RectangleShape2D_8tegq")
 

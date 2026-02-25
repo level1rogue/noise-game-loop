@@ -5,12 +5,17 @@ class_name Enemy
 @export var noise_frequency : float = 0.3
 @export var time_offset : float = 0.0
 
-signal add_to_credits(credits: float)
+@onready var outer_line = GlobalData.polygon_outer_line
 
-var MIN_SPEED := 2.5
+signal add_to_credits(credits: float)
+signal add_to_global_noise(noise: float)
+
+var screen_center: Vector2
+
+var min_speed := 2.5
 var max_speed := 5.5
 
-var SPEED := 0.5
+var speed := 0.5
 var DIRECTION := Vector2(0,0)
 var rotation_value := 0.0
 var skew_value := 0.0
@@ -24,13 +29,14 @@ var scale_value : float
 var go_go_go := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	screen_center = get_viewport_rect().size / 2
 	initiate_me()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if go_go_go:
-		velocity += DIRECTION * SPEED * delta
-		scale += Vector2(0.03, 0.03) * SPEED * delta
+		velocity += DIRECTION * speed * delta
+		scale += Vector2(0.03, 0.03) * speed * delta
 		rotation += rotation_value
 		skew += skew_value
 		
@@ -39,22 +45,29 @@ func _physics_process(delta: float) -> void:
 			var material = $ColorRect/TextureRect.material as ShaderMaterial
 			if material.get_shader_parameter("glow_intensity") != 0.0:
 				material.set_shader_parameter("glow_intensity", 0.0)
+		if !Geometry2D.is_point_in_polygon(position - screen_center, outer_line.polygon):
+			dissolve()
 		
 		move_and_slide()
 
 func initiate_me():
-	SPEED = randf_range(MIN_SPEED, max_speed)
+	speed = randf_range(min_speed, max_speed)
 	DIRECTION = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)).normalized()
 	position = get_viewport_rect().size / 2 + DIRECTION * randi_range(20, get_viewport_rect().size.x / 20)
 	rotate(randf_range(0.0, PI))
 	var scale_base = max_health / 15
 	scale_value = randf_range(1.3, 1.8)  * scale_base
-	prints("SCALE VALUE: ", scale_value)
 	
 	scale = Vector2(scale_value, scale_value)
 	rotation_value = randf_range(-0.002, 0.002)
 	
 	health = max_health
+	#
+	#var new_poly = Polygon2D.new()
+	#new_poly = outer_line
+	#new_poly.color = Color(1.0, 1.0, 1.0, 1.0)
+	
+	#get_parent().get_parent().add_child(new_poly)
 	
 	%ColorOverlay.color = color
 	#skew_value = randf_range(-0.002, 0.002)
@@ -127,6 +140,12 @@ func _apply_shake():
 	var tween = create_tween()
 	tween.tween_property(self, "skew", 0.2, 0.05)
 	tween.tween_property(self, "skew", 0.0, 0.15)
+
+func dissolve():
+	add_to_global_noise.emit(max_health)
+	
+	#TODO: add dissolve effect
+	queue_free()
 
 func die(give_credits: String = ""):
 	# Create multiple shards from enemy

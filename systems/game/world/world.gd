@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var upgrade_system: UpgradeSystem
+
 signal on_load_next_level(level: LevelData)
 signal on_level_ended()
 signal on_set_initial_seq_steps(steps: Dictionary)
@@ -41,6 +43,9 @@ func _ready() -> void:
 	$WorldClock.count_in_beat.connect(_on_count_in)
 	$WorldClock.beat.connect($EnemySpawnMachine.on_beat)
 	$WorldClock.bar.connect($EnemySpawnMachine.on_bar)
+	
+	$EnemySpawnMachine.on_add_to_noise.connect(_on_noise_changed)
+	
 	screen_center = get_viewport_rect().size / 2
 	$NoiseParticles.position = screen_center
 	var screen_size = get_viewport_rect().size
@@ -184,16 +189,24 @@ func render_polygon(nr_of_sides, radius, sub_divisions := 3):
 	
 	var outer_points = calc_points(nr_of_sides, radius, sub_divisions)
 	
+	
+	
 	outer_line.width = 3
 	outer_line.antialiased = true
 	outer_line.position = screen_center
 	outer_line.points = outer_points
 	add_child(outer_line)
 	
+	var outer_points_polygon = Polygon2D.new()
+	outer_points_polygon.polygon = outer_points
+	outer_points_polygon.position = screen_center
+	GlobalData.polygon_outer_line = outer_points_polygon
+	
 	var inner_points = calc_points(nr_of_sides, radius / radius_ratio, sub_divisions)
 	
 	inner_line.width = 2
 	inner_line.position = screen_center
+	prints("screen_center:", screen_center)
 	inner_line.points = inner_points
 	add_child(inner_line)
 	
@@ -251,6 +264,9 @@ func _start_level():
 
 func _on_count_in(beat: int) -> void:
 	on_count_in.emit(beat)
+	
+func _on_noise_changed(noise: float):
+	upgrade_system.on_noise_changed(noise)
 	
 func _on_level_ended():
 	prints("LEVEL ENDED!")

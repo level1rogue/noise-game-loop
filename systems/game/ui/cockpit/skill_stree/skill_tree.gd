@@ -55,6 +55,7 @@ func toggle_visibility():
 
 func on_add_credits(credits: int):
 	upgrade_system.on_add_credits(credits)
+	
 
 func _on_continue_button_pressed() -> void:
 	toggle_visibility()

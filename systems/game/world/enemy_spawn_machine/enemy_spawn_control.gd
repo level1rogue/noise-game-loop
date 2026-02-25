@@ -1,6 +1,7 @@
 extends Node
 
 signal on_add_to_credits(credits: int)
+signal on_add_to_noise(noise: int)
 
 var init_count := 100
 var timer_interval := 1.0
@@ -32,6 +33,7 @@ func _initiate_enemy() -> void:
 	en.max_health = enemy_config.health
 	en.color = enemy_config.color
 	en.add_to_credits.connect(_on_add_to_credits)
+	en.add_to_global_noise.connect(_on_add_to_noise)
 	get_parent().get_parent().add_child(en)
 
 func set_random_values(en):
@@ -70,3 +72,6 @@ func remove_all_existing():
 			
 func _on_add_to_credits(credits: int):
 	on_add_to_credits.emit(credits)
+	
+func _on_add_to_noise(noise: int):
+	on_add_to_noise.emit(noise)

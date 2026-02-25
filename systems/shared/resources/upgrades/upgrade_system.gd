@@ -2,6 +2,7 @@ class_name UpgradeSystem
 extends Resource
 
 signal credits_changed
+signal noise_changed
 signal upgrade_done(upgrade_id: String, stat: float)
 
 @export var database: UpgradeDatabase
@@ -13,6 +14,7 @@ var levels: Dictionary = {
 } # [upgrade id] : [level]
 
 var credits: int = 0
+var noise: float = 0.0
 
 func get_level(id:String) -> int:
 	return levels.get(id, 0)
@@ -27,7 +29,6 @@ func get_def(id) -> UpgradeDefinition:
 func get_stat(stat_id: String):
 	var level = get_level(stat_id)
 	var def = get_def(stat_id)
-	prints("def: ", def)
 	if def:
 		var current_stat = def.base_value + def.value_per_level * level
 		return current_stat
@@ -71,3 +72,11 @@ func on_add_credits(_credits: int):
 func on_subtract_credits(_credits: int):
 	credits -= _credits
 	credits_changed.emit()
+	
+func on_noise_changed(_noise: int):
+	prints("noise changed:", _noise)
+	if _noise > noise:
+		noise += _noise
+	if _noise < noise:
+		noise -= _noise
+	noise_changed.emit()

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://yff1qg8pmee8"]
+
+[ext_resource type="Texture2D" uid="uid://coidguxplvm40" path="res://assets/graphics/ui_elements/parts/monitor.png" id="1_s5qqt"]
+[ext_resource type="Script" uid="uid://e7em3hl2dpv8" path="res://systems/game/ui/cockpit/noise_monitor/noise_monitor.gd" id="1_tykru"]
+[ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_k0wwj"]
+[ext_resource type="Theme" uid="uid://da33h5sram8xb" path="res://systems/game/ui/resources/styles/label_header_big.tres" id="2_tykru"]
+[ext_resource type="Theme" uid="uid://hk0yuful0lnf" path="res://systems/game/ui/resources/styles/label_header.tres" id="3_bkjrx"]
+
+[node name="NoiseMonitor" type="Control" unique_id=233545694]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 2.0
+offset_right = 703.0
+offset_bottom = 458.0
+script = ExtResource("1_tykru")
+upgrade_system = ExtResource("2_k0wwj")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1259454105]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_s5qqt")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1221843306]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 92
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=679390196]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=355514576]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_bkjrx")
+text = "Noise"
+
+[node name="NoiseLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1650597835]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_tykru")
+text = "0"

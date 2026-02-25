@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://daua7ro1t588x" path="res://systems/game/world/world.gd" id="1_fn3g3"]
 [ext_resource type="PackedScene" uid="uid://de5efn574omjt" path="res://entities/player/player.tscn" id="1_mmdvd"]
+[ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_bw3dq"]
 [ext_resource type="PackedScene" uid="uid://y4eejjcgwy64" path="res://systems/game/world/world_clock/world_clock.tscn" id="2_fn3g3"]
 [ext_resource type="AudioStream" uid="uid://euab3xghe7f1" path="res://assets/audio/noise_swell.mp3" id="3_sc4t8"]
 [ext_resource type="PackedScene" uid="uid://dg6tsv01wqj1j" path="res://systems/game/world/enemy_spawn_machine/enemy_spawn_machine.tscn" id="4_ai45w"]
@@ -10,6 +11,7 @@
 
 [node name="World" type="Node2D" unique_id=834831237]
 script = ExtResource("1_fn3g3")
+upgrade_system = ExtResource("2_bw3dq")
 
 [node name="Background" type="ColorRect" parent="." unique_id=913029815]
 light_mask = 8
