@@ -3,11 +3,12 @@ class_name PlayerDelayStrategy extends PlayerBaseStrategy
 var upgrade_system = GlobalData.upgrade_system
 
 var delay_repeats : int = upgrade_system.get_level("effect_delay") + 1
-var delay_power := 0.5 # % of original shot power
+var delay_power := 0.75 # % of original shot power
 var delay_radius := 0.75 # % of original shot radius
 var delay_interval := 0.15
 
 func apply_upgrade(level: int):
+	prints("delay upgrade applied:", level)
 	delay_repeats = level + 1
 
 func on_shot_fired(player: CharacterBody2D, shot_data: ShotData):

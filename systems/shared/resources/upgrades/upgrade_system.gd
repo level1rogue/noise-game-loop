@@ -82,8 +82,10 @@ func upgrade(def: UpgradeDefinition) -> bool:
 	var actual_cost = get_upgrade_cost(def, current_level)
 	on_subtract_credits(actual_cost)
 	levels[def.id] += 1
-	if upgrade_strategies.has(def.id):
-		upgrade_strategies[def.id].apply_upgrade(levels[def.id])
+	prints("UPGRADE!", def, def.id)
+	if applied_upgrades.has(def.id):
+		prints("upgrade in strategy:", def.id)
+		applied_upgrades[def.id].apply_upgrade(levels[def.id])
 	upgrade_done.emit(def.id, get_stat(def.id))
 	return true
 	
