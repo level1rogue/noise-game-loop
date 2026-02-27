@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://lkg37dnvthk1"]
 
 [ext_resource type="Script" uid="uid://bq1p7t6wew0gw" path="res://entities/enemies/enemy.gd" id="1_5lf1o"]
+[ext_resource type="PackedScene" uid="uid://bsd80i0kp4q2m" path="res://systems/shared/ui/dissipating_label.tscn" id="2_5lf1o"]
 [ext_resource type="Shader" uid="uid://bsmei0ifc3bi2" path="res://assets/shaders/enemy_spread.gdshader" id="3_twyc1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tegq"]
@@ -33,6 +34,7 @@ polygon = PackedVector2Array(24, 24, 24, 0, 0, 0, 0, 24)
 [node name="Enemy" type="CharacterBody2D" unique_id=328088587]
 collision_layer = 2
 script = ExtResource("1_5lf1o")
+disp_label = ExtResource("2_5lf1o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1495314937]
 shape = SubResource("RectangleShape2D_8tegq")

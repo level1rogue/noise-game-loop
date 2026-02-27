@@ -5,7 +5,10 @@ class_name Enemy
 @export var noise_frequency : float = 0.3
 @export var time_offset : float = 0.0
 
+@export var disp_label: PackedScene
+
 @onready var outer_line = GlobalData.polygon_outer_line
+
 
 signal add_to_credits(credits: float)
 signal add_to_global_noise(noise: float)
@@ -88,9 +91,21 @@ func initiate_me():
 	
 	go_go_go = true
 
+func display_damage(amount: int):
+	#FIXME: Should only display the actual damage amount the enemy took, not the total amount the player dealt
+	var damage_label = disp_label.instantiate()
+	damage_label.set_label_text(str(amount))
+	damage_label.position.x = position.x - 20
+	damage_label.position.y = position.y - 100
+	damage_label.z_index = 10
+	get_parent().add_child(damage_label)
+	
+
 func take_damage(amount: int, hit_position: Vector2 = global_position, damage_effects: Array = ["shake"]):
 	health -= amount
 	$ColorRect.modulate.a = health / max_health
+	
+	display_damage(amount)
 	
 	for effect in damage_effects:
 		var knockback_direction = (global_position - hit_position).normalized()

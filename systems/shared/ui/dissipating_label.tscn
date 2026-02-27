@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bsd80i0kp4q2m"]
+
+[ext_resource type="Script" uid="uid://cn5oseqmh4yf1" path="res://systems/shared/ui/dissipating_label.gd" id="1_occo3"]
+[ext_resource type="Theme" uid="uid://dnl7sv13ogw46" path="res://systems/game/ui/resources/styles/label_stats.tres" id="1_ssbye"]
+
+[node name="DissipatingLabel" type="Label" unique_id=2013394675]
+offset_right = 40.0
+offset_bottom = 22.0
+theme = ExtResource("1_ssbye")
+theme_override_constants/outline_size = 23
+theme_override_font_sizes/font_size = 28
+text = "20"
+horizontal_alignment = 1
+script = ExtResource("1_occo3")

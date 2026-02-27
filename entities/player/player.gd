@@ -95,10 +95,21 @@ func _execute_shot(shot_data: ShotData):
 	await get_tree().process_frame # Wait for physics to detect overlapping
 	await get_tree().process_frame # Wait for physics to detect overlapping
 
+	var delay_increment = 0.0
+
 	if shot_area and shot_area.has_overlapping_bodies():
 		for body in shot_area.get_overlapping_bodies():
 			if body.has_method("take_damage"):
-				body.take_damage(shot_data.damage)
+				# Capture reference and delay
+				var enemy = body
+				var current_delay = delay_increment
+						
+				get_tree().create_timer(current_delay).timeout.connect(func():
+								# Check if enemy still exists before calling method
+					if is_instance_valid(enemy) and enemy.has_method("take_damage"):
+						enemy.take_damage(shot_data.damage, enemy.global_position)
+				)
+				delay_increment += 0.05
 			
 	shot_area.queue_free()
 
