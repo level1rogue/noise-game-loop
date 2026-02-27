@@ -1,8 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://dnl7sv13ogw46"]
 
-[ext_resource type="FontFile" uid="uid://cs60n58nroyio" path="res://assets/fonts/Y224-2vdae.ttf" id="1_6ek7k"]
+[ext_resource type="FontFile" uid="uid://cs60n58nroyio" path="res://assets/fonts/Y224-2vdae.ttf" id="1_s5plc"]
 
 [resource]
-default_font = ExtResource("1_6ek7k")
+default_font = ExtResource("1_s5plc")
 Label/colors/font_color = Color(0, 0.8509804, 0.5411765, 1)
 Label/font_sizes/font_size = 22

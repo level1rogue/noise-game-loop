@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dya4u8awoh84l" path="res://systems/game/ui/cockpit/skill_stree/skill.gd" id="1_uwtpv"]
 [ext_resource type="Theme" uid="uid://hk0yuful0lnf" path="res://systems/game/ui/resources/styles/label_header.tres" id="1_xphhx"]
 [ext_resource type="Theme" uid="uid://cnev7rfnbos30" path="res://systems/game/ui/resources/styles/button_green.tres" id="3_hbhl1"]
+[ext_resource type="Script" uid="uid://66vei6tfuqmg" path="res://systems/shared/icon.gd" id="4_rx0rt"]
 
 [node name="Skill" type="Control" unique_id=1381084851]
 custom_minimum_size = Vector2(0, 56)
@@ -46,7 +47,19 @@ layout_mode = 2
 theme = ExtResource("3_hbhl1")
 text = "+"
 
-[node name="CostLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1846495730]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=451873780]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer/HBoxContainer2" unique_id=1129913167]
+modulate = Color(0, 0.8509804, 0.5411765, 1)
+layout_mode = 2
+script = ExtResource("4_rx0rt")
+icon_to_set = "dust"
+size_to_set = "small"
+metadata/_custom_type_script = "uid://66vei6tfuqmg"
+
+[node name="CostLabel" type="Label" parent="MarginContainer/HBoxContainer/HBoxContainer2" unique_id=1846495730]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_xphhx")

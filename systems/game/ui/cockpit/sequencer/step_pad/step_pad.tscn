@@ -33,25 +33,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.10267214, 0.10267221, 0.1026722, 1)
 
-[node name="IconOld" type="Sprite2D" parent="." unique_id=270984348]
-visible = false
-position = Vector2(10, 0)
-scale = Vector2(0.13, 0.13)
-
-[node name="Icon" type="TextureRect" parent="." unique_id=2057420743]
+[node name="Icon" type="TextureRect" parent="ColorRect" unique_id=2057420743]
 modulate = Color(0.55068713, 0.8708255, 0.64614916, 1)
 texture_filter = 1
-custom_minimum_size = Vector2(48, 48)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -16.0
-offset_right = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-expand_mode = 2
 script = ExtResource("2_j0b7p")
+
+[node name="IconOld" type="Sprite2D" parent="." unique_id=270984348]
+visible = false
+position = Vector2(10, 0)
+scale = Vector2(0.13, 0.13)

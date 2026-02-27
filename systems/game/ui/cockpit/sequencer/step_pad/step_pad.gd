@@ -10,7 +10,7 @@ func _ready() -> void:
 	_update_visual()
 	
 func set_icon(icon: String):
-	$Icon.set_icon(icon)
+	$ColorRect/Icon.set_icon(icon)
 	
 
 func set_active(active: bool):

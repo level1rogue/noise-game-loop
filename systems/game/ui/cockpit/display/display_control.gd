@@ -14,6 +14,8 @@ func _ready() -> void:
 	upgrade_system.credits_changed.connect(on_credit_change)
 	upgrade_system.upgrade_done.connect(on_update_done)
 	
+	#%DustContainer/Icon.set_icon("dust", "small")
+	
 	set_stat(str(upgrade_system.credits), "credits")
 	set_stat(str(upgrade_system.get_stat("shot_damage")), "shot_damage")
 	set_stat(str(upgrade_system.get_stat("shot_radius")), "shot_radius")

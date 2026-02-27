@@ -61,7 +61,7 @@ scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("CircleShape2D_qhqgy")
 
 [node name="PointLight2D" type="PointLight2D" parent="ShotArea" unique_id=1440246883]
-scale = Vector2(10.749999, 10.749998)
+scale = Vector2(4.2812505, 4.2812495)
 color = Color(0.37856904, 0.98875684, 0.8285852, 1)
 energy = 2.02
 shadow_enabled = true
