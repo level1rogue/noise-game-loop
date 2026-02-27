@@ -14,13 +14,13 @@ var active_seq_steps : Dictionary = {}
 var boundary_left : float
 var boundary_right : float
 
-# Upgrades Dictionary of Upgrade Strategies
-var upgrades : Dictionary = {} # key = upgrade_type, value = strategy
-
-var upgrade_strategies := {
-	"delay": PlayerDelayStrategy,
-	"shockwave": PlayerShockwaveStrategy,
-}
+## Upgrades Dictionary of Upgrade Strategies
+#var upgrades : Dictionary = {} # key = upgrade_type, value = strategy
+#
+#var upgrade_strategies := {
+	#"effct_delay": PlayerDelayStrategy,
+	#"effect_reverb": PlayerShockwaveStrategy,
+#}
 
 func _ready() -> void:
 	global_position = get_viewport_rect().size / 2
@@ -70,7 +70,7 @@ func trigger_shot():
 	_execute_shot(shot_data)
 	
 	# Apply upgrades
-	for upgrade in upgrades.values():
+	for upgrade in upgrade_system.applied_upgrades.values():
 		if upgrade.has_method("on_shot_fired"):
 			upgrade.on_shot_fired(self, shot_data)
 
@@ -123,14 +123,14 @@ func _on_upgrade_done(id: String, stat: int):
 		#upgrade_system.get_stat("shot_radius") = data.shot_radius
 		#%ShotArea.redraw_crosshair(data.shot_radius)
 		
-func update_special_upgrades(upgrade_type, is_applied):
-	if is_applied:
-		if not upgrade_type in upgrades:
-			upgrades[upgrade_type] = upgrade_strategies[upgrade_type].new()
-	else:
-		if upgrade_type in upgrades:
-			upgrades.erase(upgrade_type)
-		
+#func update_special_upgrades(upgrade_type, is_applied):
+	#if is_applied:
+		#if not upgrade_type in upgrades:
+			#upgrades[upgrade_type] = upgrade_strategies[upgrade_type].new()
+	#else:
+		#if upgrade_type in upgrades:
+			#upgrades.erase(upgrade_type)
+		#
 func _on_step(step: int):
 	var active_step = step % TOTAL_STEPS
 	if active_seq_steps[active_step]:

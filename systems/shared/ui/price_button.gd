@@ -1,6 +1,7 @@
 extends Button
 class_name PriceButton
 
+@export var button_id: String
 @export var label_text: String = "Text set by Button"
 @export var cost: int = 120
 
@@ -12,3 +13,7 @@ func _ready() -> void:
 func set_label(_text: String, _cost: int):
 	$PriceLabel.set_label(_text, _cost)
 	self.text = _text + "(C " + str(_cost) + ")"
+
+
+func _on_pressed() -> void:
+	pass # Replace with function body.

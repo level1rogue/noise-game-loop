@@ -18,6 +18,7 @@ corner_radius_bottom_left = 128
 layer = 10
 script = ExtResource("1_8ayga")
 skill_scene = ExtResource("4_8ayga")
+module_button_scene = ExtResource("5_srpad")
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=963874687]
 anchors_preset = 13
@@ -70,7 +71,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 12
-alignment = 1
 
 [node name="EffectModuleButton" type="Button" parent="MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer/ModuleUnlockContainer" unique_id=343000589]
 visible = false
@@ -81,13 +81,10 @@ text = "Install Effects Module"
 [node name="InstallEffectsButton" parent="MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer/ModuleUnlockContainer" unique_id=1342565551 instance=ExtResource("5_srpad")]
 unique_name_in_owner = true
 layout_mode = 2
-label_text = "Install Effects Module"
-cost = 1200
 
 [node name="ContinueButton" type="Button" parent="MarginContainer2/MarginContainer/VBoxContainer" unique_id=1917672207]
 layout_mode = 2
 theme = ExtResource("5_8ubk6")
 text = "Continue"
 
-[connection signal="pressed" from="MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer/ModuleUnlockContainer/InstallEffectsButton" to="." method="_on_install_effects_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

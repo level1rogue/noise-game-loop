@@ -2,8 +2,13 @@
 
 [ext_resource type="Resource" uid="uid://2ex48r1x4di3" path="res://entities/player/upgrades/upgrade_database.tres" id="1_6kuf4"]
 [ext_resource type="Script" uid="uid://xwpag5v5rxf" path="res://systems/shared/resources/upgrades/upgrade_system.gd" id="1_kkct3"]
+[ext_resource type="Script" uid="uid://s1fq047bq7mj" path="res://systems/shared/resources/upgrades/module_definition.gd" id="2_yubij"]
+[ext_resource type="Resource" uid="uid://diyyxltsjdlg" path="res://entities/player/upgrades/modules/01_effects_module.tres" id="3_6uqs5"]
+[ext_resource type="Resource" uid="uid://bjhttljdxlfdd" path="res://entities/player/upgrades/modules/02_delay_module.tres" id="4_bkqoi"]
+[ext_resource type="Resource" uid="uid://cyhs4vv1uji1x" path="res://entities/player/upgrades/modules/03_reverb_module.tres" id="5_515oq"]
 
 [resource]
 script = ExtResource("1_kkct3")
 database = ExtResource("1_6kuf4")
+modules = Array[ExtResource("2_yubij")]([ExtResource("3_6uqs5"), ExtResource("4_bkqoi"), ExtResource("5_515oq")])
 metadata/_custom_type_script = "uid://xwpag5v5rxf"

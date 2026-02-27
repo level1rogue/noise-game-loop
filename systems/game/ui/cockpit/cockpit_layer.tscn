@@ -244,6 +244,7 @@ offset_right = -162.99988
 offset_bottom = 245.17462
 
 [node name="EffectsModule" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=1692551710]
+visible = false
 anchors_preset = 0
 offset_top = 1140.0
 offset_right = 699.0

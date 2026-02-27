@@ -5,8 +5,9 @@
 [ext_resource type="Resource" uid="uid://du2b6w2gxh4ev" path="res://entities/player/upgrades/01_shot_damage.tres" id="3_m5lgw"]
 [ext_resource type="Resource" uid="uid://bk8puf163hmu7" path="res://entities/player/upgrades/02_shot_radius.tres" id="4_hiycv"]
 [ext_resource type="Resource" uid="uid://0dp6yhud24t6" path="res://entities/player/upgrades/03_effect_delay.tres" id="5_hiycv"]
+[ext_resource type="Resource" uid="uid://ca5v8exuoy51r" path="res://entities/player/upgrades/04_effect_reverb.tres" id="6_iw5ts"]
 
 [resource]
 script = ExtResource("1_t5ibh")
-upgrades = Array[ExtResource("2_rtscb")]([ExtResource("3_m5lgw"), ExtResource("4_hiycv"), ExtResource("5_hiycv")])
+upgrades = Array[ExtResource("2_rtscb")]([ExtResource("3_m5lgw"), ExtResource("4_hiycv"), ExtResource("5_hiycv"), ExtResource("6_iw5ts")])
 metadata/_custom_type_script = "uid://ijldkhkturo4"

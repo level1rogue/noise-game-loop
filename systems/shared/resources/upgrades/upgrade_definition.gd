@@ -5,6 +5,8 @@ extends Resource
 @export var display_name: String
 @export var skill_ref: String
 
+@export var install_cost: int
+
 @export var max_level: int
 
 @export var base_cost: int = 100

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ModuleDefinition" format=3 uid="uid://diyyxltsjdlg"]
+
+[ext_resource type="Script" uid="uid://s1fq047bq7mj" path="res://systems/shared/resources/upgrades/module_definition.gd" id="1_2jgyp"]
+
+[resource]
+script = ExtResource("1_2jgyp")
+id = "effects_module"
+display_name = "Effects Module"
+metadata/_custom_type_script = "uid://s1fq047bq7mj"

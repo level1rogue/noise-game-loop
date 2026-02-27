@@ -5,8 +5,9 @@ var shockwave_damage_multiplier := 0.5  # 50% of original damage
 var shockwave_duration := 0.5
 var ring_width := 10.0
 
-func apply_upgrade():
-	pass
+func apply_upgrade(level: int):
+	shockwave_radius_multiplier = float(level) + 3.0
+	shockwave_damage_multiplier = (level + 1) / 2.0
 	
 func on_shot_fired(player: CharacterBody2D, shot_data: ShotData):
 	var target_radius = shot_data.radius * shockwave_radius_multiplier

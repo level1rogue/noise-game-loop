@@ -5,17 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://5ao516x7wlwj" path="res://systems/shared/ui/price_label.tscn" id="2_r85ns"]
 
 [node name="PriceButton" type="Button" unique_id=1342565551]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -193.5
-offset_top = -22.0
-offset_right = 193.5
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 387.0
+offset_bottom = 44.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_r85ns")

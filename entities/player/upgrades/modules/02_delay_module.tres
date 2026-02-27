@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ModuleDefinition" format=3 uid="uid://bjhttljdxlfdd"]
+
+[ext_resource type="Script" uid="uid://s1fq047bq7mj" path="res://systems/shared/resources/upgrades/module_definition.gd" id="1_25txy"]
+
+[resource]
+script = ExtResource("1_25txy")
+id = "delay_module"
+display_name = "Delay Module"
+unlocks_upgrades = Array[String](["effect_delay"])
+required_modules = Array[String](["effects_module"])
+metadata/_custom_type_script = "uid://s1fq047bq7mj"

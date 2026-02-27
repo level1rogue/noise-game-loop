@@ -14,11 +14,11 @@ func toggle_module_ui(module, _visible):
 	match module:
 		"sequencer":
 			$SequencerModule.visible = _visible
-		"effects":
+		"effects_module":
 			$EffectsModule.visible = _visible
-		"effects_delay":
+		"delay_module":
 			$EffectsModule/DelayModule.visible = _visible
-		"effects_reverb":
+		"reverb_module":
 			$EffectsModule/ReverbModule.visible = _visible
 
 

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://ca5v8exuoy51r"]
+
+[ext_resource type="Script" uid="uid://b61m8y12g1cyg" path="res://systems/shared/resources/upgrades/upgrade_definition.gd" id="1_x0i1y"]
+
+[resource]
+script = ExtResource("1_x0i1y")
+id = "effect_reverb"
+display_name = "Reverb"
+install_cost = 500
+max_level = 4
+base_cost = 150
+cost_mult = 2.0
+required_modules = Array[String](["effects_module", "reverb_module"])
+metadata/_custom_type_script = "uid://b61m8y12g1cyg"

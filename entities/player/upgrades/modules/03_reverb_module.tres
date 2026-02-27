@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ModuleDefinition" format=3 uid="uid://cyhs4vv1uji1x"]
+
+[ext_resource type="Script" uid="uid://s1fq047bq7mj" path="res://systems/shared/resources/upgrades/module_definition.gd" id="1_qfeip"]
+
+[resource]
+script = ExtResource("1_qfeip")
+id = "reverb_module"
+display_name = "Reverb Module"
+unlocks_upgrades = Array[String](["effect_reverb"])
+required_modules = Array[String](["effects_module"])
+metadata/_custom_type_script = "uid://s1fq047bq7mj"

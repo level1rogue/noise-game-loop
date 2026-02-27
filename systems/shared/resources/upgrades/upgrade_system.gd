@@ -7,12 +7,13 @@ signal upgrade_done(upgrade_id: String, stat: float)
 signal module_installed(module: String)
 
 @export var database: UpgradeDatabase
+@export var modules: Array[ModuleDefinition] = []
 
 var installed_modules: Dictionary = {
 	"sequencer": true,
-	"effects": false,
-	"effects_delay": false,
-	"effects_reverb": false
+	"effects_module": false,
+	"delay_module": false,
+	"reverb_module": false
 }
 
 var levels: Dictionary = {
@@ -22,6 +23,13 @@ var levels: Dictionary = {
 	"effect_reverb": 0
 	
 } # [upgrade id] : [level]
+
+var upgrade_strategies := {
+	"effect_delay": PlayerDelayStrategy,
+	"effect_reverb": PlayerShockwaveStrategy,
+}
+
+var applied_upgrades := {}
 
 var credits: int = 1200
 var noise: float = 0.0
@@ -36,6 +44,12 @@ func get_def(id) -> UpgradeDefinition:
 
 	return null
 	
+func get_module_def(id) -> ModuleDefinition:
+	for module in modules:
+		if module.id == id:
+			return module
+	return null
+		
 func get_stat(stat_id: String):
 	var level = get_level(stat_id)
 	var def = get_def(stat_id)
@@ -68,18 +82,35 @@ func upgrade(def: UpgradeDefinition) -> bool:
 	var actual_cost = get_upgrade_cost(def, current_level)
 	on_subtract_credits(actual_cost)
 	levels[def.id] += 1
+	if upgrade_strategies.has(def.id):
+		upgrade_strategies[def.id].apply_upgrade(levels[def.id])
 	upgrade_done.emit(def.id, get_stat(def.id))
 	return true
 	
 func get_all_upgrades() -> Array[UpgradeDefinition]:
 	return database.upgrades
 
-				
-func install_module(module: String, cost: int):
+func update_special_upgrades(upgrade_type, is_applied):
+	if is_applied:
+		if not upgrade_type in applied_upgrades:
+			applied_upgrades[upgrade_type] = upgrade_strategies[upgrade_type].new()
+	else:
+		if upgrade_type in applied_upgrades:
+			applied_upgrades.erase(upgrade_type)
+	
+
+func install_module(module_id: String, cost: int):
 	if credits >= cost:
 		on_subtract_credits(cost)
-		installed_modules[module] = true
-		module_installed.emit(module)
+		installed_modules[module_id] = true
+		var module_def = get_module_def(module_id)
+		if module_def.unlocks_upgrades.size() > 0:
+			for unlock in module_def.unlocks_upgrades:
+				if upgrade_strategies.has(unlock):
+					update_special_upgrades(unlock, true)
+		module_installed.emit(module_id)
+		return true
+	return false
 				
 func on_add_credits(_credits: int):
 	credits += _credits
