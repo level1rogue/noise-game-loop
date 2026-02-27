@@ -24,7 +24,6 @@ func fade_in():
 func _on_info_set(new_value):
 	level_info = new_value
 	%InfoLabel.text = level_info
-	
 
 
 func _on_start_button_pressed() -> void:

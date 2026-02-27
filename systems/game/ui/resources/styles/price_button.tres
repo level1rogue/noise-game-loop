@@ -1,0 +1,13 @@
+[gd_resource type="Theme" format=3 uid="uid://dq3fnji12vcb3"]
+
+[ext_resource type="StyleBox" uid="uid://hjgh1ryrnxgs" path="res://systems/game/ui/resources/styles/button_with_corners_hovered.tres" id="1_nhwr2"]
+[ext_resource type="StyleBox" uid="uid://cjoda23lrh2jr" path="res://systems/game/ui/resources/styles/button_with_corners.tres" id="2_efhgl"]
+[ext_resource type="FontFile" uid="uid://cs60n58nroyio" path="res://assets/fonts/Y224-2vdae.ttf" id="4_n3m11"]
+
+[resource]
+default_font = ExtResource("4_n3m11")
+Button/colors/font_color = Color(0, 0.8509804, 0.5411765, 0)
+Button/font_sizes/font_size = 22
+Button/styles/hover = ExtResource("1_nhwr2")
+Button/styles/normal = ExtResource("2_efhgl")
+Button/styles/pressed = null

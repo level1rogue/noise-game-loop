@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dy2d70k4fovkq"]
+
+[ext_resource type="Script" uid="uid://duxnhk8frhetq" path="res://systems/shared/ui/price_button.gd" id="1_5c36k"]
+[ext_resource type="Theme" uid="uid://dq3fnji12vcb3" path="res://systems/game/ui/resources/styles/price_button.tres" id="1_r85ns"]
+[ext_resource type="PackedScene" uid="uid://5ao516x7wlwj" path="res://systems/shared/ui/price_label.tscn" id="2_r85ns"]
+
+[node name="PriceButton" type="Button" unique_id=1342565551]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.5
+offset_top = -22.0
+offset_right = 193.5
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_r85ns")
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+script = ExtResource("1_5c36k")
+
+[node name="PriceLabel" parent="." unique_id=2100062 instance=ExtResource("2_r85ns")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.5
+offset_top = -20.0
+offset_right = 186.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

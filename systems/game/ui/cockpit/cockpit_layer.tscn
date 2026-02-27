@@ -14,10 +14,14 @@
 [ext_resource type="Texture2D" uid="uid://bps5qwlsdamhd" path="res://assets/graphics/ui_elements/parts/sequencer_plus.png" id="9_xtbsf"]
 [ext_resource type="Texture2D" uid="uid://dw2oqwmh82kho" path="res://assets/graphics/ui_elements/parts/normal maps/map_normalMap.png" id="10_608f7"]
 [ext_resource type="Script" uid="uid://015i05q7borf" path="res://systems/game/ui/cockpit/bpm_indicator/bpm_indicator_light.gd" id="10_ggp0q"]
+[ext_resource type="Script" uid="uid://cwc1mdd60gs5b" path="res://systems/game/ui/cockpit/module_container.gd" id="10_nyo8s"]
 [ext_resource type="Texture2D" uid="uid://bn1wpie5janyf" path="res://assets/graphics/ui_elements/parts/sequencer_bpm_indicator.png" id="11_f5wda"]
 [ext_resource type="Texture2D" uid="uid://dgu5alv1c5l4g" path="res://assets/graphics/ui_elements/parts/normal maps/map_specular.png" id="11_run0f"]
 [ext_resource type="PackedScene" uid="uid://dbrs1rlqpfdmb" path="res://systems/game/ui/cockpit/sequencer/sequencer.tscn" id="12_ck5gw"]
 [ext_resource type="Texture2D" uid="uid://cx8eo1e83jdmo" path="res://assets/graphics/ui_elements/parts/companion_1_empty.png" id="13_egt0l"]
+[ext_resource type="Texture2D" uid="uid://cnarcuc4bhfya" path="res://assets/graphics/ui_elements/parts/effects_cap.png" id="20_rkekf"]
+[ext_resource type="Texture2D" uid="uid://dwfw886bqwas7" path="res://assets/graphics/icons/effects_icons/delay_icon.png" id="21_1c0vs"]
+[ext_resource type="Texture2D" uid="uid://cjh7rjq4x8btn" path="res://assets/graphics/icons/effects_icons/reverb_icon.png" id="22_1d84d"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_nyo8s"]
 diffuse_texture = ExtResource("7_nqukr")
@@ -29,7 +33,6 @@ layer = 12
 script = ExtResource("1_bcflq")
 
 [node name="SkillTree" parent="." unique_id=1828296432 instance=ExtResource("6_608f7")]
-visible = false
 
 [node name="CockpitRoot" type="Control" parent="." unique_id=1442145762]
 layout_mode = 3
@@ -168,6 +171,7 @@ texture = ExtResource("6_b7sfu")
 [node name="ModuleContainer" type="Control" parent="CockpitRoot/CockpitPivot/RightCase" unique_id=521229978]
 layout_mode = 1
 anchors_preset = 0
+script = ExtResource("10_nyo8s")
 
 [node name="DisplayModule" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=2054421085]
 anchors_preset = 0
@@ -239,17 +243,63 @@ offset_top = 106.174614
 offset_right = -162.99988
 offset_bottom = 245.17462
 
-[node name="Companion1Module" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=1692551710]
+[node name="EffectsModule" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=1692551710]
 anchors_preset = 0
 offset_top = 1140.0
 offset_right = 699.0
 offset_bottom = 1404.0
 
-[node name="TextureRect" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/Companion1Module" unique_id=231515389]
+[node name="TextureRect" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/EffectsModule" unique_id=231515389]
 layout_mode = 0
 offset_right = 771.0
 offset_bottom = 232.0
 texture = ExtResource("13_egt0l")
+
+[node name="DelayModule" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/EffectsModule" unique_id=549990857]
+visible = false
+anchors_preset = 0
+offset_left = 228.0
+offset_top = 32.0
+offset_right = 365.0
+offset_bottom = 224.0
+
+[node name="TextureRect" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/EffectsModule/DelayModule" unique_id=836516360]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("20_rkekf")
+
+[node name="EffectTexture" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/EffectsModule/DelayModule" unique_id=668209522]
+layout_mode = 0
+offset_left = 11.162598
+offset_top = 11.0
+offset_right = 126.674805
+offset_bottom = 122.0
+texture = ExtResource("21_1c0vs")
+expand_mode = 1
+
+[node name="ReverbModule" type="Control" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/EffectsModule" unique_id=1718888246]
+visible = false
+anchors_preset = 0
+offset_left = 373.0
+offset_top = 32.0
+offset_right = 510.0
+offset_bottom = 224.0
+
+[node name="TextureRect" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/EffectsModule/ReverbModule" unique_id=863792337]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("20_rkekf")
+
+[node name="EffectTexture" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/EffectsModule/ReverbModule" unique_id=547846933]
+layout_mode = 0
+offset_left = 13.2438965
+offset_top = 13.0
+offset_right = 124.593506
+offset_bottom = 120.0
+texture = ExtResource("22_1d84d")
+expand_mode = 1
 
 [connection signal="pressed" from="CockpitRoot/CockpitPivot/LeftCase/CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CockpitRoot/CockpitPivot/LeftCase/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]

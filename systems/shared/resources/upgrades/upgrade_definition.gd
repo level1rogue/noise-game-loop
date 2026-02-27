@@ -13,5 +13,6 @@ extends Resource
 @export var base_value: float
 @export var value_per_level: float
 
+@export var required_modules: Array[String]
 #TODO: Add upgrade requirements
 #@export var required_upgrades: Array[UpgradeRequirement]

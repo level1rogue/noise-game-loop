@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeDefinition" format=3 uid="uid://0dp6yhud24t6"]
+
+[ext_resource type="Script" uid="uid://b61m8y12g1cyg" path="res://systems/shared/resources/upgrades/upgrade_definition.gd" id="1_46byf"]
+
+[resource]
+script = ExtResource("1_46byf")
+id = "effect_delay"
+display_name = "Delay"
+max_level = 4
+cost_mult = 2.0
+base_value = 1.0
+value_per_level = 1.0
+required_modules = Array[String](["effects"])
+metadata/_custom_type_script = "uid://b61m8y12g1cyg"

@@ -4,16 +4,26 @@ extends Resource
 signal credits_changed
 signal noise_changed
 signal upgrade_done(upgrade_id: String, stat: float)
+signal module_installed(module: String)
 
 @export var database: UpgradeDatabase
 
+var installed_modules: Dictionary = {
+	"sequencer": true,
+	"effects": false,
+	"effects_delay": false,
+	"effects_reverb": false
+}
+
 var levels: Dictionary = {
 	"shot_damage": 0,
-	"shot_radius": 0
+	"shot_radius": 0,
+	"effect_delay": 0,
+	"effect_reverb": 0
 	
 } # [upgrade id] : [level]
 
-var credits: int = 0
+var credits: int = 1200
 var noise: float = 0.0
 
 func get_level(id:String) -> int:
@@ -64,6 +74,12 @@ func upgrade(def: UpgradeDefinition) -> bool:
 func get_all_upgrades() -> Array[UpgradeDefinition]:
 	return database.upgrades
 
+				
+func install_module(module: String, cost: int):
+	if credits >= cost:
+		on_subtract_credits(cost)
+		installed_modules[module] = true
+		module_installed.emit(module)
 				
 func on_add_credits(_credits: int):
 	credits += _credits

@@ -5,72 +5,89 @@
 [ext_resource type="PackedScene" uid="uid://dnqcdlwos3q34" path="res://systems/game/ui/cockpit/skill_stree/skill.tscn" id="4_8ayga"]
 [ext_resource type="Theme" uid="uid://dd0q24b2lp5w5" path="res://systems/game/ui/resources/styles/big_button_green.tres" id="5_8ubk6"]
 [ext_resource type="Theme" uid="uid://cnev7rfnbos30" path="res://systems/game/ui/resources/styles/button_green.tres" id="5_ht3md"]
+[ext_resource type="PackedScene" uid="uid://dy2d70k4fovkq" path="res://systems/shared/ui/price_button.tscn" id="5_srpad"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ubk6"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ht3md"]
+bg_color = Color(0, 0, 0, 0.8117647)
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
 
 [node name="SkillTree" type="CanvasLayer" unique_id=1843494220]
 layer = 10
 script = ExtResource("1_8ayga")
 skill_scene = ExtResource("4_8ayga")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=98505698]
-anchors_preset = 8
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=963874687]
+anchors_preset = 13
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -955.0
-offset_top = -1024.0
-offset_right = 955.0
-offset_bottom = 1024.0
+anchor_bottom = 1.0
+offset_left = -993.0
+offset_top = 177.0
+offset_right = 993.0
+offset_bottom = -177.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer2" unique_id=453641012]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ht3md")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2" unique_id=98505698]
+layout_mode = 2
 theme_override_constants/margin_left = 92
 theme_override_constants/margin_top = 92
 theme_override_constants/margin_right = 92
 theme_override_constants/margin_bottom = 92
 
-[node name="Panel" type="Panel" parent="MarginContainer" unique_id=453641012]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8ubk6")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1069418545]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer" unique_id=1069418545]
 layout_mode = 2
 theme_override_constants/separation = 42
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=541359290]
+[node name="Label" type="Label" parent="MarginContainer2/MarginContainer/VBoxContainer" unique_id=541359290]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_s74yl")
 text = "Upgrades"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1659910975]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer" unique_id=1659910975]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 92
 
-[node name="SkillContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1481301600]
+[node name="SkillContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1481301600]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="ModuleUnlockContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1531210801]
+[node name="ModuleUnlockContainer" type="VBoxContainer" parent="MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1531210801]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="EffectModuleButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/ModuleUnlockContainer" unique_id=343000589]
+[node name="EffectModuleButton" type="Button" parent="MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer/ModuleUnlockContainer" unique_id=343000589]
+visible = false
 layout_mode = 2
 theme = ExtResource("5_ht3md")
 text = "Install Effects Module"
 
-[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1917672207]
+[node name="InstallEffectsButton" parent="MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer/ModuleUnlockContainer" unique_id=1342565551 instance=ExtResource("5_srpad")]
+unique_name_in_owner = true
+layout_mode = 2
+label_text = "Install Effects Module"
+cost = 1200
+
+[node name="ContinueButton" type="Button" parent="MarginContainer2/MarginContainer/VBoxContainer" unique_id=1917672207]
 layout_mode = 2
 theme = ExtResource("5_8ubk6")
 text = "Continue"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/MarginContainer/VBoxContainer/VBoxContainer/ModuleUnlockContainer/InstallEffectsButton" to="." method="_on_install_effects_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
