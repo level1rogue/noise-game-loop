@@ -6,6 +6,7 @@
 script = ExtResource("1_jcwus")
 id = "effect_delay"
 display_name = "Delay"
+parent_module = 1
 max_level = 4
 cost_mult = 2.0
 base_value = 1.0

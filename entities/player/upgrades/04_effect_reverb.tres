@@ -6,6 +6,7 @@
 script = ExtResource("1_x0i1y")
 id = "effect_reverb"
 display_name = "Reverb"
+parent_module = 1
 install_cost = 500
 max_level = 4
 base_cost = 150

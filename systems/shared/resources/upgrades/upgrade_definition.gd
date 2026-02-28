@@ -5,6 +5,8 @@ extends Resource
 @export var display_name: String
 @export var skill_ref: String
 
+@export var parent_module: GlobalData.ModuleTypes
+
 @export var install_cost: int
 
 @export var max_level: int

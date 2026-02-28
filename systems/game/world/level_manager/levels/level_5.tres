@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://ddnjmrmd0wu61"]
+
+[ext_resource type="Script" uid="uid://d2n5clsgksxjm" path="res://data/enemy_spawn_data.gd" id="1_u76r1"]
+[ext_resource type="Script" uid="uid://dy4ggdbx8wu5r" path="res://data/level_data.gd" id="2_chekl"]
+
+[sub_resource type="Resource" id="Resource_8r3yr"]
+script = ExtResource("1_u76r1")
+spawn_interval = 0.75
+speed = 0.5
+metadata/_custom_type_script = "uid://d2n5clsgksxjm"
+
+[sub_resource type="Resource" id="Resource_srul6"]
+script = ExtResource("1_u76r1")
+init_spawn_count = 0
+spawn_interval = 2.0
+health = 60.0
+speed = 1.5
+color = Color(0.5118975, 0.60330224, 0.9173783, 1)
+metadata/_custom_type_script = "uid://d2n5clsgksxjm"
+
+[resource]
+script = ExtResource("2_chekl")
+lvl_index = 5
+duration = 16
+polygon_sides = 5
+polygon_sub_divs = 3
+enemy_configs = Array[ExtResource("1_u76r1")]([SubResource("Resource_8r3yr"), SubResource("Resource_srul6")])
+metadata/_custom_type_script = "uid://dy4ggdbx8wu5r"

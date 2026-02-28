@@ -9,6 +9,7 @@ func apply_upgrade(level: int):
 	shockwave_radius_multiplier = float(level) + 2.0
 	shockwave_damage_multiplier = (level + 1) / 3.0
 	
+# FIXME: sometimes enemies aren't hit by shockwave
 func on_shot_fired(player: CharacterBody2D, shot_data: ShotData):
 	var target_radius = shot_data.radius * shockwave_radius_multiplier
 	var shockwave_damage = int(shot_data.damage * shockwave_damage_multiplier)

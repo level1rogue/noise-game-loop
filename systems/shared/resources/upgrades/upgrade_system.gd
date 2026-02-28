@@ -31,7 +31,7 @@ var upgrade_strategies := {
 
 var applied_upgrades := {}
 
-var credits: int = 1200
+var credits: int = 0
 var noise: float = 0.0
 
 func get_level(id:String) -> int:
@@ -133,3 +133,6 @@ func reset_all():
 	
 	for key in levels.keys():
 		levels[key] = 0
+	
+	for key in installed_modules.keys():
+		installed_modules[key] = false

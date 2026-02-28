@@ -3,7 +3,10 @@ extends Node
 var LEVELS : Dictionary = {
 	1: load("res://systems/game/world/level_manager/levels/level_1.tres"),
 	2: load("res://systems/game/world/level_manager/levels/level_2.tres"),
-	3: load("res://systems/game/world/level_manager/levels/level_3.tres")
+	3: load("res://systems/game/world/level_manager/levels/level_3.tres"),
+	4: load("res://systems/game/world/level_manager/levels/level_4.tres"),
+	5: load("res://systems/game/world/level_manager/levels/level_5.tres"),
+	6: load("res://systems/game/world/level_manager/levels/level_6.tres"),
 }
 
 var current_level_idx: int = 0

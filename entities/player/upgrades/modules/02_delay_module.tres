@@ -6,6 +6,7 @@
 script = ExtResource("1_25txy")
 id = "delay_module"
 display_name = "Delay Module"
+install_cost = 100
 unlocks_upgrades = Array[String](["effect_delay"])
 required_modules = Array[String](["effects_module"])
 metadata/_custom_type_script = "uid://s1fq047bq7mj"

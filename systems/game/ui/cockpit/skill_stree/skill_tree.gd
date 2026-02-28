@@ -8,6 +8,8 @@ signal request_load_next_level
 
 @onready var upgrade_system: UpgradeSystem = GlobalData.upgrade_system
 @onready var skill_container = %SkillContainer
+@onready var sequencer_container = %SequencerModules
+@onready var effects_container = %EffectsModules
 @onready var module_container = %ModuleUnlockContainer
 
 var upgrade_list: Array[UpgradeDefinition]
@@ -36,7 +38,9 @@ func update_skill_tree():
 			create_module_buttons(missing_modules, upgrade_def)	
 			
 func clear_containers():
-	for child in skill_container.get_children():
+	for child in sequencer_container.get_children():
+		child.queue_free()
+	for child in effects_container.get_children():
 		child.queue_free()
 	for child in module_container.get_children():
 		child.queue_free()
@@ -65,8 +69,13 @@ func create_or_update_skill(upgrade_def: UpgradeDefinition):
 	skill_node.skill_level = skill_level
 	skill_node.skill_cost = skill_cost
 	skill_node.upgrade_pressed.connect(on_upgrade_press)
-		
-	skill_container.add_child(skill_node)
+	var parent_container
+	match upgrade_def.parent_module:
+		GlobalData.ModuleTypes.SEQUENCER:
+			parent_container = %SequencerModules
+		GlobalData.ModuleTypes.EFFECTS:
+			parent_container = %EffectsModules
+	parent_container.add_child(skill_node)
 	skill_map[upgrade_def.id] = skill_node
 	
 func create_module_buttons(missing_modules: Array[String], related_upgrade: UpgradeDefinition):

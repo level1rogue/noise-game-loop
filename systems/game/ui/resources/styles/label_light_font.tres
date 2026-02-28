@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://6f8twkewaf3r"]
+
+[ext_resource type="FontFile" uid="uid://c68iogeam4y6" path="res://assets/fonts/ArkitechLight-ovWKz.otf" id="1_bqynw"]
+
+[resource]
+default_font = ExtResource("1_bqynw")
+Label/colors/font_color = Color(0, 0.8509804, 0.5411765, 1)
+Label/font_sizes/font_size = 22
