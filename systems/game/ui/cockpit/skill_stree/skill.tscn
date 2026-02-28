@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://cnev7rfnbos30" path="res://systems/game/ui/resources/styles/button_green.tres" id="3_hbhl1"]
 [ext_resource type="Theme" uid="uid://6f8twkewaf3r" path="res://systems/game/ui/resources/styles/label_light_font.tres" id="4_6sa0x"]
 [ext_resource type="Script" uid="uid://66vei6tfuqmg" path="res://systems/shared/icon.gd" id="4_rx0rt"]
+[ext_resource type="AudioStream" uid="uid://dh5p7o7d34cyu" path="res://assets/audio/sfx/ui/upgrades/upgrade_apply.wav" id="6_6sa0x"]
 
 [sub_resource type="Theme" id="Theme_2kdob"]
 default_font = ExtResource("2_ti5j8")
@@ -102,5 +103,9 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_6sa0x")
 text = "150"
+
+[node name="AudioUpgradeButton" type="AudioStreamPlayer" parent="." unique_id=389469009]
+unique_name_in_owner = true
+stream = ExtResource("6_6sa0x")
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/HBoxContainer/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

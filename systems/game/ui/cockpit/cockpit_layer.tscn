@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cnarcuc4bhfya" path="res://assets/graphics/ui_elements/parts/effects_cap.png" id="20_rkekf"]
 [ext_resource type="Texture2D" uid="uid://dwfw886bqwas7" path="res://assets/graphics/icons/effects_icons/delay_icon.png" id="21_1c0vs"]
 [ext_resource type="Texture2D" uid="uid://cjh7rjq4x8btn" path="res://assets/graphics/icons/effects_icons/reverb_icon.png" id="22_1d84d"]
+[ext_resource type="AudioStream" uid="uid://brqko5upyha30" path="res://assets/audio/sfx/ui/upgrades/module_install.wav" id="23_1d84d"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_nyo8s"]
 diffuse_texture = ExtResource("7_nqukr")
@@ -212,6 +213,7 @@ anchors_preset = 0
 offset_top = 874.82544
 offset_right = 835.0
 offset_bottom = 1169.8254
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="TextureRect" type="TextureRect" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer/SequencerModule" unique_id=795991221]
 layout_mode = 0
@@ -301,6 +303,9 @@ offset_right = 124.593506
 offset_bottom = 120.0
 texture = ExtResource("22_1d84d")
 expand_mode = 1
+
+[node name="AudioModuleInstall" type="AudioStreamPlayer" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=815588428]
+stream = ExtResource("23_1d84d")
 
 [connection signal="pressed" from="CockpitRoot/CockpitPivot/LeftCase/CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CockpitRoot/CockpitPivot/LeftCase/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]

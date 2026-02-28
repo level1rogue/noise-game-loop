@@ -17,7 +17,6 @@ corner_radius_bottom_left = 128
 
 [node name="SkillTree" type="CanvasLayer" unique_id=1843494220]
 layer = 10
-visible = false
 script = ExtResource("1_8ayga")
 skill_scene = ExtResource("4_8ayga")
 module_button_scene = ExtResource("5_srpad")

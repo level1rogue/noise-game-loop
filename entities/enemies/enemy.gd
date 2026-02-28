@@ -179,7 +179,7 @@ func die(give_credits: String = ""):
 		#var velocity = randf_range(150, 350)
 		shard.linear_velocity = DIRECTION * randi_range(10, 40)
 		shard.angular_velocity = randf_range(-15, 15)
-			
+
 	queue_free()
 	if give_credits != "no_credits":
 		add_to_credits.emit(max_health)

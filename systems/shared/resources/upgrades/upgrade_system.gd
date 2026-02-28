@@ -31,7 +31,7 @@ var upgrade_strategies := {
 
 var applied_upgrades := {}
 
-var credits: int = 0
+var credits: int = 1200
 var noise: float = 0.0
 
 func get_level(id:String) -> int:

@@ -1,6 +1,6 @@
 extends Control
 
-signal upgrade_pressed(id: String)
+signal upgrade_pressed(id: String, audio_player: AudioStreamPlayer)
 
 var skill: UpgradeDefinition
 var skill_level: int
@@ -16,5 +16,4 @@ func update_ui():
 	%CostLabel.text = str(skill_cost)
 
 func _on_upgrade_button_pressed() -> void:
-	prints("up press")
-	upgrade_pressed.emit(skill)
+	upgrade_pressed.emit(skill, $AudioUpgradeButton)
