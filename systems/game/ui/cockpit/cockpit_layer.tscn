@@ -23,11 +23,19 @@
 [ext_resource type="Texture2D" uid="uid://dwfw886bqwas7" path="res://assets/graphics/icons/effects_icons/delay_icon.png" id="21_1c0vs"]
 [ext_resource type="Texture2D" uid="uid://cjh7rjq4x8btn" path="res://assets/graphics/icons/effects_icons/reverb_icon.png" id="22_1d84d"]
 [ext_resource type="AudioStream" uid="uid://brqko5upyha30" path="res://assets/audio/sfx/ui/upgrades/module_install.wav" id="23_1d84d"]
+[ext_resource type="AudioStream" uid="uid://bu8rrpsgfciws" path="res://assets/audio/sfx/ui/upgrades/drill.wav" id="24_uhsp7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_nyo8s"]
 diffuse_texture = ExtResource("7_nqukr")
 normal_texture = ExtResource("10_608f7")
 specular_texture = ExtResource("11_run0f")
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_yjilq"]
+stream_count = 2
+stream_0/stream = ExtResource("23_1d84d")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("24_uhsp7")
+stream_1/volume = 0.0
 
 [node name="CockpitLayer" type="CanvasLayer" unique_id=1829790468]
 layer = 12
@@ -305,7 +313,7 @@ texture = ExtResource("22_1d84d")
 expand_mode = 1
 
 [node name="AudioModuleInstall" type="AudioStreamPlayer" parent="CockpitRoot/CockpitPivot/RightCase/ModuleContainer" unique_id=815588428]
-stream = ExtResource("23_1d84d")
+stream = SubResource("AudioStreamSynchronized_yjilq")
 
 [connection signal="pressed" from="CockpitRoot/CockpitPivot/LeftCase/CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CockpitRoot/CockpitPivot/LeftCase/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
