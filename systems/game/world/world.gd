@@ -104,7 +104,7 @@ func _update_rift_breathing():
 	var rotation_offset = sin(_rift_breath_t * TAU * RIFT_BREATH_SPEED * 0.4) * 0.01
 	
 	# Slight skew for extra organic feel
-	var skew_amount = sin(_rift_breath_t * TAU * RIFT_BREATH_SPEED * 0.8 + 0.7) * 0.005
+	var skew_amount = sin(_rift_breath_t * TAU * RIFT_BREATH_SPEED * 0.8 + 0.7) * 0.015
 	
 	_rift_root.scale = Vector2(scale_x, scale_y)
 	_rift_root.rotation = rotation_offset

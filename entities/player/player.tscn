@@ -77,6 +77,7 @@ libraries/ = SubResource("AnimationLibrary_qhqgy")
 
 [node name="ShotAudio" type="AudioStreamPlayer" parent="." unique_id=1559216217]
 stream = ExtResource("6_qiwj3")
+volume_db = -40.14
 
 [node name="CrosshairW" type="Sprite2D" parent="." unique_id=1840166589]
 visible = false
