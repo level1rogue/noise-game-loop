@@ -17,6 +17,13 @@ const MAX_RATIO := 10.0
 const MIN_SUB_DIVS := 0
 const MAX_SUB_DIVS := 5
 
+const RIFT_BREATH_SPEED := 0.2
+const RIFT_BREATH_AMOUNT := 0.025 # 1.5%
+
+var _rift_breath_t := 0.0
+var _rift_root: Node2D
+
+
 var rpctg := 40.0 # circumradius (from center to point) in percentage of screen
 var r := 200 # circumradius in px
 var n := 5 # nr. of sides = nr. of points / must be at least 3
@@ -65,6 +72,48 @@ func _ready() -> void:
 	%Player.set_initial_seq_steps(initial_player_steps)
 	await get_parent().ready
 	on_set_initial_seq_steps.emit(initial_player_steps)
+
+	_ensure_rift_root()
+
+func _process(delta: float) -> void:
+	_rift_breath_t += delta
+	_update_rift_breathing()
+
+func _ensure_rift_root() -> void:
+	if _rift_root != null and is_instance_valid(_rift_root):
+		return
+	_rift_root = Node2D.new()
+	_rift_root.name = "RiftVisualRoot"
+	_rift_root.position = screen_center
+	add_child(_rift_root)
+
+func _update_rift_breathing():
+	if _rift_root == null or not is_instance_valid(_rift_root):
+		return
+	
+	# Multiple sine waves with different frequencies for organic feel
+	var breath1 = sin(_rift_breath_t * TAU * RIFT_BREATH_SPEED)
+	var breath2 = sin(_rift_breath_t * TAU * RIFT_BREATH_SPEED * 1.7 + 0.5)
+	var breath3 = sin(_rift_breath_t * TAU * RIFT_BREATH_SPEED * 0.6 + 1.2)
+	
+	# Combine waves for complex breathing pattern
+	var scale_x = 1.0 + (breath1 * 0.6 + breath2 * 0.3 + breath3 * 0.1) * RIFT_BREATH_AMOUNT
+	var scale_y = 1.0 + (breath1 * 0.4 + breath2 * 0.4 + breath3 * 0.2) * RIFT_BREATH_AMOUNT
+	
+	# Subtle rotation that varies with breathing
+	var rotation_offset = sin(_rift_breath_t * TAU * RIFT_BREATH_SPEED * 0.4) * 0.01
+	
+	# Slight skew for extra organic feel
+	var skew_amount = sin(_rift_breath_t * TAU * RIFT_BREATH_SPEED * 0.8 + 0.7) * 0.005
+	
+	_rift_root.scale = Vector2(scale_x, scale_y)
+	_rift_root.rotation = rotation_offset
+	_rift_root.skew = skew_amount
+
+func _clear_rift_visuals() -> void:
+	_ensure_rift_root()
+	for c in _rift_root.get_children():
+		c.queue_free()
 
 func calc_radius(radius_in_percent):
 	# calc the pixel value of radius with screen height and percentage radius
@@ -131,9 +180,13 @@ func calc_lanes(inner_points, outer_points):
 			var lane_outline_gradient = Gradient.new()
 			var lane_col = CollisionPolygon2D.new()
 
+			area.position = Vector2.ZERO
+			lane.position = Vector2.ZERO
+			lane_outline.position = Vector2.ZERO
+			lane_col.position = Vector2.ZERO
+
 			
 			#lane.width = 2
-			lane.position = screen_center
 			lane.polygon = PackedVector2Array([prev_i_point, prev_o_point, o_point, i_point])
 			#lane.uv = PackedVector2Array([
 					#Vector2(0, 0),  # prev_i_point  → inner edge
@@ -154,7 +207,6 @@ func calc_lanes(inner_points, outer_points):
 			#lane.texture = lane_gradient
 			lane.color = start_color
 			
-			lane_outline.position = lane.position
 			lane_outline.points = PackedVector2Array([prev_i_point, prev_o_point])
 			lane_outline.default_color = Color(0.98, 0.941, 0.62, 1.0)
 			lane_outline.width = 2
@@ -164,29 +216,34 @@ func calc_lanes(inner_points, outer_points):
 			lane_outline_gradient.colors = PackedColorArray([Color(0.49, 0.447, 0.073, 0.035), Color(0.173, 0.615, 0.791, 1.0)])
 			lane_outline.gradient = lane_outline_gradient
 			
-			lane_col.position = lane.position
 			lane_col.polygon = lane.polygon
 
 			var lane_label = "Lane Nr. " + str(i)
 
 			area.set("lane_label", lane_label)
 
-			lanes_array.append(lane)
 			area.add_child(lane)
 			area.add_child(lane_outline)
 			area.add_child(lane_col)
 			
-			add_child(area)
+			_rift_root.add_child(area)
+			lanes_array.append(lane)
+			# add_child(area)
 			prev_i_point = i_point
 			prev_o_point = o_point
 	return lanes_array
 	
 	
 func render_polygon(nr_of_sides, radius, sub_divisions := 3):
+	_ensure_rift_root()
+	_clear_rift_visuals()
+
 	orig_angle += randf() + 10.0
 	
 	var outer_line = Line2D.new()
 	var inner_line = Line2D.new()
+
+
 	outer_line.default_color = Color(0.1, 0.2, randf_range(0.2, 0.4))
 	inner_line.default_color = Color(0.06, 0.1, randf_range(0.1, 0.2))
 	
@@ -196,9 +253,9 @@ func render_polygon(nr_of_sides, radius, sub_divisions := 3):
 	
 	outer_line.width = 3
 	outer_line.antialiased = true
-	outer_line.position = screen_center
+	outer_line.position = Vector2.ZERO
 	outer_line.points = outer_points
-	add_child(outer_line)
+	_rift_root.add_child(outer_line)
 	
 	var outer_points_polygon = Polygon2D.new()
 	outer_points_polygon.polygon = outer_points
@@ -208,10 +265,9 @@ func render_polygon(nr_of_sides, radius, sub_divisions := 3):
 	var inner_points = calc_points(nr_of_sides, radius / radius_ratio, sub_divisions)
 	
 	inner_line.width = 2
-	inner_line.position = screen_center
-	prints("screen_center:", screen_center)
+	inner_line.position = Vector2.ZERO
 	inner_line.points = inner_points
-	add_child(inner_line)
+	_rift_root.add_child(inner_line)
 	
 	var array_of_lanes := []
 	array_of_lanes = calc_lanes(inner_points, outer_points)

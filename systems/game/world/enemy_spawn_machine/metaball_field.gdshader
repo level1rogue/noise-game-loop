@@ -12,8 +12,8 @@ uniform vec4 outline_color : source_color = vec4(0.5, 0.9, 1.0, 0.5);
 
 float hash(vec2 p) {
 	return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
-	}
-
+}
+	
 void fragment() {
 	float field = 0.0;
 	// UV is 0-1, multiply by viewport_size to get screen pixel coordinates
