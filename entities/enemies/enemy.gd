@@ -77,6 +77,8 @@ func initiate_me():
 	
  	# All enemies share world noise, but with offset timing for variation
 	var shader_material = $ColorRect/TextureRect.material.duplicate() as ShaderMaterial
+	shader_material.set_shader_parameter("color_overlay", color)
+	
 	#material.set_shader_parameter("time_offset", time_offset)
 	#material.set_shader_parameter("flicker_speed", flicker_speed)
 	$ColorRect/TextureRect.material = shader_material

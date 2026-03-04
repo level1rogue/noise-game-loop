@@ -5,7 +5,28 @@ signal on_add_to_noise(noise: int)
 
 @export var enemy_spawn_control: PackedScene
 
+@onready var metaball := $CanvasLayer/MetaballField
+
 var enemy_controls := []
+
+func _ready():
+	# Set viewport size for shader
+	var viewport_size = get_viewport_rect().size
+	metaball.material.set_shader_parameter("viewport_size", viewport_size)
+
+func _process(delta: float) -> void:
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	
+	# Convert enemy world positions to screen positions
+	var positions: Array[Vector2] = []
+	var canvas_transform = get_canvas_transform()
+	for e in enemies:
+		var screen_pos = canvas_transform * e.global_position
+		positions.append(screen_pos)
+	
+	metaball.material.set_shader_parameter("enemy_count", positions.size())
+	metaball.material.set_shader_parameter("enemy_positions", positions)
+	#prints("screen positions:", positions)
 
 #TODO: sync spawn machine to world clock!
 func start_level(_level: LevelData):

@@ -2,7 +2,32 @@
 
 [ext_resource type="Script" uid="uid://bu1y64ia73plp" path="res://systems/game/world/enemy_spawn_machine/enemy_spawn_machine.gd" id="1_yteuk"]
 [ext_resource type="PackedScene" uid="uid://opi6bm2s3ols" path="res://systems/game/world/enemy_spawn_machine/enemy_spawn_control.tscn" id="2_7h7va"]
+[ext_resource type="Shader" uid="uid://den0llvporfod" path="res://systems/game/world/enemy_spawn_machine/metaball_field.gdshader" id="3_t8m7t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l81y7"]
+shader = ExtResource("3_t8m7t")
+shader_parameter/enemy_count = 0
+shader_parameter/enemy_positions = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/viewport_size = Vector2(1920, 1080)
+shader_parameter/radius = 60.0
+shader_parameter/threshold = 1.0
+shader_parameter/outline_width = 0.12
+shader_parameter/breathing = 0.1
+shader_parameter/blob_color = Color(0.2, 0.8, 1, 0.15)
+shader_parameter/outline_color = Color(0.5, 0.9, 1, 0.5)
 
 [node name="EnemySpawnMachine" type="Node2D" unique_id=3045881]
 script = ExtResource("1_yteuk")
 enemy_spawn_control = ExtResource("2_7h7va")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1478858517]
+layer = 3
+
+[node name="MetaballField" type="ColorRect" parent="CanvasLayer" unique_id=868585060]
+material = SubResource("ShaderMaterial_l81y7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

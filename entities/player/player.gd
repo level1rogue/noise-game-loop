@@ -97,7 +97,7 @@ func _execute_shot(shot_data: ShotData):
 
 	var delay_increment = 0.0
 
-	if shot_area and shot_area.has_overlapping_bodies():
+	if is_instance_valid(shot_area) and shot_area.has_overlapping_bodies():
 		for body in shot_area.get_overlapping_bodies():
 			if body.has_method("take_damage"):
 				# Capture reference and delay
@@ -111,7 +111,8 @@ func _execute_shot(shot_data: ShotData):
 				)
 				delay_increment += 0.05
 			
-	shot_area.queue_free()
+	if is_instance_valid(shot_area):
+		shot_area.queue_free()
 
 func _execute_sweep_shot(shot_data: ShotData, target_radius: float, damage: int):
 	var effect = shockwave_effect.instantiate()

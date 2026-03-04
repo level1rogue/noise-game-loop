@@ -26,12 +26,15 @@ shader_parameter/color_overlay = Color(1, 0.2, 0.6, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4ra3w"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5lf1o"]
+blend_mode = 1
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4ra3w"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4ra3w"]
 polygon = PackedVector2Array(24, 24, 24, 0, 0, 0, 0, 24)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=328088587]
+[node name="Enemy" type="CharacterBody2D" unique_id=328088587 groups=["enemies"]]
 collision_layer = 2
 script = ExtResource("1_5lf1o")
 disp_label = ExtResource("2_5lf1o")
@@ -64,7 +67,6 @@ size_flags_vertical = 4
 color = Color(0, 0, 0, 1)
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect" unique_id=515559874]
-visible = false
 material = SubResource("ShaderMaterial_4ra3w")
 layout_mode = 1
 anchors_preset = 15
@@ -85,6 +87,7 @@ grow_vertical = 2
 
 [node name="ColorOverlay" type="ColorRect" parent="ColorRect/MarginContainer" unique_id=1604563915]
 unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_5lf1o")
 layout_mode = 2
 color = Color(0.9665727, 0.31859252, 0.55233836, 1)
 

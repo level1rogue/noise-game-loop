@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://d1w3vrdefhhhd" path="res://entities/player/upgrades/upgrade_system.tres" id="2_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://cn2ivwjo8m1fe" path="res://systems/game/effects/shockwave/shockwave_effect.tscn" id="3_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://c14sn5i8y1e57" path="res://assets/graphics/icons/crosshair_w.png" id="4_qiwj3"]
-[ext_resource type="AudioStream" uid="uid://ddavnyv878jb1" path="res://assets/audio/shot-F5-V127-XBYW.mp3" id="5_8fjmc"]
+[ext_resource type="AudioStream" uid="uid://bqnw8ek6sr70i" path="res://assets/audio/sfx/entity/player/shot/laser_shot.wav" id="6_qiwj3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 50.0
@@ -76,8 +76,7 @@ layer = 7
 libraries/ = SubResource("AnimationLibrary_qhqgy")
 
 [node name="ShotAudio" type="AudioStreamPlayer" parent="." unique_id=1559216217]
-stream = ExtResource("5_8fjmc")
-bus = &"Shot"
+stream = ExtResource("6_qiwj3")
 
 [node name="CrosshairW" type="Sprite2D" parent="." unique_id=1840166589]
 visible = false
